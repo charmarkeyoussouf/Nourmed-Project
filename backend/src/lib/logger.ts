@@ -1,0 +1,12 @@
+import pino from "pino";
+
+import { env } from "../config/env";
+
+export const logger = pino({
+  level: env.LOG_LEVEL,
+  timestamp: pino.stdTimeFunctions.isoTime,
+  base: {
+    service: "nourmed-backend",
+    environment: env.NODE_ENV,
+  },
+});
