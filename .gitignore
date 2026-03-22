@@ -19,6 +19,9 @@ public/
 *.log
 *.pid
 gcm-diagnose.log
+nginx/certbot/conf/
+nginx/certbot/lib/
+nginx/certbot/www/
 
 # Environment files
 .env

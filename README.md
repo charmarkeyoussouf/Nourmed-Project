@@ -27,7 +27,7 @@ Nginx reverse proxy
 Core decisions:
 - `frontend` and `backend` are isolated services so the public site and API can evolve independently.
 - `db` is attached only to an internal Docker network. It is never published to the host by default.
-- Nginx is the only exposed service and is structured so HTTPS termination can be added later without a major rewrite.
+- Local Docker stays intentionally simple on HTTP, while `docker-compose.prod.yml` terminates HTTPS at Nginx for `nourmed.org` and `www.nourmed.org`.
 - Prisma migrations are committed and `prisma migrate deploy` runs automatically when the backend container starts.
 - `npm` is used consistently because the original workspace already used it and it keeps onboarding and lockfiles straightforward.
 
@@ -37,6 +37,7 @@ Core decisions:
 .
 |-- .env.example
 |-- docker-compose.yml
+|-- docker-compose.prod.yml
 |-- README.md
 |-- frontend/
 |   |-- Dockerfile
@@ -60,7 +61,8 @@ Core decisions:
 |   |-- prisma/
 |   `-- src/
 |-- nginx/
-|   `-- nginx.conf
+|   |-- nginx.conf
+|   `-- nginx.prod.conf
 `-- scripts/
     |-- dev/
     `-- prod/
@@ -114,6 +116,7 @@ Root `.env` variables used by Docker Compose:
 | `TRUST_PROXY` | Express trust proxy value for correct client IP handling |
 | `LOG_LEVEL` | Backend log verbosity |
 | `SHUTDOWN_TIMEOUT_MS` | Graceful shutdown timeout for the backend |
+| `LETSENCRYPT_EMAIL` | Email address used for Let's Encrypt certificate issuance on the VPS |
 
 Service-specific examples are also included in `frontend/.env.example` and `backend/.env.example` for running services outside Compose later.
 
@@ -137,6 +140,57 @@ Optional helper scripts:
 ./scripts/dev/up.sh
 ./scripts/dev/down.sh
 ```
+
+## Production HTTPS for nourmed.org
+
+The live domain currently needs a proper TLS listener and certificate on the VPS. This repo now includes a production path that serves `https://www.nourmed.org`, redirects `http` to `https`, and keeps the database private behind Docker networks.
+
+Before running the production stack on the VPS:
+
+1. Ensure both `nourmed.org` and `www.nourmed.org` point to the server IP.
+2. Open inbound TCP `80` and `443` in the VPS firewall.
+3. Create `.env` on the server with production values:
+
+```dotenv
+NEXT_PUBLIC_SITE_URL=https://www.nourmed.org
+CORS_ALLOWED_ORIGINS=https://www.nourmed.org,https://nourmed.org
+LETSENCRYPT_EMAIL=your-real-email@example.com
+```
+
+4. Request the first certificate:
+
+```bash
+sh scripts/prod/request-certificate.sh
+```
+
+Port `80` must be free on the VPS when the first certificate is requested. If an older host-level Nginx or Apache process is already bound to `80`, stop it before running the script.
+
+5. Start the production stack:
+
+```bash
+sh scripts/prod/deploy.sh
+```
+
+6. Verify redirect and TLS:
+
+```bash
+curl -I http://nourmed.org
+curl -I http://www.nourmed.org
+curl -I https://www.nourmed.org
+```
+
+Expected result:
+- `http://nourmed.org` redirects to `https://www.nourmed.org`
+- `http://www.nourmed.org` redirects to `https://www.nourmed.org`
+- `https://www.nourmed.org` returns `200 OK`
+
+7. Renew certificates periodically:
+
+```bash
+sh scripts/prod/renew-certificate.sh
+```
+
+Run the renewal script from cron or a systemd timer, then reload Nginx after a successful renewal.
 
 ## Prisma Migrations
 
@@ -221,7 +275,7 @@ Invoke-Expression $cmd
 ## Future Hardening Recommendations
 
 Short-term:
-- Terminate HTTPS at Nginx and enable HSTS only after TLS is active.
+- Automate certificate renewal with a systemd timer or cron on the VPS and alert on renewal failures.
 - Replace `.env` secrets with a managed secret source on the target server.
 - Add CSP headers tuned to the final frontend assets.
 - Add centralized log shipping and alerting.
@@ -242,8 +296,8 @@ This repo is structured for a straightforward VPS path:
 1. Provision a Linux host with Docker and Docker Compose
 2. Copy the repo to the server
 3. Create a production `.env`
-4. Point DNS to the server
-5. Add TLS certs and extend `nginx/nginx.conf` with HTTPS server blocks
-6. Run `docker compose up -d --build`
+4. Point DNS for `nourmed.org` and `www.nourmed.org` to the server
+5. Run `sh scripts/prod/request-certificate.sh`
+6. Run `sh scripts/prod/deploy.sh`
 
 For a more mature production posture later, separate the database onto managed infrastructure or a hardened private host, create separate admin and app database roles, and add encrypted off-host backups.
