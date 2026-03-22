@@ -22,11 +22,7 @@ cd "$PROJECT_ROOT"
 
 mkdir -p nginx/certbot/conf nginx/certbot/lib nginx/certbot/www
 
-docker run --rm \
-  -v "$PROJECT_ROOT/nginx/certbot/conf:/etc/letsencrypt" \
-  -v "$PROJECT_ROOT/nginx/certbot/lib:/var/lib/letsencrypt" \
-  -v "$PROJECT_ROOT/nginx/certbot/www:/var/www/certbot" \
-  certbot/certbot:latest renew \
+compose -f docker-compose.prod.yml run --rm certbot renew \
   --webroot \
   -w /var/www/certbot
 

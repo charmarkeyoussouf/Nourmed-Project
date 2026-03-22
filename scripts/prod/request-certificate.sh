@@ -39,11 +39,7 @@ mkdir -p nginx/certbot/conf nginx/certbot/lib nginx/certbot/www
 
 compose -f docker-compose.prod.yml stop nginx >/dev/null 2>&1 || true
 
-docker run --rm \
-  -p 80:80 \
-  -v "$PROJECT_ROOT/nginx/certbot/conf:/etc/letsencrypt" \
-  -v "$PROJECT_ROOT/nginx/certbot/lib:/var/lib/letsencrypt" \
-  certbot/certbot:latest certonly \
+compose -f docker-compose.prod.yml run --rm --service-ports certbot certonly \
   --standalone \
   --preferred-challenges http \
   --non-interactive \

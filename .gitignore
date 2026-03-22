@@ -12,8 +12,8 @@ coverage/
 build/
 
 # Legacy starter leftovers not used by the current platform
-app/
-public/
+/app/
+/public/
 
 # Runtime and logs
 *.log

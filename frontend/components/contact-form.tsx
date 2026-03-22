@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 
 type FormState = {
   name: string;
@@ -30,7 +30,7 @@ export function ContactForm() {
   const [formState, setFormState] = useState<FormState>(initialFormState);
   const [submissionState, setSubmissionState] = useState<SubmissionState>(initialSubmissionState);
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmissionState({
       status: "submitting",
