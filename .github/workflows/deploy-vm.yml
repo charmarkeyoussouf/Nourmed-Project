@@ -1,0 +1,91 @@
+name: Deploy VM
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Configure SSH
+        env:
+          VM_SSH_KEY: ${{ secrets.VM_SSH_KEY }}
+          VM_KNOWN_HOSTS: ${{ secrets.VM_KNOWN_HOSTS }}
+        run: |
+          : "${VM_SSH_KEY:?Missing VM_SSH_KEY secret}"
+          : "${VM_KNOWN_HOSTS:?Missing VM_KNOWN_HOSTS secret}"
+
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VM_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$VM_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Deploy latest main to VM
+        env:
+          DEPLOY_REF: ${{ github.sha }}
+          VM_DEPLOY_PATH: ${{ secrets.VM_DEPLOY_PATH }}
+          VM_HOST: ${{ secrets.VM_HOST }}
+          VM_PORT: ${{ secrets.VM_PORT }}
+          VM_USER: ${{ secrets.VM_USER }}
+        run: |
+          : "${VM_HOST:?Missing VM_HOST secret}"
+          : "${VM_USER:?Missing VM_USER secret}"
+          : "${VM_DEPLOY_PATH:?Missing VM_DEPLOY_PATH secret}"
+
+          VM_PORT="${VM_PORT:-22}"
+
+          ssh \
+            -i ~/.ssh/id_ed25519 \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -p "$VM_PORT" \
+            "$VM_USER@$VM_HOST" \
+            "DEPLOY_PATH=\"$VM_DEPLOY_PATH\" DEPLOY_REF=\"$DEPLOY_REF\" sh -s" <<'EOF'
+          set -eu
+
+          cd "$DEPLOY_PATH"
+
+          if [ -f scripts/prod/update-vm.sh ]; then
+            sh scripts/prod/update-vm.sh --branch main --ref "$DEPLOY_REF"
+            exit 0
+          fi
+
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Automated deploy requires a clean git working tree on the VM."
+            exit 1
+          fi
+
+          git fetch origin main --prune
+
+          if git show-ref --verify --quiet refs/heads/main; then
+            git checkout main
+          else
+            git checkout -b main --track origin/main
+          fi
+
+          REMOTE_REF="$(git rev-parse origin/main)"
+          LOCAL_REF="$(git rev-parse HEAD)"
+
+          if [ "$REMOTE_REF" != "$DEPLOY_REF" ]; then
+            echo "origin/main resolved to $REMOTE_REF, expected $DEPLOY_REF."
+            exit 1
+          fi
+
+          if [ "$LOCAL_REF" != "$REMOTE_REF" ]; then
+            git pull --ff-only origin main
+          fi
+
+          sh scripts/prod/deploy.sh
+          EOF

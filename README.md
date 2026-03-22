@@ -302,3 +302,57 @@ This repo is structured for a straightforward VPS path:
 6. Run `sh scripts/prod/deploy.sh`
 
 For a more mature production posture later, separate the database onto managed infrastructure or a hardened private host, create separate admin and app database roles, and add encrypted off-host backups.
+
+## Automatic Deploys on Push to Main
+
+This repo now includes GitHub Actions workflow [`deploy-vm.yml`](.github/workflows/deploy-vm.yml) that runs on every push to `main` and SSHes into the VM to redeploy the production stack.
+
+How it works:
+- GitHub Actions connects to the VM over SSH
+- The workflow updates the VM checkout to the pushed `main` commit and runs `sh scripts/prod/deploy.sh`
+- `scripts/prod/update-vm.sh` is included for the same update flow when you want to run it directly on the VM
+- If the VM repo has manual uncommitted changes, the deploy stops instead of overwriting them
+
+One-time VM setup:
+
+1. Clone this repo onto the VM in a stable path such as `/opt/nourmed`:
+
+```bash
+git clone git@github.com:YOUR_ORG/YOUR_REPO.git /opt/nourmed
+cd /opt/nourmed
+```
+
+2. If the repo is private, generate a read-only deploy key on the VM and add the public key in GitHub under the repository Deploy Keys settings:
+
+```bash
+ssh-keygen -t ed25519 -C "nourmed-vm-repo-pull" -f ~/.ssh/nourmed_repo_pull
+cat ~/.ssh/nourmed_repo_pull.pub
+```
+
+Then configure the repo remote on the VM to use that key.
+
+3. Create the production `.env`, request certificates, and do the first deploy manually on the VM:
+
+```bash
+cd /opt/nourmed
+sh scripts/prod/bootstrap.sh --email you@example.com --install-renew-cron
+```
+
+4. Make sure the SSH user used by GitHub Actions can run Docker and can read/write the deploy directory.
+
+GitHub repository secrets required by the workflow:
+
+- `VM_HOST`: Public IP or DNS name of the VM
+- `VM_PORT`: SSH port for the VM. Optional; defaults to `22`
+- `VM_USER`: SSH user GitHub Actions should log in as
+- `VM_DEPLOY_PATH`: Absolute path to the repo on the VM, for example `/opt/nourmed`
+- `VM_SSH_KEY`: Private key GitHub Actions uses to SSH into the VM
+- `VM_KNOWN_HOSTS`: Output of `ssh-keyscan -H your-server.example.com`
+
+Example command to build the `VM_KNOWN_HOSTS` secret value:
+
+```bash
+ssh-keyscan -H your-server.example.com
+```
+
+The SSH key used by GitHub Actions to access the VM is separate from the optional deploy key the VM may need to pull from a private GitHub repo. The first key is GitHub Actions -> VM. The second key is VM -> GitHub.
