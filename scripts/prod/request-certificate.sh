@@ -1,6 +1,21 @@
 #!/usr/bin/env sh
 set -eu
 
+compose() {
+  if docker compose version >/dev/null 2>&1; then
+    docker compose "$@"
+    return
+  fi
+
+  if command -v docker-compose >/dev/null 2>&1; then
+    docker-compose "$@"
+    return
+  fi
+
+  echo "Neither 'docker compose' nor 'docker-compose' is available on this host."
+  exit 1
+}
+
 PROJECT_ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)"
 
 cd "$PROJECT_ROOT"
@@ -22,10 +37,13 @@ fi
 
 mkdir -p nginx/certbot/conf nginx/certbot/lib nginx/certbot/www
 
-docker compose -f docker-compose.prod.yml stop nginx >/dev/null 2>&1 || true
+compose -f docker-compose.prod.yml stop nginx >/dev/null 2>&1 || true
 
-docker compose -f docker-compose.prod.yml --profile ops run --rm --service-ports certbot \
-  certonly \
+docker run --rm \
+  -p 80:80 \
+  -v "$PROJECT_ROOT/nginx/certbot/conf:/etc/letsencrypt" \
+  -v "$PROJECT_ROOT/nginx/certbot/lib:/var/lib/letsencrypt" \
+  certbot/certbot:latest certonly \
   --standalone \
   --preferred-challenges http \
   --non-interactive \

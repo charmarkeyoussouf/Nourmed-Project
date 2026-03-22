@@ -1,6 +1,21 @@
 #!/usr/bin/env sh
 set -eu
 
+compose() {
+  if docker compose version >/dev/null 2>&1; then
+    docker compose "$@"
+    return
+  fi
+
+  if command -v docker-compose >/dev/null 2>&1; then
+    docker-compose "$@"
+    return
+  fi
+
+  echo "Neither 'docker compose' nor 'docker-compose' is available on this host."
+  exit 1
+}
+
 PROJECT_ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)"
 CERTIFICATE_DIR="$PROJECT_ROOT/nginx/certbot/conf/live/www.nourmed.org"
 
@@ -36,4 +51,4 @@ if [ ! -f "$CERTIFICATE_DIR/fullchain.pem" ] || [ ! -f "$CERTIFICATE_DIR/privkey
   exit 1
 fi
 
-docker compose -f docker-compose.prod.yml up -d --build
+compose -f docker-compose.prod.yml up -d --build

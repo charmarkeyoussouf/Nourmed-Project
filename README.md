@@ -191,6 +191,7 @@ sh scripts/prod/renew-certificate.sh
 ```
 
 Run the renewal script from cron or a systemd timer, then reload Nginx after a successful renewal.
+The production scripts support both `docker compose` and legacy `docker-compose`.
 
 ## Prisma Migrations
 
