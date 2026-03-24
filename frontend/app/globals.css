@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #efe8de;
+  --color-background: #f7fbf8;
   --color-foreground: #10212a;
-  --color-muted: #5b676e;
-  --color-border: #cad2ce;
-  --color-panel: #f7f1e8;
-  --color-panel-strong: #fffdf8;
-  --color-accent: #1e5a60;
-  --color-accent-contrast: #f7f2ea;
-  --color-accent-soft: #d7ebe6;
+  --color-muted: #536670;
+  --color-border: #cedfd9;
+  --color-panel: #fffdf8;
+  --color-panel-strong: #ffffff;
+  --color-accent: #2a8f95;
+  --color-accent-contrast: #f7fffd;
+  --color-accent-soft: #def3f1;
   --font-sans: "Avenir Next", "Aptos", "Segoe UI", sans-serif;
   --font-mono: "Consolas", "Liberation Mono", monospace;
 }
@@ -43,9 +43,10 @@ html[dir="rtl"] textarea {
 
 body {
   background:
-    radial-gradient(circle at top left, rgba(31, 90, 96, 0.16), transparent 32%),
-    radial-gradient(circle at top right, rgba(224, 171, 102, 0.12), transparent 26%),
-    linear-gradient(180deg, #faf4eb 0%, #f3ece3 48%, #e7e0d5 100%);
+    radial-gradient(circle at 8% 10%, rgba(114, 183, 178, 0.28), transparent 24%),
+    radial-gradient(circle at 92% 12%, rgba(215, 161, 88, 0.22), transparent 21%),
+    radial-gradient(circle at 48% 100%, rgba(42, 143, 149, 0.1), transparent 36%),
+    linear-gradient(180deg, #fbfdfc 0%, #f5f8f6 48%, #eef3f1 100%);
   text-rendering: optimizeLegibility;
 }
 

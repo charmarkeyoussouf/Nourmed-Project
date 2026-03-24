@@ -14,7 +14,7 @@ export function Footer({ locale }: FooterProps) {
 
   return (
     <footer className="py-10">
-      <div className="rounded-[2.6rem] border border-border bg-panel px-7 py-8 shadow-[0_22px_55px_rgba(16,33,42,0.06)] sm:px-10 sm:py-10">
+      <div className="rounded-[2.6rem] border border-[rgba(206,223,217,0.96)] bg-[linear-gradient(140deg,rgba(255,255,255,0.96),rgba(230,247,244,0.88),rgba(255,248,238,0.92))] px-7 py-8 shadow-[0_22px_55px_rgba(16,33,42,0.06)] sm:px-10 sm:py-10">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
           <div className="max-w-2xl space-y-4">
             <Image
@@ -31,7 +31,7 @@ export function Footer({ locale }: FooterProps) {
               <LanguageSwitcher locale={locale} label={copy.nav.languageLabel} />
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-border bg-panel-strong px-6 py-3 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
+                className="inline-flex items-center justify-center rounded-full border border-[rgba(206,223,217,0.96)] bg-[rgba(255,255,255,0.86)] px-6 py-3 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
               >
                 {copy.footer.cta}
               </Link>

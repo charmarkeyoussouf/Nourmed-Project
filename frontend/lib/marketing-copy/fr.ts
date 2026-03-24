@@ -7,13 +7,13 @@ export const frMarketingCopy: MarketingCopy = {
   meta: {
     siteTitle: "Nourmed | Conseil en cybersécurité pour petites entreprises",
     siteDescription:
-      "Nourmed aide les petites entreprises à renforcer la sécurité de leur site, leur préparation à la conformité et leur protection continue grâce à un accompagnement concret.",
+      "Nous accompagnons les petites entreprises dans la sécurisation de leurs sites web, leur préparation à la conformité et la mise en place d'une protection continue.",
     siteOpenGraphDescription:
-      "Conseil en cybersécurité pour petites entreprises axé sur les sites sécurisés, la préparation à la conformité, les analyses de vulnérabilité et une protection continue pragmatique.",
+      "Nous aidons les petites entreprises à sécuriser leurs sites, à renforcer leur préparation à la conformité et à réduire les vulnérabilités par un accompagnement clair et pragmatique.",
     home: {
       title: "Cybersécurité pour petites entreprises",
       description:
-        "Nourmed aide les petites entreprises à sécuriser leurs sites web, réduire les vulnérabilités, améliorer leur préparation à la conformité et renforcer la confiance.",
+        "Nous aidons les petites entreprises à sécuriser leurs sites web, à réduire leurs vulnérabilités, à renforcer leur préparation à la conformité et à consolider la confiance.",
       keywords: [
         "cybersécurité petite entreprise",
         "conseil sécurité site web",
@@ -24,7 +24,7 @@ export const frMarketingCopy: MarketingCopy = {
     services: {
       title: "Services",
       description:
-        "Découvrez le conseil en conformité, le développement web sécurisé et les forfaits de cybersécurité pour petites entreprises avec des prix de départ réalistes.",
+        "Découvrez notre conseil en conformité, notre développement web sécurisé et nos forfaits de cybersécurité pour petites entreprises avec des prix de départ réalistes.",
       keywords: [
         "conseil conformité petite entreprise",
         "développement site web sécurisé",
@@ -36,14 +36,14 @@ export const frMarketingCopy: MarketingCopy = {
     about: {
       title: "À propos",
       description:
-        "Découvrez comment Nourmed aide les petites entreprises à renforcer leurs systèmes exposés au public, améliorer leur préparation à la conformité et réduire les risques évitables.",
+        "Découvrez comment nous aidons les petites entreprises à renforcer leurs systèmes exposés au public, à améliorer leur préparation à la conformité et à réduire les risques évitables.",
       keywords: ["à propos nourmed", "partenaire sécurité petite entreprise", "cabinet conseil cybersécurité"],
     },
     contact: {
       title: "Contact",
       description:
-        "Demandez une analyse de sécurité gratuite ou un devis pour le conseil en conformité, le développement web sécurisé ou une protection continue.",
-      keywords: ["analyse de sécurité gratuite", "devis cybersécurité petite entreprise", "contacter consultant cybersécurité"],
+        "Demandez un scan de sécurité gratuit ou un devis pour notre conseil en conformité, notre développement web sécurisé ou notre protection continue.",
+      keywords: ["scan de sécurité gratuit", "devis cybersécurité petite entreprise", "contacter consultant cybersécurité"],
     },
   },
   nav: {
@@ -54,17 +54,18 @@ export const frMarketingCopy: MarketingCopy = {
       { href: "/about", label: "À propos" },
       { href: "/contact", label: "Contact" },
     ],
-    cta: "Obtenir un scan de sécurité gratuit",
+    cta: "Obtenir un scan gratuit",
   },
   footer: {
     description:
-      "Conseil en cybersécurité pour petites entreprises centré sur les sites sécurisés, la préparation à la conformité et une protection continue pragmatique.",
+      "Nous accompagnons les petites entreprises avec des sites plus sûrs, une meilleure préparation à la conformité et une protection continue adaptée à leur réalité.",
     cta: "Demander un scan gratuit",
     closing: "Une protection concrète pour les entreprises en croissance.",
     ribbon: "Sites sécurisés. Préparation à la conformité. Protection continue.",
   },
   shared: {
-    pricingDisclaimer: "Le tarif final dépend de la portée, de la taille de l'entreprise et de la complexité des systèmes.",
+    pricingDisclaimer:
+      "Le tarif final dépend du périmètre, de la taille de l'entreprise et de la complexité des systèmes concernés.",
     serviceOfferings: [
       {
         slug: "compliance-consulting",
@@ -72,13 +73,13 @@ export const frMarketingCopy: MarketingCopy = {
         title: "Conseil en conformité",
         price: "À partir de 750 $",
         summary:
-          "Un accompagnement de préparation pour les petites entreprises confrontées à des exigences clients, fournisseurs ou liées aux données.",
+          "Nous aidons les petites entreprises à se préparer à des exigences clients, fournisseurs ou liées à la protection des données.",
         description:
-          "En termes simples, la conformité consiste à montrer que votre entreprise protège correctement les informations et fonctionne avec des mesures de sécurité raisonnables. Nourmed aide les petites entreprises à s'y préparer grâce à des analyses d'écarts, des recommandations concrètes et un accompagnement de mise en œuvre autour des exigences fournisseurs, de la confiance client, de la protection des données et de la préparation opérationnelle. Nourmed n'est pas un cabinet juridique et ne délivre pas de certifications.",
+          "En termes simples, la conformité consiste à démontrer que votre entreprise protège les informations de manière responsable et fonctionne avec des mesures de sécurité appropriées. Nous vous aidons à structurer cette préparation grâce à des analyses d'écarts, des recommandations concrètes et un accompagnement de mise en œuvre autour des exigences fournisseurs, de la confiance client, de la protection des données et de la préparation opérationnelle. Nous n'agissons ni comme cabinet juridique ni comme organisme certificateur.",
         bullets: [
-          "Identification des écarts et planification de préparation pour questionnaires clients, fournisseurs et sécurité",
+          "Identification des écarts et plan de préparation pour questionnaires clients, fournisseurs et sécurité",
           "Conseils sur les politiques, les accès, la documentation et les attentes de sécurité concrètes",
-          "Soutien à la mise en œuvre pour aider votre équipe avant tout examen externe",
+          "Accompagnement de mise en œuvre pour préparer votre équipe avant tout contrôle externe",
         ],
       },
       {
@@ -87,12 +88,12 @@ export const frMarketingCopy: MarketingCopy = {
         title: "Développement web sécurisé",
         price: "À partir de 2 500 $",
         summary:
-          "Des sites sécurisés pour les entreprises qui ont besoin de protection, de fiabilité et d'une base publique plus solide.",
+          "Nous concevons des sites sécurisés pour les entreprises qui attendent une base publique fiable, solide et professionnelle.",
         description:
-          "Nourmed conçoit et développe des sites web avec la sécurité en tête dès le premier jour. Cela inclut le HTTPS, des formulaires sécurisés, des recommandations d'hébergement renforcé, des pratiques de déploiement plus sûres, une protection de base contre les abus et des choix d'architecture favorisant la disponibilité et la confiance. Le résultat n'est pas seulement un meilleur site, mais un système métier plus fiable.",
+          "Nous concevons et développons des sites web avec la sécurité en tête dès le premier jour. Cela inclut le HTTPS, des formulaires sécurisés, des recommandations d'hébergement renforcé, des pratiques de déploiement plus sûres, une protection de base contre les abus et des choix d'architecture orientés disponibilité et confiance. Le résultat n'est pas seulement un meilleur site, mais un système métier plus fiable.",
         bullets: [
           "HTTPS, formulaires sécurisés et choix d'hébergement ou de déploiement orientés réduction du risque",
-          "Résistance pratique aux abus, parcours d'entrée plus propres et infrastructure publique plus sûre",
+          "Protection pratique contre les abus, parcours d'entrée plus propres et infrastructure publique plus sûre",
           "Mise en œuvre pensée pour la disponibilité et traitant le site comme une infrastructure métier",
         ],
       },
@@ -102,13 +103,13 @@ export const frMarketingCopy: MarketingCopy = {
         title: "Forfaits de sécurité pour petites entreprises",
         price: "À partir de 199 $/mois",
         summary:
-          "Un accompagnement continu pour les petites entreprises qui veulent une protection régulière sans complexité d'entreprise.",
+          "Nous proposons un accompagnement récurrent pour les entreprises qui ont besoin d'une protection régulière sans complexité inutile.",
         description:
-          "Nos forfaits récurrents s'adressent aux entreprises qui veulent une attention constante portée à leur posture de sécurité. Nourmed propose des analyses de vulnérabilité, des conseils de durcissement, des orientations de surveillance, des revues de sauvegarde et d'accès, ainsi qu'un accompagnement clair pour réduire les risques évitables dans le temps.",
+          "Nos forfaits récurrents s'adressent aux entreprises qui veulent garder une attention constante sur leur posture de sécurité. Nous proposons des analyses de vulnérabilité, des recommandations de durcissement, des orientations de surveillance, des revues de sauvegarde et d'accès ainsi qu'un accompagnement clair pour réduire les risques évitables dans la durée.",
         bullets: [
           "Analyses de vulnérabilité récurrentes et recommandations concrètes",
           "Conseils de durcissement, revue des accès et planification des sauvegardes",
-          "Soutien continu pour garder la sécurité gérable dans une entreprise en croissance",
+          "Soutien continu pour garder la sécurité maîtrisable dans une entreprise en croissance",
         ],
       },
     ],
@@ -117,25 +118,25 @@ export const frMarketingCopy: MarketingCopy = {
         step: "01",
         title: "Analyser et évaluer",
         description:
-          "Nous examinons votre site web, votre exposition publique et les préoccupations de sécurité ou de conformité qui touchent déjà l'entreprise.",
+          "Nous examinons votre site web, votre exposition publique et les préoccupations de sécurité ou de conformité déjà visibles dans votre activité.",
       },
       {
         step: "02",
         title: "Identifier les risques et les écarts",
         description:
-          "Nous cartographions les points qui peuvent affecter la confiance, la disponibilité et la préparation, puis nous priorisons ce qui compte vraiment.",
+          "Nous hiérarchisons les points qui peuvent affecter la confiance, la disponibilité et votre niveau de préparation.",
       },
       {
         step: "03",
         title: "Sécuriser et renforcer",
         description:
-          "Nous renforçons le site, l'hébergement, les parcours d'entrée et les mesures associées avec des actions concrètes.",
+          "Nous renforçons le site, l'hébergement, les parcours d'entrée et les mesures associées avec des actions concrètes et adaptées.",
       },
       {
         step: "04",
         title: "Accompagner et améliorer",
         description:
-          "Quand un soutien continu a du sens, nous restons impliqués avec des revues régulières, des conseils et des améliorations progressives.",
+          "Lorsque cela a du sens, nous prolongeons le travail avec des revues régulières, des conseils ciblés et des améliorations progressives.",
       },
     ],
     serviceInterestOptions: [
@@ -147,9 +148,9 @@ export const frMarketingCopy: MarketingCopy = {
   },
   form: {
     eyebrow: "Scan de sécurité gratuit",
-    title: "Demander un scan de sécurité gratuit ou un devis",
+    title: "Demander un scan gratuit ou un devis",
     description:
-      "Expliquez brièvement votre entreprise, votre site web et le type d'accompagnement recherché. Nourmed examinera la demande et recommandera la bonne prochaine étape.",
+      "Présentez-nous votre entreprise, votre site web et le type d'accompagnement recherché. Nous étudierons votre demande et vous proposerons la prochaine étape la plus pertinente.",
     submitLabel: "Demander un scan gratuit",
     secureNote: "Collecte sécurisée, validation côté serveur et contrôles anti-spam activés côté backend.",
     hiddenWebsiteLabel: "Site web",
@@ -165,233 +166,233 @@ export const frMarketingCopy: MarketingCopy = {
     },
     messages: {
       submitting: "Envoi de votre demande...",
-      success: "Votre demande a bien été reçue. Nourmed l'examinera et reviendra vers vous rapidement.",
+      success: "Nous avons bien reçu votre demande. Nous reviendrons vers vous rapidement.",
       error: "La demande n'a pas pu être envoyée. Vérifiez votre connexion et réessayez.",
     },
   },
   home: {
     heroEyebrow: "Cybersécurité pour petites entreprises",
-    heroTitle: "Protégez votre entreprise contre le risque cyber, les interruptions et les systèmes fragiles.",
+    heroTitle: "Nous protégeons votre entreprise contre les risques cyber, les interruptions et les systèmes fragiles.",
     heroDescription:
-      "Nourmed aide les petites entreprises à sécuriser leurs sites web, réduire les vulnérabilités, améliorer leur préparation à la conformité et renforcer la confiance dans les systèmes sur lesquels clients et partenaires comptent.",
-    primaryCta: "Obtenir un scan de sécurité gratuit",
+      "Nous sécurisons les sites web, réduisons les vulnérabilités, renforçons la préparation à la conformité et consolidons la confiance dans les systèmes sur lesquels vos clients et partenaires s'appuient.",
+    primaryCta: "Obtenir un scan gratuit",
     secondaryCta: "Voir les services",
-    heroPanelEyebrow: "Ce que Nourmed prend en charge",
-    heroPanelTitle: "Un accompagnement clair pour les entreprises qui ont besoin de systèmes publics plus solides.",
+    heroPanelEyebrow: "Ce que nous prenons en charge",
+    heroPanelTitle: "Une approche claire pour les entreprises qui ont besoin de systèmes publics plus sûrs et plus fiables.",
     heroHighlights: [
       "Sites publics et formulaires sécurisés",
-      "Accompagnement de préparation à la conformité pour les entreprises en croissance",
-      "Support sécurité continu adapté aux petites équipes",
+      "Préparation à la conformité adaptée aux entreprises en croissance",
+      "Support sécurité continu, proportionné aux petites équipes",
     ],
     heroScanEyebrow: "Scan gratuit",
     heroScanDescription:
-      "Commencez par un scan de sécurité gratuit pour comprendre les écarts visibles avant d'engager une mission plus large.",
+      "Commencez par un scan gratuit pour comprendre les écarts visibles avant d'engager une mission plus large.",
     whatWeDo: {
       eyebrow: "Ce que nous faisons",
-      title: "Nourmed aide les petites entreprises à sécuriser leurs sites, réduire les vulnérabilités et renforcer leur préparation",
+      title: "Nous sécurisons vos sites web, réduisons vos vulnérabilités et renforçons votre niveau de préparation",
       description:
-        "Nous nous concentrons sur les éléments qui influencent le plus la confiance: les systèmes exposés au public, les failles qui perturbent l'activité et le travail de préparation nécessaire pour répondre avec assurance aux attentes des clients ou fournisseurs.",
+        "Nous concentrons notre travail sur ce qui influence directement la confiance: les systèmes exposés au public, les failles qui fragilisent l'activité et les actions de préparation nécessaires pour répondre avec assurance aux attentes de vos clients ou partenaires.",
       items: [
         {
-          title: "Sécuriser les systèmes que les gens voient",
+          title: "Sécuriser les systèmes visibles",
           description:
-            "Nourmed aide les petites entreprises à améliorer les sites, formulaires, choix d'hébergement et systèmes publics qui façonnent la confiance dès la première visite.",
+            "Nous renforçons les sites, les formulaires, les choix d'hébergement et les systèmes publics qui influencent la confiance dès le premier contact.",
         },
         {
-          title: "Réduire les risques évitables avant qu'ils grandissent",
+          title: "Réduire les risques évitables",
           description:
-            "Nous recherchons les vulnérabilités, les processus fragiles et les écarts de sécurité qui peuvent entraîner des interruptions, une baisse de confiance ou des questions difficiles de la part de partenaires.",
+            "Nous identifions les vulnérabilités, les processus fragiles et les écarts de sécurité susceptibles de provoquer des interruptions ou d'affaiblir la confiance.",
         },
         {
-          title: "Rendre la sécurité plus simple à mettre en œuvre",
+          title: "Rendre la sécurité plus lisible",
           description:
-            "L'objectif est un accompagnement concret. Les dirigeants reçoivent des priorités claires, des recommandations sensées et un appui à la mise en œuvre sans jargon d'entreprise.",
+            "Nous transformons les sujets techniques en priorités claires, recommandations solides et décisions compréhensibles pour les dirigeants.",
         },
       ],
     },
     howWeDoIt: {
       eyebrow: "Comment nous procédons",
-      title: "Un processus simple fondé sur la clarté, l'action et l'amélioration continue",
+      title: "Une méthode simple, structurée et orientée résultats",
       description:
-        "Nourmed garde le processus lisible pour que les dirigeants comprennent ce qui compte, ce qu'il faut faire ensuite et quand un soutien continu est utile.",
+        "Nous gardons le processus lisible afin que vous sachiez ce qui compte, ce qu'il faut traiter en priorité et quand un accompagnement continu devient pertinent.",
     },
     services: {
       eyebrow: "Services",
-      title: "Trois façons pour Nourmed de soutenir la sécurité et la préparation des petites entreprises",
+      title: "Trois offres par lesquelles nous renforçons la sécurité et la préparation des petites entreprises",
       description:
-        "Chaque service est conçu pour être clair, pratique et utile à de vraies entreprises sans complexité inutile.",
+        "Chaque service est conçu pour rester clair, pratique et utile à une entreprise réelle, sans complexité superflue.",
       cardCta: "Voir les détails du service",
     },
     freeScan: {
       eyebrow: "Scan de sécurité gratuit",
-      title: "Commencez par une première étape claire au lieu de deviner ce qui demande de l'attention",
+      title: "Commencez par une première étape claire plutôt que par des suppositions",
       description:
-        "Un scan gratuit vous aide à comprendre le risque visible sur votre site, les points faibles probables et le service Nourmed le plus adapté avant d'engager une mission plus large.",
+        "Ce scan gratuit vous aide à comprendre le risque visible sur votre site, les points faibles probables et le type d'accompagnement le plus adapté avant d'engager une mission plus large.",
       benefits: [
-        "Un premier regard clair sur les risques du site, les parcours d'entrée et l'exposition visible",
-        "Des indications sur le bon service pour votre entreprise",
-        "Un devis plus pertinent quand un accompagnement plus large est nécessaire",
+        "Une première lecture claire des risques visibles, des parcours d'entrée et de l'exposition publique",
+        "Des indications sur le service le plus pertinent pour votre entreprise",
+        "Un devis mieux cadré lorsqu'un accompagnement plus large est nécessaire",
       ],
       formEyebrow: "Demandez votre scan",
-      formTitle: "Demander un scan de sécurité gratuit ou un devis",
+      formTitle: "Demander un scan gratuit ou un devis",
       formDescription:
-        "Parlez à Nourmed de votre entreprise, de votre site web et du type d'aide recherché. Nous examinerons la demande et recommanderons la bonne prochaine étape.",
+        "Présentez-nous votre entreprise, votre site web et le type d'aide recherché. Nous examinerons votre demande et vous proposerons la suite la plus adaptée.",
     },
     trust: {
-      eyebrow: "Confiance & réassurance",
-      title: "Une protection concrète pour les entreprises en croissance qui ont besoin d'un accompagnement clair",
+      eyebrow: "Confiance et clarté",
+      title: "Une protection concrète pour les entreprises qui attendent un accompagnement sérieux",
       description:
-        "Nourmed se concentre sur un travail de sécurité utile au business: sites sécurisés, meilleure préparation et accompagnement qui aide les dirigeants à avancer avec plus de confiance.",
+        "Nous privilégions un travail de sécurité utile au fonctionnement réel de l'entreprise: sites plus sûrs, meilleure préparation et accompagnement qui facilite des décisions solides.",
       items: [
         {
-          title: "Des conseils concrets, pas du bruit",
+          title: "Des conseils clairs",
           description:
-            "Nourmed explique les risques et les prochaines étapes en langage clair pour aider les dirigeants à décider vite et sereinement.",
+            "Nous expliquons les risques, les priorités et les prochaines étapes dans un langage compréhensible par les dirigeants.",
         },
         {
-          title: "Une exécution pensée pour la sécurité",
+          title: "Une exécution rigoureuse",
           description:
-            "Des sites sécurisés à la protection récurrente, le travail est structuré autour des vrais risques opérationnels et non de livrables d'agence génériques.",
+            "Nous structurons notre travail autour des risques opérationnels réels plutôt qu'autour de promesses génériques ou de livrables de façade.",
         },
         {
-          title: "Une préparation sans surpromesses",
+          title: "Une posture de partenaire",
           description:
-            "Nourmed accompagne la préparation à la conformité et la mise en œuvre, sans se présenter comme cabinet juridique ou organisme certificateur.",
+            "Nous accompagnons la préparation à la conformité et la mise en œuvre opérationnelle, sans revendiquer de rôle juridique ni d'autorité de certification.",
         },
       ],
     },
   },
   servicesPage: {
     heroEyebrow: "Services de cybersécurité",
-    heroTitle: "Des services conçus pour aider les petites entreprises à renforcer leur sécurité et à opérer avec plus de confiance.",
+    heroTitle: "Nous concevons des services pensés pour aider les petites entreprises à se sécuriser et à gagner en confiance.",
     heroDescription:
-      "Nourmed aide les entreprises à sécuriser leurs systèmes exposés au public, à se préparer aux exigences de conformité et à réduire les risques évitables grâce à un conseil clair, une mise en œuvre concrète et un soutien continu.",
-    primaryCta: "Obtenir un scan de sécurité gratuit",
+      "Nous sécurisons les systèmes exposés au public, préparons votre entreprise aux attentes de conformité et réduisons les risques évitables grâce à un conseil clair, une mise en œuvre concrète et un soutien continu.",
+    primaryCta: "Obtenir un scan gratuit",
     secondaryCta: "Obtenir un devis gratuit",
     principles: {
       eyebrow: "Ce que nous faisons",
-      title: "Des services de sécurité construits autour de vrais besoins métier",
+      title: "Des services construits autour de besoins métier réels",
       description:
-        "Nourmed aide les petites entreprises à renforcer la confiance, réduire les vulnérabilités et prendre de meilleures décisions de sécurité avec des offres claires et compréhensibles.",
+        "Nous aidons les petites entreprises à renforcer la confiance, à réduire les vulnérabilités et à prendre de meilleures décisions de sécurité avec des offres claires et compréhensibles.",
       items: [
         {
-          title: "Des périmètres clairs et des résultats utiles",
+          title: "Des périmètres clairs",
           description:
-            "Chaque mission est structurée autour de besoins visibles, de risques réels et d'un travail compréhensible par les dirigeants et opérateurs.",
+            "Nous structurons chaque mission autour de besoins visibles, de risques réels et d'objectifs compréhensibles par les dirigeants et les équipes.",
         },
         {
-          title: "Un travail de sécurité au service de la confiance",
+          title: "Un travail de sécurité utile",
           description:
-            "L'objectif est d'améliorer les systèmes sur lesquels clients, fournisseurs et partenaires s'appuient, sans noyer l'équipe dans une complexité inutile.",
+            "Nous cherchons à améliorer les systèmes sur lesquels s'appuient vos clients, fournisseurs et partenaires, sans créer de complexité inutile.",
         },
         {
-          title: "Un accompagnement adapté aux petites structures",
+          title: "Un accompagnement à taille humaine",
           description:
-            "Tout est pensé pour des entreprises en croissance qui ont besoin d'une protection sérieuse sans lourdeur d'entreprise.",
+            "Nous adaptons notre intervention aux petites structures qui ont besoin d'une protection sérieuse sans lourdeur excessive.",
         },
       ],
     },
     process: {
       eyebrow: "Comment nous procédons",
-      title: "Un processus direct, de l'évaluation au soutien continu",
+      title: "Un processus direct, de l'évaluation à l'amélioration continue",
       description:
-        "Le travail commence par la clarté, avance vers la remédiation concrète et devient récurrent seulement lorsque cela apporte une vraie valeur.",
+        "Nous commençons par clarifier les priorités, puis nous passons à la remédiation concrète et, lorsque cela s'impose, à un accompagnement durable.",
     },
     pricing: {
       eyebrow: "Services",
       title: "Trois offres avec des prix de départ réalistes pour les petites entreprises",
       description:
-        "Ces prix de départ sont pensés pour rester crédibles pour des missions orientées petites entreprises tout en laissant de la place à la portée, aux systèmes et à la complexité.",
+        "Ces prix de départ sont pensés pour rester crédibles pour des missions orientées petites entreprises tout en laissant de la place à la portée, aux systèmes et à la complexité réelle de l'environnement.",
       boxEyebrow: "Prix moyen de départ",
       cta: "Obtenir un devis gratuit",
     },
     freeScan: {
       eyebrow: "Scan de sécurité gratuit",
-      title: "Utilisez le scan gratuit pour comprendre votre prochaine décision de sécurité",
+      title: "Utilisez le scan gratuit pour clarifier votre prochaine décision de sécurité",
       description:
-        "Expliquez vos préoccupations, partagez le site ou le système concerné, et nous examinerons la surface de risque visible avant de recommander une prochaine étape pragmatique.",
+        "Décrivez-nous vos préoccupations, partagez le site ou le système concerné, et nous analyserons la surface de risque visible avant de recommander une prochaine étape adaptée.",
       benefits: [
         "Une revue concrète de votre site web et de votre surface d'exposition visible",
-        "Une compréhension plus claire du service le plus adapté",
-        "Un devis plus rapide et mieux cadré si un travail plus profond est nécessaire",
+        "Une meilleure compréhension du service le plus pertinent",
+        "Un devis plus rapide et mieux cadré lorsqu'un travail plus approfondi est nécessaire",
       ],
       formEyebrow: "Demandez votre scan",
-      formTitle: "Demander un scan de sécurité gratuit ou un devis",
+      formTitle: "Demander un scan gratuit ou un devis",
       formDescription:
-        "Utilisez ce formulaire pour un scan gratuit, un devis de service ou une première conversation pratique sur vos priorités de sécurité.",
+        "Utilisez ce formulaire pour demander un scan gratuit, un devis ou un premier échange utile sur vos priorités de sécurité.",
     },
     trust: {
-      eyebrow: "Confiance & réassurance",
-      title: "Des conseils de sécurité qui restent concrets et utiles au business",
+      eyebrow: "Confiance et clarté",
+      title: "Des conseils de sécurité concrets, lisibles et utiles à l'entreprise",
       description:
-        "Nourmed est conçu pour les dirigeants et opérateurs qui ont besoin d'une vraie aide pour protéger leurs systèmes publics, améliorer leur préparation et réduire les risques évitables.",
+        "Nous intervenons pour les dirigeants et les équipes qui ont besoin d'une aide sérieuse pour protéger leurs systèmes publics, améliorer leur préparation et réduire les risques évitables.",
       items: [
         {
-          title: "Des explications accessibles au business",
+          title: "Des explications utilisables",
           description:
-            "Nous expliquons ce qui compte, pourquoi cela compte et ce qui doit être fait ensuite dans des termes utilisables par un dirigeant non technique.",
+            "Nous expliquons ce qui compte, pourquoi cela compte et ce qu'il faut faire ensuite dans des termes exploitables au niveau direction.",
         },
         {
-          title: "Une aide à la préparation sans excès juridique",
+          title: "Une préparation sans ambiguïté",
           description:
-            "Nourmed aide les entreprises à se préparer aux attentes de sécurité et de conformité, mais ne fournit ni conseil juridique ni certification.",
+            "Nous aidons les entreprises à se préparer aux attentes de sécurité et de conformité, sans fournir d'avis juridique ni de certification.",
         },
         {
-          title: "Un travail de sécurité qui reste concret",
+          title: "Un travail ancré dans l'opérationnel",
           description:
-            "L'accent reste mis sur les sites, les vulnérabilités, la confiance, les accès, les sauvegardes et la réduction continue des risques qui soutiennent l'activité réelle.",
+            "Nous restons concentrés sur les sites, les vulnérabilités, les accès, les sauvegardes et la réduction continue des risques qui soutiennent l'activité réelle.",
         },
       ],
     },
   },
   aboutPage: {
     heroEyebrow: "À propos de Nourmed",
-    heroTitle: "Un partenaire en sécurité et préparation à la conformité pour les petites entreprises qui ont besoin d'une protection concrète",
+    heroTitle: "Nous accompagnons les petites entreprises qui ont besoin d'une protection concrète et d'une préparation crédible",
     heroDescription:
-      "Nourmed a été créé pour aider les entreprises en croissance à renforcer leurs systèmes exposés au public, à se préparer aux attentes de sécurité réelles et à prendre de meilleures décisions avant que de petits problèmes ne deviennent plus grands.",
-    panelEyebrow: "Ce que cela signifie",
+      "Nous avons créé Nourmed pour aider les entreprises en croissance à renforcer leurs systèmes exposés au public, à se préparer aux attentes de sécurité réelles et à prendre de meilleures décisions avant que de petits écarts ne deviennent des problèmes plus coûteux.",
+    panelEyebrow: "Notre positionnement",
     panelBody: [
       "Nous aidons les entreprises à comprendre les attentes de sécurité liées à la confiance client, aux exigences fournisseurs, aux sites publics et au risque opérationnel quotidien.",
-      "L'objectif est une posture de sécurité plus solide, pas de la confusion. Nourmed se concentre sur un accompagnement et un soutien à la mise en œuvre adaptés aux petites équipes.",
+      "Notre objectif est de renforcer la posture de sécurité sans créer de confusion. Nous privilégions un accompagnement utile, structuré et adapté aux petites équipes.",
     ],
     principles: {
       eyebrow: "Principes de fonctionnement",
-      title: "Comment Nourmed aborde le travail de sécurité",
+      title: "Comment nous abordons le travail de sécurité",
       description:
-        "L'entreprise est construite autour de la clarté, de la confiance et d'une réduction progressive du risque, plutôt que d'un théâtre technique générique.",
+        "Nous avons construit notre approche autour de la clarté, de la crédibilité et d'une réduction progressive du risque plutôt qu'autour d'un discours technique excessif.",
       items: [
         {
-          title: "Une communication centrée sur le business",
+          title: "Une communication orientée métier",
           description:
-            "Nourmed explique ce qui compte en langage clair afin que dirigeants et opérateurs puissent décider sans se noyer sous les buzzwords.",
+            "Nous expliquons ce qui compte dans un langage clair afin de faciliter les décisions au niveau direction.",
         },
         {
           title: "Une protection pragmatique",
           description:
-            "Nous nous concentrons sur la réduction des risques réels pour les entreprises en croissance: sites sécurisés, meilleurs parcours d'entrée, meilleure préparation et exécution concrète.",
+            "Nous concentrons notre intervention sur les risques réels: sites publics, parcours d'entrée, préparation et exécution opérationnelle.",
         },
         {
-          title: "Une préparation sans surpromesses",
+          title: "Une préparation sans surpromesse",
           description:
-            "Nourmed accompagne la préparation à la conformité et la sécurité sans prétendre être un cabinet juridique ou une autorité de certification.",
+            "Nous accompagnons la préparation à la conformité et la sécurité sans nous présenter comme cabinet juridique ou autorité de certification.",
         },
         {
           title: "Une amélioration durable",
           description:
-            "Le but n'est pas une simple checklist ponctuelle, mais d'aider les petites entreprises à construire des systèmes plus solides à mesure que les attentes augmentent.",
+            "Nous ne visons pas une simple checklist ponctuelle. Nous aidons les entreprises à bâtir des systèmes plus solides dans la durée.",
         },
       ],
     },
     expectations: {
-      eyebrow: "Ce que les clients peuvent attendre",
-      title: "Un modèle simple pour améliorer la sécurité de façon concrète",
+      eyebrow: "Ce que vous pouvez attendre",
+      title: "Un modèle simple pour améliorer la sécurité de manière concrète",
       description:
-        "Nourmed aide les entreprises à comprendre où elles sont exposées, ce qui compte le plus et comment progresser sans investir au mauvais endroit.",
+        "Nous vous aidons à comprendre où se situent les expositions, ce qui doit être traité en priorité et comment progresser sans investir au mauvais endroit.",
       items: [
         {
-          label: "Qui nous aidons",
+          label: "Qui nous accompagnons",
           detail:
-            "Des petites entreprises qui ont besoin d'une posture de sécurité plus claire, de sites plus solides et d'une meilleure préparation aux attentes clients ou fournisseurs.",
+            "Les petites entreprises qui ont besoin d'une posture de sécurité plus claire, de sites plus robustes et d'une meilleure préparation face aux attentes clients ou fournisseurs.",
         },
         {
           label: "Ce sur quoi nous intervenons",
@@ -401,38 +402,38 @@ export const frMarketingCopy: MarketingCopy = {
         {
           label: "Notre manière de travailler",
           detail:
-            "Nous évaluons ce qui est exposé, priorisons ce qui compte, renforçons ce qui est fragile et accompagnons l'amélioration continue lorsque cela est utile.",
+            "Nous évaluons l'exposition, hiérarchisons les priorités, renforçons les points faibles et accompagnons l'amélioration continue lorsque cela est justifié.",
         },
         {
-          label: "Ce que les clients obtiennent",
+          label: "Ce que vous obtenez",
           detail:
-            "Une meilleure visibilité du risque, des systèmes publics plus fiables et des conseils de sécurité assez concrets pour être mis en œuvre.",
+            "Une meilleure visibilité du risque, des systèmes publics plus fiables et des recommandations suffisamment concrètes pour être mises en œuvre.",
         },
       ],
     },
     cta: {
       eyebrow: "Prochaine étape",
       title:
-        "Si vous avez besoin d'un site sécurisé, d'une préparation à la conformité plus claire ou d'une protection continue, commencez par un scan gratuit ou une demande de devis.",
+        "Si vous avez besoin d'un site plus sûr, d'une préparation à la conformité plus claire ou d'une protection continue, commencez par un scan gratuit ou une demande de devis.",
       label: "Obtenir un devis gratuit",
     },
   },
   contactPage: {
     heroEyebrow: "Scan de sécurité gratuit",
-    heroTitle: "Demander un scan de sécurité gratuit ou un devis cadré",
+    heroTitle: "Demander un scan gratuit ou un devis cadré",
     heroDescription:
-      "Utilisez le formulaire sécurisé pour expliquer votre entreprise, votre site web et le type d'accompagnement recherché. Nous examinerons la demande et recommanderons une prochaine étape pragmatique.",
-    expectationEyebrow: "À quoi vous attendre",
+      "Utilisez notre formulaire sécurisé pour nous présenter votre entreprise, votre site web et le type d'accompagnement recherché. Nous étudierons votre demande et vous recommanderons la prochaine étape la plus adaptée.",
+    expectationEyebrow: "Ce que nous analysons",
     expectationBody: [
-      "Utilisez ce formulaire pour le conseil en conformité, le développement web sécurisé ou un support sécurité récurrent.",
-      "L'objectif est de comprendre votre entreprise, votre surface de risque visible et si un scan gratuit ou une mission plus profonde est le meilleur choix.",
-      "Nourmed se concentre sur un accompagnement concret en cybersécurité et préparation, sans promesses juridiques, faux garanties ni jargon gonflé.",
+      "Vous pouvez utiliser ce formulaire pour notre conseil en conformité, notre développement web sécurisé ou notre support sécurité récurrent.",
+      "Notre objectif est de comprendre votre activité, votre surface de risque visible et de déterminer si un scan gratuit ou une mission plus approfondie est la meilleure option.",
+      "Nous privilégions un accompagnement concret en cybersécurité et en préparation, sans promesses juridiques, sans garanties artificielles et sans jargon excessif.",
     ],
     assurances: [
       {
         title: "Les bonnes informations dès le départ",
         description:
-          "Le formulaire recueille les éléments nécessaires pour cadrer un scan de sécurité gratuit ou un devis de service pertinent.",
+          "Le formulaire nous permet de recueillir les éléments utiles pour cadrer un scan gratuit ou une proposition d'accompagnement pertinente.",
       },
       {
         title: "Un parcours d'entrée protégé",
@@ -442,7 +443,7 @@ export const frMarketingCopy: MarketingCopy = {
       {
         title: "Une prochaine étape plus claire",
         description:
-          "Nourmed utilise la demande pour comprendre le risque visible, les besoins métier et le bon parcours de service.",
+          "Nous utilisons votre demande pour comprendre le risque visible, les besoins métier et le parcours de service le plus adapté.",
       },
     ],
   },
