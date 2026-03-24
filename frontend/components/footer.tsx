@@ -10,8 +10,8 @@ export function Footer() {
           <div className="max-w-xl space-y-3">
             <p className="text-lg font-semibold tracking-tight text-foreground">Nourmed</p>
             <p className="text-sm leading-7 text-muted">
-              Cybersecurity and compliance consulting for small businesses that need secure websites, better security
-              readiness, and practical protection that supports growth.
+              Cybersecurity consulting for small businesses focused on secure websites, compliance readiness, and
+              practical ongoing protection.
             </p>
           </div>
           <div className="flex flex-col gap-4 lg:items-end">
@@ -26,7 +26,7 @@ export function Footer() {
               href="/contact"
               className="inline-flex items-center justify-center rounded-full border border-border bg-panel-strong px-5 py-3 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
             >
-              Book a Free Scan
+              Request My Free Scan
             </Link>
           </div>
         </div>

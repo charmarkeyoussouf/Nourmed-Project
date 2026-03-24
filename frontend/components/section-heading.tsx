@@ -16,10 +16,10 @@ export function SectionHeading({
   const descriptionClass = tone === "inverse" ? "text-[#cbd5d6]" : "text-muted";
 
   return (
-    <div className="max-w-3xl space-y-3">
+    <div className="max-w-3xl space-y-4">
       <p className={`font-mono text-xs uppercase tracking-[0.32em] ${eyebrowClass}`}>{eyebrow}</p>
-      <h2 className={`text-3xl font-semibold tracking-tight sm:text-4xl ${titleClass}`}>{title}</h2>
-      <p className={`text-base leading-8 ${descriptionClass}`}>{description}</p>
+      <h2 className={`max-w-4xl text-3xl font-semibold tracking-tight sm:text-4xl ${titleClass}`}>{title}</h2>
+      <p className={`max-w-3xl text-base leading-8 ${descriptionClass}`}>{description}</p>
     </div>
   );
 }

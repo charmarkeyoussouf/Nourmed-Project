@@ -39,7 +39,7 @@ export function Navigation() {
               href="/contact"
               className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-contrast transition hover:bg-[#184a52]"
             >
-              Get a Free Quote
+              Get a Free Security Scan
             </Link>
           </div>
         </div>

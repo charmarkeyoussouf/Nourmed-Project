@@ -3,68 +3,68 @@ import Link from "next/link";
 
 import { ContactForm } from "@/components/contact-form";
 import { SectionHeading } from "@/components/section-heading";
-import { processSteps, serviceOfferings } from "@/lib/marketing";
+import { pricingDisclaimer, processSteps, serviceOfferings } from "@/lib/marketing";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Cybersecurity and compliance consulting for small businesses, including compliance readiness, secure website development, recurring security packages, and free vulnerability scans.",
+    "Cybersecurity consulting for small businesses, including compliance consulting, secure website development, small business cybersecurity packages, and free security scans.",
   keywords: [
     "compliance consulting for small businesses",
     "secure website development",
     "small business cybersecurity packages",
-    "vulnerability scanning",
+    "vulnerability scan",
     "website security consulting",
   ],
   openGraph: {
-    title: "Nourmed Services | Cybersecurity & Compliance Consulting",
+    title: "Nourmed Services | Cybersecurity Consulting for Small Businesses",
     description:
-      "Explore compliance consulting, secure website development, and ongoing small business cybersecurity packages with premium market-informed pricing.",
+      "Explore compliance consulting, secure website development, and ongoing small business cybersecurity packages with realistic starting prices.",
     url: "/services",
   },
 };
 
-const whatWeDo = [
+const servicePrinciples = [
   {
-    title: "Protect trust before it erodes",
+    title: "Clear scopes and practical outcomes",
     description:
-      "Nourmed helps small businesses reduce the gaps that make customers, vendors, and partners hesitate to trust what sits behind a public website or intake flow.",
+      "Nourmed structures each engagement around visible business needs, real risks, and work that can be understood by owners and operators.",
   },
   {
-    title: "Strengthen systems that face the public",
+    title: "Security work that supports trust",
     description:
-      "We focus on websites, forms, infrastructure choices, and the operational weak points that can create downtime, exposure, or unnecessary friction.",
+      "The goal is to improve the systems customers, vendors, and partners rely on, not to bury your team in unnecessary complexity.",
   },
   {
-    title: "Make security expectations manageable",
+    title: "Support that fits smaller organizations",
     description:
-      "The goal is not to bury owners in jargon. It is to give growing businesses a practical plan for stronger security and better readiness.",
+      "Everything is designed for growing businesses that need serious protection without enterprise-sized overhead.",
   },
-];
-
-const scanBenefits = [
-  "A review of your website, intake surface, and visible exposure patterns",
-  "A practical recommendation on which service level fits your business best",
-  "A cleaner quote process for secure website work, compliance readiness, or recurring protection",
-];
+] as const;
 
 const reassuranceItems = [
   {
-    title: "Practical, real-world protection",
+    title: "Business-friendly guidance",
     description:
-      "Nourmed focuses on the systems small businesses actually rely on: websites, intake paths, user access, backups guidance, and security readiness that supports operations.",
+      "We explain what matters, why it matters, and what should happen next in terms a non-technical owner can use.",
   },
   {
-    title: "Compliance readiness, not legal overreach",
+    title: "Readiness support without legal overreach",
     description:
-      "We help businesses prepare for security and compliance expectations, but we do not claim legal authority, issue certifications, or act as a law firm.",
+      "Nourmed helps businesses prepare for security and compliance expectations, but does not provide legal advice or issue certifications.",
   },
   {
-    title: "Built for growing businesses",
+    title: "Security work that remains practical",
     description:
-      "Our work is designed for companies that need serious protection and premium execution without getting pushed into enterprise-sized confusion.",
+      "The focus stays on websites, vulnerabilities, trust, access, backups, and recurring risk reduction that supports real operations.",
   },
-];
+] as const;
+
+const scanBenefits = [
+  "A practical review of your website and visible attack surface",
+  "A clearer understanding of which service is the right fit",
+  "A faster and more informed quote when deeper work is needed",
+] as const;
 
 export default function ServicesPage() {
   return (
@@ -77,13 +77,11 @@ export default function ServicesPage() {
                 Cybersecurity consulting services
               </p>
               <h1 className="max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-                Cybersecurity and compliance consulting for small businesses that need stronger systems and clearer next
-                steps.
+                Services designed to help small businesses strengthen security and operate with more confidence.
               </h1>
               <p className="max-w-3xl text-base leading-8 text-[#cbd5d6] sm:text-lg">
-                Nourmed helps growing businesses understand risk, secure their public-facing systems, and prepare for
-                customer, vendor, and operational security expectations with practical services that are premium,
-                trustworthy, and built to move work forward.
+                Nourmed helps businesses secure public-facing systems, prepare for compliance expectations, and reduce
+                avoidable risk through clear consulting, practical implementation, and ongoing support.
               </p>
             </div>
 
@@ -92,7 +90,7 @@ export default function ServicesPage() {
                 href="#free-scan"
                 className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-contrast transition hover:bg-[#184a52]"
               >
-                Book a Free Scan
+                Get a Free Security Scan
               </Link>
               <Link
                 href="/contact"
@@ -121,14 +119,14 @@ export default function ServicesPage() {
       <section className="space-y-8">
         <SectionHeading
           eyebrow="What We Do"
-          title="We help small businesses reduce vulnerabilities, strengthen trust, and make security expectations manageable"
-          description="Nourmed is built for business owners who need clear guidance on what needs to be protected, why it matters, and what to do next without pretending security has to sound impossible."
+          title="Security services built around real business needs"
+          description="Nourmed helps small businesses improve trust, reduce vulnerabilities, and make better security decisions with service lines that stay practical and easy to understand."
         />
         <div className="grid gap-5 lg:grid-cols-3">
-          {whatWeDo.map((item) => (
+          {servicePrinciples.map((item) => (
             <article
               key={item.title}
-              className="rounded-[1.75rem] border border-border bg-panel p-6 shadow-[0_18px_36px_rgba(16,33,42,0.05)]"
+              className="rounded-[1.75rem] border border-border bg-panel px-6 py-6 shadow-[0_18px_36px_rgba(16,33,42,0.05)]"
             >
               <h2 className="text-2xl font-semibold tracking-tight text-foreground">{item.title}</h2>
               <p className="mt-3 text-sm leading-7 text-muted">{item.description}</p>
@@ -141,8 +139,8 @@ export default function ServicesPage() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <SectionHeading
             eyebrow="How We Do It"
-            title="A simple process that turns security concerns into practical action"
-            description="We lead with assessment, clarity, and prioritization so small businesses can improve the right things first."
+            title="A straightforward process from assessment to ongoing support"
+            description="The work begins with clarity, moves into practical remediation, and grows into recurring support only where it adds value."
           />
           <div className="grid gap-4">
             {processSteps.map((item) => (
@@ -162,8 +160,8 @@ export default function ServicesPage() {
       <section className="space-y-8" id="service-pricing">
         <SectionHeading
           eyebrow="Services"
-          title="Three service lines built for security, readiness, and business continuity"
-          description="Pricing is positioned at the premium end of the small-business market and is designed to reflect strategic work, secure implementation, and ongoing protection rather than commodity labor."
+          title="Three service lines with realistic starting prices for small businesses"
+          description="These starting prices are designed to be credible for small-business engagements while leaving room to scale with scope, systems, and business complexity."
         />
         <div className="grid gap-6">
           {serviceOfferings.map((service) => (
@@ -190,7 +188,7 @@ export default function ServicesPage() {
                 </ul>
               </div>
               <div className="rounded-[1.75rem] border border-border bg-panel-strong p-6">
-                <p className="font-mono text-[0.72rem] uppercase tracking-[0.24em] text-accent">Pricing</p>
+                <p className="font-mono text-[0.72rem] uppercase tracking-[0.24em] text-accent">Average starting price</p>
                 <p className="mt-3 text-3xl font-semibold tracking-tight text-foreground">{service.price}</p>
                 <p className="mt-4 text-sm leading-7 text-muted">{service.priceNote}</p>
                 <Link
@@ -203,10 +201,7 @@ export default function ServicesPage() {
             </article>
           ))}
         </div>
-        <p className="text-sm leading-7 text-muted">
-          Premium anchors are based on current public cybersecurity and secure website market pricing. Larger
-          environments, deeper remediation scopes, and multi-location programs are custom quoted.
-        </p>
+        <p className="text-sm leading-7 text-muted">{pricingDisclaimer}</p>
       </section>
 
       <section
@@ -215,9 +210,9 @@ export default function ServicesPage() {
       >
         <div className="space-y-6">
           <SectionHeading
-            eyebrow="Free Vulnerability Scan"
-            title="Request a free scan or quote and get a clearer view of your next security move"
-            description="This first step is designed to be useful, not vague. Tell us what you need, share the business details that matter, and we will review the visible risk surface before recommending the right scope."
+            eyebrow="Free Security Scan"
+            title="Use the free scan to understand your next security move"
+            description="Tell Nourmed what you are concerned about, share the website or system in question, and we will review the visible risk surface before recommending a practical next step."
             tone="inverse"
           />
           <div className="grid gap-4">
@@ -235,8 +230,8 @@ export default function ServicesPage() {
         <div className="rounded-[2rem] border border-[rgba(255,255,255,0.12)] bg-[#eff2eb] px-6 py-6 text-foreground shadow-[0_22px_45px_rgba(0,0,0,0.18)] sm:px-8 sm:py-8">
           <ContactForm
             eyebrow="Request your scan"
-            title="Tell Nourmed what you need"
-            description="Use this form for a free vulnerability scan, a secure website quote, or a compliance readiness conversation."
+            title="Request a free security scan or quote"
+            description="Use this form for a free scan, a service quote, or a practical first conversation about your security priorities."
           />
         </div>
       </section>
@@ -244,8 +239,8 @@ export default function ServicesPage() {
       <section className="space-y-8">
         <SectionHeading
           eyebrow="Trust & Reassurance"
-          title="Serious protection for growing businesses, without fake claims"
-          description="Nourmed is a practical security and compliance readiness partner for businesses that need secure websites, clearer preparation, and ongoing protection grounded in real operations."
+          title="Security guidance that stays practical and business-relevant"
+          description="Nourmed is built for owners and operators who need serious help protecting public-facing systems, improving readiness, and reducing avoidable risk."
         />
         <div className="grid gap-5 lg:grid-cols-3">
           {reassuranceItems.map((item) => (

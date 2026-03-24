@@ -42,9 +42,9 @@ type ContactFormProps = {
 };
 
 export function ContactForm({
-  eyebrow = "Free vulnerability scan",
-  title = "Request a free quote or scan",
-  description = "Tell us a little about your business and the service you need. We will review the request, identify obvious gaps, and follow up with the right next step.",
+  eyebrow = "Free security scan",
+  title = "Request a free security scan or quote",
+  description = "Tell Nourmed a little about your business, your website, and the type of support you need. We will review the request and recommend the right next step.",
   submitLabel = "Request My Free Scan",
 }: ContactFormProps) {
   const [formState, setFormState] = useState<FormState>(initialFormState);
@@ -138,7 +138,7 @@ export function ContactForm({
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">Business name</span>
+          <span className="text-sm font-medium text-foreground">Business Name</span>
           <input
             type="text"
             name="company"
@@ -186,7 +186,7 @@ export function ContactForm({
       </div>
 
       <label className="space-y-2">
-        <span className="text-sm font-medium text-foreground">Service of interest</span>
+        <span className="text-sm font-medium text-foreground">Service of Interest</span>
         <select
           name="serviceInterest"
           required
@@ -207,7 +207,7 @@ export function ContactForm({
       </label>
 
       <label className="space-y-2">
-        <span className="text-sm font-medium text-foreground">Optional message</span>
+        <span className="text-sm font-medium text-foreground">Optional Message</span>
         <textarea
           name="message"
           maxLength={2000}

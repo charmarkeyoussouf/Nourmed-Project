@@ -5,50 +5,53 @@ export const primaryLinks = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
+export const pricingDisclaimer =
+  "Final pricing depends on scope, business size, and system complexity.";
+
 export const serviceOfferings = [
   {
     slug: "compliance-consulting",
     title: "Compliance Consulting",
-    price: "Starting at $7,500",
-    priceNote: "Custom pricing for larger environments, multi-framework readiness work, and ongoing advisory.",
+    price: "Starting at $750",
+    priceNote: pricingDisclaimer,
     summary:
-      "Plain-English compliance readiness support for small businesses facing customer, vendor, or data protection expectations.",
+      "Readiness guidance for small businesses that need to meet customer, vendor, or data-handling expectations.",
     description:
-      "Compliance is the work of showing customers, vendors, and partners that your business handles sensitive systems and information responsibly. Nourmed helps small businesses prepare for those expectations with practical readiness support, prioritized remediation guidance, policy direction, and security planning that strengthens trust without pretending to be a law firm or certifying body.",
+      "In plain English, compliance means showing that your business protects information responsibly and operates with reasonable security controls. Nourmed helps small businesses prepare for that standard with gap reviews, practical recommendations, and implementation guidance around vendor requirements, customer trust, data protection expectations, and day-to-day operational readiness. Nourmed is not a law firm and does not issue certifications.",
     bullets: [
-      "Readiness reviews for vendor requirements, customer questionnaires, and operational security expectations",
-      "Roadmaps for closing gaps around data handling, access control, documentation, and repeatable security practices",
-      "Practical support for teams that need stronger security posture before audits, renewals, or growth conversations",
+      "Gap identification and readiness planning for customer, vendor, and security questionnaires",
+      "Guidance on policies, access control, documentation, and practical security expectations",
+      "Implementation support that helps your team prepare before outside scrutiny arrives",
     ],
   },
   {
     slug: "secure-website-development",
     title: "Secure Website Development",
-    price: "Starting at $15,000",
-    priceNote: "Custom pricing for advanced integrations, portals, ecommerce, and larger multi-site builds.",
+    price: "Starting at $2,500",
+    priceNote: pricingDisclaimer,
     summary:
-      "Security-first website builds with hardened hosting, protected forms, deployment discipline, and uptime-minded architecture.",
+      "Secure website builds for businesses that need protection, reliability, and a stronger public-facing foundation.",
     description:
-      "Nourmed builds business websites that are designed to do more than look polished. We focus on secure deployment practices, HTTPS, hardened hosting, protected forms, abuse controls, and architecture choices that reduce avoidable exposure. This is secure business infrastructure for companies that need a trustworthy public presence, not just a design refresh.",
+      "Nourmed designs and builds websites with security in mind from day one. That includes HTTPS, secure forms, hardened hosting guidance, safer deployment practices, basic abuse protection, and architecture choices that support uptime and trust. The result is not just a better-looking website, but a more dependable business system.",
     bullets: [
-      "HTTPS, secure configuration, and hosting hardening aligned to real business risk",
-      "Protected forms, basic abuse resistance, and cleaner intake paths for public-facing systems",
-      "Deployment practices, change control, and uptime-minded builds that support ongoing operations",
+      "HTTPS, secure forms, and hosting or deployment decisions shaped by risk reduction",
+      "Practical abuse resistance, cleaner intake paths, and safer public-facing infrastructure",
+      "Uptime-minded implementation that treats the website as business infrastructure, not just design",
     ],
   },
   {
     slug: "small-business-security-packages",
     title: "Small Business Security Packages",
-    price: "Starting at $3,500/month",
-    priceNote: "Custom pricing for larger teams, regulated environments, or broader advisory retainers.",
+    price: "Starting at $199/month",
+    priceNote: pricingDisclaimer,
     summary:
-      "Recurring protection for growing businesses that need ongoing hardening, visibility, and practical risk reduction.",
+      "Ongoing support for small businesses that need steady protection without enterprise complexity.",
     description:
-      "Nourmed offers recurring security support for small businesses that need more than a one-time cleanup. These packages are built to keep websites, accounts, and core business systems in better shape over time with vulnerability scanning, monitoring, basic hardening, backup guidance, access-control review, and practical follow-through that fits a growing company.",
+      "Our recurring packages are built for businesses that want consistent attention on their security posture. Nourmed provides vulnerability scanning, practical hardening guidance, monitoring direction, backup and access-control review, and straightforward support that helps reduce avoidable risk over time.",
     bullets: [
-      "Recurring vulnerability scanning, monitoring, and prioritized hardening guidance",
-      "Backup planning, access reviews, and practical risk reduction for everyday operations",
-      "A business-friendly security partner for teams that need ongoing protection without enterprise confusion",
+      "Recurring vulnerability scanning and practical recommendations",
+      "Hardening guidance, access-control review, and backup planning",
+      "Ongoing support that keeps security work manageable for a growing business",
     ],
   },
 ] as const;
@@ -58,33 +61,29 @@ export const serviceInterestOptions = [
   "Not sure yet",
 ] as const;
 
-export const serviceInterestBySlug = Object.fromEntries(
-  serviceOfferings.map((service) => [service.slug, service.title]),
-) as Record<string, (typeof serviceInterestOptions)[number]>;
-
 export const processSteps = [
   {
     step: "01",
     title: "Scan and assess",
     description:
-      "We start with the business surface that matters most: your website, public exposure, intake paths, and the security expectations already pressing on your team.",
+      "We review your website, public exposure, and the security or compliance concerns already affecting the business.",
   },
   {
     step: "02",
     title: "Identify risks and gaps",
     description:
-      "You get a clear picture of weak points, trust risks, compliance friction, and the areas most likely to create downtime or customer hesitation.",
+      "We map the issues that could affect trust, uptime, and readiness, then prioritize the work that matters most.",
   },
   {
     step: "03",
     title: "Secure and harden",
     description:
-      "We improve the environment with practical controls, stronger website infrastructure, cleaner processes, and prioritized remediation that fits your size.",
+      "We strengthen the website, hosting posture, intake paths, and related safeguards with practical implementation steps.",
   },
   {
     step: "04",
     title: "Support and improve",
     description:
-      "For teams that need ongoing coverage, we stay involved through recurring reviews, monitoring guidance, and steady security improvement.",
+      "When ongoing help makes sense, we stay involved through recurring reviews, guidance, and incremental improvement.",
   },
 ] as const;
