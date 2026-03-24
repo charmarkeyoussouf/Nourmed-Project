@@ -228,6 +228,17 @@ If you later change the Prisma schema and want to create a new migration, the cl
 
 That keeps migration files committed in the repo instead of only inside a container filesystem.
 
+## Payments and Stripe
+
+Hosted checkout on `/payments` is server-created.
+
+- `STRIPE_SECRET_KEY` is required to create real Stripe Checkout sessions.
+- `STRIPE_SUCCESS_URL` is optional. If omitted, the backend uses `${NEXT_PUBLIC_SITE_URL}/payments/success?session_id={CHECKOUT_SESSION_ID}`.
+- `STRIPE_CANCEL_URL` is optional. If omitted, the backend uses `${NEXT_PUBLIC_SITE_URL}/payments/cancel`.
+- `STRIPE_CURRENCY` defaults to `usd`.
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` is not required for the current implementation because the browser is redirected to hosted Stripe Checkout rather than embedding Stripe Elements.
+- `STRIPE_WEBHOOK_SECRET` is not used by the current MVP yet.
+
 ## Verify the Platform
 
 Open the public site:

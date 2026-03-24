@@ -1,3 +1,4 @@
+import Stripe from "stripe";
 import { PaymentSessionStatus } from "@prisma/client";
 
 import { env } from "../config/env";
@@ -69,32 +70,46 @@ export async function createPaymentCheckoutSession(
     userAgent: context.userAgent,
   });
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "payment",
-    success_url: getSuccessUrl(),
-    cancel_url: getCancelUrl(),
-    customer_email: input.customerEmail,
-    billing_address_collection: "auto",
-    payment_method_collection: "always",
-    metadata: {
-      leadId: lead.id,
-      optionKey: option.key,
-      businessName: input.businessName ?? "",
-    },
-    line_items: [
-      {
-        quantity: 1,
-        price_data: {
-          currency: env.STRIPE_CURRENCY,
-          unit_amount: option.amountCents,
-          product_data: {
-            name: option.label,
-            description: option.description,
+  let session: Stripe.Checkout.Session;
+
+  try {
+    session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      success_url: getSuccessUrl(),
+      cancel_url: getCancelUrl(),
+      customer_email: input.customerEmail,
+      billing_address_collection: "auto",
+      payment_method_collection: "always",
+      metadata: {
+        leadId: lead.id,
+        optionKey: option.key,
+        businessName: input.businessName ?? "",
+      },
+      line_items: [
+        {
+          quantity: 1,
+          price_data: {
+            currency: env.STRIPE_CURRENCY,
+            unit_amount: option.amountCents,
+            product_data: {
+              name: option.label,
+              description: option.description,
+            },
           },
         },
-      },
-    ],
-  });
+      ],
+    });
+  } catch (error) {
+    if (error instanceof Stripe.errors.StripeError) {
+      throw new ApiError(
+        502,
+        "STRIPE_CHECKOUT_FAILED",
+        error.message || "Stripe could not create the hosted checkout session.",
+      );
+    }
+
+    throw error;
+  }
 
   const savedSession = await prisma.paymentSession.create({
     data: {
@@ -151,7 +166,21 @@ export async function syncPaymentSession(checkoutSessionId: string) {
     throw new ApiError(404, "PAYMENT_SESSION_NOT_FOUND", "Payment session not found.");
   }
 
-  const stripeSession = await stripe.checkout.sessions.retrieve(checkoutSessionId);
+  let stripeSession: Stripe.Checkout.Session;
+
+  try {
+    stripeSession = await stripe.checkout.sessions.retrieve(checkoutSessionId);
+  } catch (error) {
+    if (error instanceof Stripe.errors.StripeError) {
+      throw new ApiError(
+        502,
+        "STRIPE_SESSION_LOOKUP_FAILED",
+        error.message || "Stripe could not verify the checkout session.",
+      );
+    }
+
+    throw error;
+  }
 
   return prisma.paymentSession.update({
     where: {

@@ -74,31 +74,6 @@ export default async function PaymentsPage() {
 
       <section id="payment-options" className="space-y-10">
         <SectionHeading eyebrow={page.optionsEyebrow} title={page.optionsTitle} description={page.optionsDescription} />
-        <div className="grid gap-6 lg:grid-cols-5">
-          {page.options.map((option) => (
-            <article
-              key={option.key}
-              className="flex h-full flex-col rounded-[2rem] border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,248,247,0.9))] px-6 py-6 shadow-[0_18px_36px_rgba(16,33,42,0.05)]"
-            >
-              <p className="font-mono text-[0.72rem] uppercase tracking-[0.24em] text-accent">{option.price}</p>
-              <h2 className="mt-3 text-xl font-semibold tracking-tight text-foreground">{option.label}</h2>
-              <p className="mt-3 flex-1 text-sm leading-7 text-muted">{option.description}</p>
-              {option.mode === "link" && option.href ? (
-                <Link
-                  href={option.href}
-                  className="mt-6 inline-flex items-center justify-center rounded-full border border-border bg-[rgba(255,255,255,0.85)] px-5 py-3 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
-                >
-                  {option.cta}
-                </Link>
-              ) : (
-                <span className="mt-6 inline-flex items-center justify-center rounded-full bg-accent-soft px-5 py-3 text-sm font-semibold text-accent">
-                  {option.cta}
-                </span>
-              )}
-            </article>
-          ))}
-        </div>
-        <p className="text-sm leading-7 text-muted">{page.pricingNote}</p>
         <PaymentCheckoutForm locale={locale} />
       </section>
 
