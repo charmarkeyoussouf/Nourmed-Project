@@ -59,7 +59,7 @@ export const esMarketingCopy: MarketingCopy = {
   footer: {
     description:
       "Consultoría en ciberseguridad para pequeñas empresas enfocada en sitios seguros, preparación de cumplimiento y protección continua práctica.",
-    cta: "Solicitar mi escaneo gratis",
+    cta: "Solicitar un escaneo gratis",
     closing: "Protección práctica para empresas en crecimiento.",
     ribbon: "Sitios seguros. Preparación de cumplimiento. Protección continua.",
   },
@@ -150,7 +150,7 @@ export const esMarketingCopy: MarketingCopy = {
     title: "Solicita un escaneo de seguridad gratis o una cotización",
     description:
       "Cuéntale a Nourmed sobre tu empresa, tu sitio web y el tipo de apoyo que necesitas. Revisaremos la solicitud y recomendaremos el siguiente paso correcto.",
-    submitLabel: "Solicitar mi escaneo gratis",
+    submitLabel: "Solicitar un escaneo gratis",
     secureNote: "Recepción segura, validación del lado del servidor y controles anti-spam habilitados en el backend.",
     hiddenWebsiteLabel: "Sitio web",
     fields: {

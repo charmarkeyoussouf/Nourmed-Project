@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
@@ -12,32 +13,43 @@ export function Footer({ locale }: FooterProps) {
   const copy = getMarketingCopy(locale);
 
   return (
-    <footer className="py-8">
-      <div className="rounded-[2rem] border border-border bg-panel px-6 py-6 shadow-[0_18px_36px_rgba(16,33,42,0.05)]">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-          <div className="max-w-xl space-y-3">
-            <p className="text-lg font-semibold tracking-tight text-foreground">Nourmed</p>
-            <p className="text-sm leading-7 text-muted">{copy.footer.description}</p>
+    <footer className="py-10">
+      <div className="rounded-[2.6rem] border border-border bg-panel px-7 py-8 shadow-[0_22px_55px_rgba(16,33,42,0.06)] sm:px-10 sm:py-10">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
+          <div className="max-w-2xl space-y-4">
+            <Image
+              src="/nourmed-logo.png"
+              alt="Nourmed"
+              width={190}
+              height={56}
+              className="h-11 w-auto object-contain sm:h-12"
+            />
+            <p className="text-sm leading-8 text-muted">{copy.footer.description}</p>
           </div>
-          <div className="flex flex-col gap-4 lg:items-end">
-            <LanguageSwitcher locale={locale} label={copy.nav.languageLabel} />
-            <nav aria-label="Footer navigation" className="flex flex-wrap items-center gap-3 text-sm text-muted">
+          <div className="flex flex-col gap-5 lg:items-end">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <LanguageSwitcher locale={locale} label={copy.nav.languageLabel} />
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full border border-border bg-panel-strong px-6 py-3 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
+              >
+                {copy.footer.cta}
+              </Link>
+            </div>
+            <nav
+              aria-label="Footer navigation"
+              className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted lg:justify-end"
+            >
               {copy.nav.links.map((link) => (
                 <Link key={link.href} href={link.href} className="transition hover:text-accent">
                   {link.label}
                 </Link>
               ))}
             </nav>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-full border border-border bg-panel-strong px-5 py-3 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
-            >
-              {copy.footer.cta}
-            </Link>
           </div>
         </div>
 
-        <div className="mt-6 flex flex-col gap-2 border-t border-border pt-5 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
             &copy; {new Date().getFullYear()} Nourmed. {copy.footer.closing}
           </p>

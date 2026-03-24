@@ -59,7 +59,7 @@ export const frMarketingCopy: MarketingCopy = {
   footer: {
     description:
       "Conseil en cybersécurité pour petites entreprises centré sur les sites sécurisés, la préparation à la conformité et une protection continue pragmatique.",
-    cta: "Demander mon scan gratuit",
+    cta: "Demander un scan gratuit",
     closing: "Une protection concrète pour les entreprises en croissance.",
     ribbon: "Sites sécurisés. Préparation à la conformité. Protection continue.",
   },
@@ -150,7 +150,7 @@ export const frMarketingCopy: MarketingCopy = {
     title: "Demander un scan de sécurité gratuit ou un devis",
     description:
       "Expliquez brièvement votre entreprise, votre site web et le type d'accompagnement recherché. Nourmed examinera la demande et recommandera la bonne prochaine étape.",
-    submitLabel: "Demander mon scan gratuit",
+    submitLabel: "Demander un scan gratuit",
     secureNote: "Collecte sécurisée, validation côté serveur et contrôles anti-spam activés côté backend.",
     hiddenWebsiteLabel: "Site web",
     fields: {

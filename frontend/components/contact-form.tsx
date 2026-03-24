@@ -108,8 +108,8 @@ export function ContactForm({
   const isSubmitting = submissionState.status === "submitting";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="space-y-2">
+    <form onSubmit={handleSubmit} className="space-y-8">
+      <div className="space-y-3">
         <p className="font-mono text-xs uppercase tracking-[0.28em] text-accent">{resolvedEyebrow}</p>
         <h2 className="text-3xl font-semibold tracking-tight text-foreground">{resolvedTitle}</h2>
         <p className="max-w-2xl text-base leading-7 text-muted">{resolvedDescription}</p>
@@ -128,7 +128,7 @@ export function ContactForm({
         />
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2">
         <label className="space-y-2">
           <span className="text-sm font-medium text-foreground">{formCopy.fields.name}</span>
           <input
@@ -140,7 +140,7 @@ export function ContactForm({
             disabled={isSubmitting}
             value={formState.name}
             onChange={(event) => updateField("name", event.target.value)}
-            className="w-full rounded-2xl border border-border bg-panel-strong px-4 py-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+            className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
           />
         </label>
         <label className="space-y-2">
@@ -154,12 +154,12 @@ export function ContactForm({
             disabled={isSubmitting}
             value={formState.company}
             onChange={(event) => updateField("company", event.target.value)}
-            className="w-full rounded-2xl border border-border bg-panel-strong px-4 py-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+            className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
           />
         </label>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-5 sm:grid-cols-2">
         <label className="space-y-2">
           <span className="text-sm font-medium text-foreground">{formCopy.fields.email}</span>
           <input
@@ -171,7 +171,7 @@ export function ContactForm({
             disabled={isSubmitting}
             value={formState.email}
             onChange={(event) => updateField("email", event.target.value)}
-            className="w-full rounded-2xl border border-border bg-panel-strong px-4 py-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+            className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
           />
         </label>
         <label className="space-y-2">
@@ -186,7 +186,7 @@ export function ContactForm({
             disabled={isSubmitting}
             value={formState.websiteUrl}
             onChange={(event) => updateField("websiteUrl", event.target.value)}
-            className="w-full rounded-2xl border border-border bg-panel-strong px-4 py-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+            className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
           />
         </label>
       </div>
@@ -199,7 +199,7 @@ export function ContactForm({
           disabled={isSubmitting}
           value={formState.serviceInterest}
           onChange={(event) => updateField("serviceInterest", event.target.value)}
-          className="w-full rounded-2xl border border-border bg-panel-strong px-4 py-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+          className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
         >
           <option value="" disabled>
             {formCopy.fields.servicePlaceholder}
@@ -221,19 +221,19 @@ export function ContactForm({
           disabled={isSubmitting}
           value={formState.message}
           onChange={(event) => updateField("message", event.target.value)}
-          className="w-full rounded-[1.5rem] border border-border bg-panel-strong px-4 py-3 text-sm leading-7 text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+          className="w-full rounded-[1.5rem] border border-border bg-panel-strong px-4 py-3.5 text-sm leading-7 text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
         />
       </label>
 
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-5">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-contrast transition hover:bg-[#184a52] disabled:cursor-not-allowed disabled:opacity-70"
+          className="inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-accent-contrast shadow-[0_14px_30px_rgba(30,90,96,0.2)] transition hover:bg-[#184a52] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
         >
           {isSubmitting ? formCopy.messages.submitting : resolvedSubmitLabel}
         </button>
-        <p className="text-sm leading-6 text-muted">{formCopy.secureNote}</p>
+        <p className="max-w-xl text-sm leading-7 text-muted">{formCopy.secureNote}</p>
       </div>
 
       {submissionState.status !== "idle" ? (

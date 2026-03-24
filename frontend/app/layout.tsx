@@ -43,11 +43,11 @@ export default async function RootLayout({
     <html lang={locale} dir={direction}>
       <body className="min-h-screen bg-background text-foreground antialiased">
         <div className="relative isolate overflow-hidden">
-          <div className="pointer-events-none absolute inset-x-0 top-[-12rem] h-[24rem] bg-[radial-gradient(circle_at_top,rgba(31,90,96,0.2),transparent_58%)]" />
-          <div className="pointer-events-none absolute right-[-8rem] top-[16rem] h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(224,171,102,0.16),transparent_65%)]" />
-          <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 sm:px-6 lg:px-8">
+          <div className="pointer-events-none absolute inset-x-0 top-[-14rem] h-[28rem] bg-[radial-gradient(circle_at_top,rgba(31,90,96,0.24),transparent_58%)]" />
+          <div className="pointer-events-none absolute right-[-8rem] top-[18rem] h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(224,171,102,0.16),transparent_65%)]" />
+          <div className="mx-auto flex min-h-screen max-w-[84rem] flex-col px-5 sm:px-7 lg:px-10">
             <Navigation locale={locale} />
-            <main className="flex-1 pb-16">{children}</main>
+            <main className="flex-1 pb-24">{children}</main>
             <Footer locale={locale} />
           </div>
         </div>

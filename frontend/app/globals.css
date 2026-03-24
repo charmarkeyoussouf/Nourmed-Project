@@ -43,14 +43,21 @@ html[dir="rtl"] textarea {
 
 body {
   background:
-    radial-gradient(circle at top left, rgba(31, 90, 96, 0.12), transparent 34%),
-    radial-gradient(circle at top right, rgba(224, 171, 102, 0.14), transparent 28%),
-    linear-gradient(180deg, #f8f2e9 0%, #f2ece3 52%, #e7e0d5 100%);
+    radial-gradient(circle at top left, rgba(31, 90, 96, 0.16), transparent 32%),
+    radial-gradient(circle at top right, rgba(224, 171, 102, 0.12), transparent 26%),
+    linear-gradient(180deg, #faf4eb 0%, #f3ece3 48%, #e7e0d5 100%);
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
   background: rgba(31, 90, 96, 0.18);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 a {

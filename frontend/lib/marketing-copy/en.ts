@@ -59,7 +59,7 @@ export const enMarketingCopy: MarketingCopy = {
   footer: {
     description:
       "Cybersecurity consulting for small businesses focused on secure websites, compliance readiness, and practical ongoing protection.",
-    cta: "Request My Free Scan",
+    cta: "Request a Free Scan",
     closing: "Practical protection for growing businesses.",
     ribbon: "Secure websites. Compliance readiness. Ongoing protection.",
   },
@@ -150,7 +150,7 @@ export const enMarketingCopy: MarketingCopy = {
     title: "Request a free security scan or quote",
     description:
       "Tell Nourmed a little about your business, your website, and the type of support you need. We will review the request and recommend the right next step.",
-    submitLabel: "Request My Free Scan",
+    submitLabel: "Request a Free Scan",
     secureNote: "Secure intake, server-side validation, and anti-spam controls are enabled on the backend.",
     hiddenWebsiteLabel: "Website",
     fields: {
