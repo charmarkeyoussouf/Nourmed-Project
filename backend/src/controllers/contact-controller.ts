@@ -41,7 +41,11 @@ export async function createContactSubmissionHandler(
       });
     }
 
-    await createContactSubmission(submissionPayload);
+    await createContactSubmission({
+      input: submissionPayload,
+      ipAddress: req.ip,
+      userAgent: req.get("user-agent"),
+    });
 
     return sendSuccess(res, 201, {
       message: "Your request has been received.",

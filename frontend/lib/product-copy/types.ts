@@ -1,0 +1,121 @@
+import type { LinkItem } from "@/lib/marketing-copy/types";
+
+export type PaymentOptionCopy = {
+  key: string;
+  mode: "checkout" | "link";
+  label: string;
+  price: string;
+  description: string;
+  cta: string;
+  href?: string;
+};
+
+export type ProductCopy = {
+  navLinks: readonly LinkItem[];
+  paymentsMeta: {
+    title: string;
+    description: string;
+    keywords: readonly string[];
+  };
+  paymentsPage: {
+    heroEyebrow: string;
+    heroTitle: string;
+    heroDescription: string;
+    primaryCta: string;
+    secondaryCta: string;
+    useCasesEyebrow: string;
+    useCasesTitle: string;
+    useCasesDescription: string;
+    useCases: readonly { title: string; description: string }[];
+    optionsEyebrow: string;
+    optionsTitle: string;
+    optionsDescription: string;
+    options: readonly PaymentOptionCopy[];
+    formEyebrow: string;
+    formTitle: string;
+    formDescription: string;
+    pricingNote: string;
+    faqEyebrow: string;
+    faqTitle: string;
+    faqDescription: string;
+    faq: readonly { question: string; answer: string }[];
+    trustEyebrow: string;
+    trustTitle: string;
+    trustDescription: string;
+    trustItems: readonly { title: string; description: string }[];
+    successTitle: string;
+    successDescription: string;
+    cancelTitle: string;
+    cancelDescription: string;
+  };
+  scanMeta: {
+    title: string;
+    description: string;
+    keywords: readonly string[];
+  };
+  scanPage: {
+    heroEyebrow: string;
+    heroTitle: string;
+    heroDescription: string;
+    primaryCta: string;
+    secondaryCta: string;
+    guardrailTitle: string;
+    guardrailBody: string;
+    capabilitiesEyebrow: string;
+    capabilitiesTitle: string;
+    capabilitiesDescription: string;
+    capabilities: readonly { title: string; description: string }[];
+    processEyebrow: string;
+    processTitle: string;
+    processDescription: string;
+    processSteps: readonly { step: string; title: string; description: string }[];
+    formEyebrow: string;
+    formTitle: string;
+    formDescription: string;
+    trustEyebrow: string;
+    trustTitle: string;
+    trustDescription: string;
+    trustItems: readonly { title: string; description: string }[];
+    targetTypeLabel: string;
+    targetTypeOptions: readonly { value: "WEB_APPLICATION" | "DOMAIN" | "HOST_SERVICE"; label: string }[];
+    requesterNameLabel: string;
+    requesterEmailLabel: string;
+    organizationLabel: string;
+    targetLabel: string;
+    targetPlaceholder: string;
+    notesLabel: string;
+    authorizationLabel: string;
+    authorizationHint: string;
+    submitLabel: string;
+    submittingLabel: string;
+    reportTitle: string;
+    reportDescription: string;
+    reportEmpty: string;
+    findingsTitle: string;
+    technicalSummaryTitle: string;
+    statusQueued: string;
+    statusRunning: string;
+    statusCompleted: string;
+    statusFailed: string;
+    messages: {
+      success: string;
+      error: string;
+      loading: string;
+    };
+    riskLabels: Record<"LOW" | "MODERATE" | "ELEVATED" | "HIGH" | "CRITICAL", string>;
+  };
+  paymentsForm: {
+    customerName: string;
+    businessName: string;
+    customerEmail: string;
+    notes: string;
+    submitLabel: string;
+    submittingLabel: string;
+    emptyState: string;
+    secureNote: string;
+    messages: {
+      redirecting: string;
+      error: string;
+    };
+  };
+};

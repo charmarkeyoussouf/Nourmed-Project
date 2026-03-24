@@ -13,6 +13,43 @@ enum ContactSubmissionStatus {
   ARCHIVED
 }
 
+enum PaymentSessionStatus {
+  CREATED
+  OPEN
+  COMPLETE
+  EXPIRED
+  FAILED
+}
+
+enum ScanJobStatus {
+  QUEUED
+  RUNNING
+  COMPLETED
+  FAILED
+}
+
+enum ScanTargetType {
+  WEB_APPLICATION
+  DOMAIN
+  HOST_SERVICE
+}
+
+enum ScanSeverity {
+  INFO
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum ScanRiskLevel {
+  LOW
+  MODERATE
+  ELEVATED
+  HIGH
+  CRITICAL
+}
+
 model ContactSubmission {
   id              String                  @id @default(cuid())
   name            String                  @db.VarChar(120)
@@ -23,12 +60,93 @@ model ContactSubmission {
   company         String?                 @db.VarChar(120)
   websiteUrl      String?                 @db.VarChar(255)
   serviceInterest String?                 @db.VarChar(120)
+  ipAddress       String?                 @db.VarChar(64)
+  userAgent       String?                 @db.VarChar(512)
   status          ContactSubmissionStatus @default(PENDING)
   forwardedAt     DateTime?
   createdAt       DateTime                @default(now())
   updatedAt       DateTime                @updatedAt
+  paymentSessions PaymentSession[]
+  scanJobs        ScanJob[]
 
   @@index([createdAt])
   @@index([status, createdAt])
   @@map("contact_submissions")
+}
+
+model PaymentSession {
+  id                      String               @id @default(cuid())
+  optionKey               String               @db.VarChar(64)
+  optionLabel             String               @db.VarChar(120)
+  amountCents             Int
+  currency                String               @db.VarChar(16)
+  status                  PaymentSessionStatus @default(CREATED)
+  stripeCheckoutSessionId String?              @unique @db.VarChar(255)
+  stripePaymentIntentId   String?              @db.VarChar(255)
+  stripeCustomerEmail     String?              @db.VarChar(254)
+  customerName            String?              @db.VarChar(120)
+  customerEmail           String?              @db.VarChar(254)
+  businessName            String?              @db.VarChar(120)
+  notes                   String?
+  checkoutUrl             String?              @db.VarChar(2048)
+  metadata                Json?
+  leadId                  String?
+  completedAt             DateTime?
+  expiredAt               DateTime?
+  createdAt               DateTime             @default(now())
+  updatedAt               DateTime             @updatedAt
+  lead                    ContactSubmission?   @relation(fields: [leadId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@index([status, createdAt])
+  @@index([leadId])
+  @@map("payment_sessions")
+}
+
+model ScanJob {
+  id                  String          @id @default(cuid())
+  target              String          @db.VarChar(512)
+  normalizedTarget    String          @db.VarChar(512)
+  targetType          ScanTargetType
+  organization        String          @db.VarChar(120)
+  requesterName       String?         @db.VarChar(120)
+  requesterEmail      String?         @db.VarChar(254)
+  notes               String?
+  source              String?         @db.VarChar(64)
+  authorizedConfirmed Boolean
+  publicTokenHash     String          @unique @db.VarChar(64)
+  status              ScanJobStatus   @default(QUEUED)
+  riskScore           Int?
+  riskLevel           ScanRiskLevel?
+  summary             String?
+  errorMessage        String?
+  details             Json?
+  leadId              String?
+  startedAt           DateTime?
+  completedAt         DateTime?
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  lead                ContactSubmission? @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  findings            ScanFinding[]
+
+  @@index([createdAt])
+  @@index([status, createdAt])
+  @@index([leadId])
+  @@map("scan_jobs")
+}
+
+model ScanFinding {
+  id             String       @id @default(cuid())
+  scanJobId      String
+  severity       ScanSeverity
+  category       String       @db.VarChar(64)
+  title          String       @db.VarChar(160)
+  description    String
+  recommendation String
+  evidence       Json?
+  createdAt      DateTime     @default(now())
+  scanJob        ScanJob      @relation(fields: [scanJobId], references: [id], onDelete: Cascade)
+
+  @@index([scanJobId, severity])
+  @@map("scan_findings")
 }

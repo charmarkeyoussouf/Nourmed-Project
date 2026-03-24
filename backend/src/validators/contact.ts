@@ -1,11 +1,6 @@
 import { z } from "zod";
 
-const serviceInterestValues = [
-  "Compliance Consulting",
-  "Secure Website Development",
-  "Small Business Security Packages",
-  "Not sure yet",
-] as const;
+import { serviceInterestValues } from "../lib/service-interest";
 
 const websiteUrlSchema = z
   .string()
@@ -40,10 +35,23 @@ export const contactSubmissionSchema = z
       .trim()
       .email("Email must be a valid email address.")
       .transform((value) => value.toLowerCase()),
+    phone: z
+      .string()
+      .trim()
+      .min(7, "Phone number must be at least 7 characters.")
+      .max(32, "Phone number must be 32 characters or fewer.")
+      .optional()
+      .transform((value) => (value && value.length > 0 ? value : undefined)),
     websiteUrl: websiteUrlSchema,
     serviceInterest: z.enum(serviceInterestValues, {
       error: "Select a valid service of interest.",
     }),
+    source: z
+      .string()
+      .trim()
+      .max(64, "Source must be 64 characters or fewer.")
+      .optional()
+      .transform((value) => (value && value.length > 0 ? value : undefined)),
     message: z
       .string()
       .trim()

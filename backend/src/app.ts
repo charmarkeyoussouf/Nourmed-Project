@@ -28,7 +28,14 @@ app.use(
       );
     },
     methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "X-Requested-With", "X-Request-Id"],
+    allowedHeaders: [
+      "Authorization",
+      "Content-Type",
+      "X-Admin-Token",
+      "X-Requested-With",
+      "X-Request-Id",
+      "X-Scan-Access-Token",
+    ],
     optionsSuccessStatus: 204,
   }),
 );

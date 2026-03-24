@@ -4,6 +4,7 @@ import Link from "next/link";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { getMarketingCopy } from "@/lib/marketing";
 import type { Locale } from "@/lib/locale";
+import { getProductCopy } from "@/lib/product-copy";
 
 type NavigationProps = {
   locale: Locale;
@@ -11,6 +12,8 @@ type NavigationProps = {
 
 export function Navigation({ locale }: NavigationProps) {
   const copy = getMarketingCopy(locale);
+  const productCopy = getProductCopy(locale);
+  const navigationLinks = [...copy.nav.links, ...productCopy.navLinks];
 
   return (
     <header className="sticky top-0 z-20 py-6 backdrop-blur-xl">
@@ -34,7 +37,7 @@ export function Navigation({ locale }: NavigationProps) {
               aria-label="Primary navigation"
               className="flex flex-wrap items-center gap-1 rounded-full border border-[rgba(206,223,217,0.92)] bg-[rgba(255,255,255,0.84)] px-2 py-2 shadow-[0_10px_20px_rgba(16,33,42,0.03)]"
             >
-              {copy.nav.links.map((link) => (
+              {navigationLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}

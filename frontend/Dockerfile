@@ -7,17 +7,21 @@ RUN npm ci
 
 FROM base AS builder
 ARG NEXT_PUBLIC_SITE_URL=http://localhost:8080
+ARG API_PROXY_TARGET=http://localhost:4000
 ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+ENV API_PROXY_TARGET=${API_PROXY_TARGET}
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
 FROM node:22-bookworm-slim AS runner
 ARG NEXT_PUBLIC_SITE_URL=http://localhost:8080
+ARG API_PROXY_TARGET=http://localhost:4000
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+ENV API_PROXY_TARGET=${API_PROXY_TARGET}
 WORKDIR /app
 
 RUN groupadd --system --gid 1001 nodejs && useradd --system --uid 1001 --gid nodejs nextjs

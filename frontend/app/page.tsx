@@ -188,6 +188,7 @@ export default async function HomePage() {
             eyebrow={home.freeScan.formEyebrow}
             title={home.freeScan.formTitle}
             description={home.freeScan.formDescription}
+            source="homepage_free_scan"
           />
         </div>
       </section>

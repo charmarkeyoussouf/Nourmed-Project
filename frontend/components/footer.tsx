@@ -4,6 +4,7 @@ import Link from "next/link";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { getMarketingCopy } from "@/lib/marketing";
 import type { Locale } from "@/lib/locale";
+import { getProductCopy } from "@/lib/product-copy";
 
 type FooterProps = {
   locale: Locale;
@@ -11,6 +12,8 @@ type FooterProps = {
 
 export function Footer({ locale }: FooterProps) {
   const copy = getMarketingCopy(locale);
+  const productCopy = getProductCopy(locale);
+  const navigationLinks = [...copy.nav.links, ...productCopy.navLinks];
 
   return (
     <footer className="py-10">
@@ -40,7 +43,7 @@ export function Footer({ locale }: FooterProps) {
               aria-label="Footer navigation"
               className="flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted lg:justify-end"
             >
-              {copy.nav.links.map((link) => (
+              {navigationLinks.map((link) => (
                 <Link key={link.href} href={link.href} className="transition hover:text-accent">
                   {link.label}
                 </Link>

@@ -5,6 +5,8 @@ Security-first Dockerized foundation for Nourmed. This repository provides a pro
 The MVP is intentionally narrow:
 - Public home, about, and contact pages
 - Contact form submission through Nginx to the backend API
+- Hosted payment initiation through Stripe Checkout
+- Authorized-only security scan jobs with stored findings and reports
 - Strict backend validation and structured JSON responses
 - PostgreSQL persistence with Prisma migrations
 - Health checks, request IDs, structured logging, and containerized local startup
@@ -113,6 +115,19 @@ Root `.env` variables used by Docker Compose:
 | `REQUEST_BODY_LIMIT` | Max request body size for Express JSON parsing |
 | `CONTACT_RATE_LIMIT_WINDOW_MS` | Rate limit window for the contact endpoint |
 | `CONTACT_RATE_LIMIT_MAX` | Max contact submissions per window per client |
+| `PAYMENTS_RATE_LIMIT_WINDOW_MS` | Rate limit window for hosted payment session creation |
+| `PAYMENTS_RATE_LIMIT_MAX` | Max payment session requests per window per client |
+| `SCAN_RATE_LIMIT_WINDOW_MS` | Rate limit window for security scan job creation |
+| `SCAN_RATE_LIMIT_MAX` | Max scan job requests per window per client |
+| `ADMIN_API_TOKEN` | Bearer or `X-Admin-Token` value for protected admin API reads |
+| `STRIPE_SECRET_KEY` | Stripe secret key used to create hosted Checkout sessions |
+| `STRIPE_CURRENCY` | Currency code used for fixed deposit options |
+| `STRIPE_SUCCESS_URL` | Optional explicit success URL for Stripe Checkout |
+| `STRIPE_CANCEL_URL` | Optional explicit cancel URL for Stripe Checkout |
+| `SCAN_HTTP_TIMEOUT_MS` | Timeout for outbound safe scan requests |
+| `SCAN_MAX_RESPONSE_BYTES` | Max response bytes stored from analyzed pages |
+| `SCAN_ALLOW_PRIVATE_TARGETS` | Allow RFC1918/local targets for scanner deployments inside trusted networks |
+| `SCAN_USER_AGENT` | Explicit user agent used by the scanner |
 | `TRUST_PROXY` | Express trust proxy value for correct client IP handling |
 | `LOG_LEVEL` | Backend log verbosity |
 | `SHUTDOWN_TIMEOUT_MS` | Graceful shutdown timeout for the backend |
@@ -244,6 +259,11 @@ Test the contact form from the browser:
 - Open `/contact`
 - Submit a valid name, email, and message
 - Confirm the success message appears
+
+Test the new flows from the browser:
+- Open `/payments` and verify the hosted checkout form loads
+- Open `/security-scan` and launch an authorized scan against a safe test target you own
+- Confirm that `/api/admin/leads`, `/api/admin/payment-sessions`, and `/api/admin/scan-jobs` are reachable only with `ADMIN_API_TOKEN`
 
 Test the contact API directly:
 

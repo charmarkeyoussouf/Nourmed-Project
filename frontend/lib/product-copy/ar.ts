@@ -1,0 +1,90 @@
+import { enProductCopy } from "@/lib/product-copy/en";
+import type { ProductCopy } from "@/lib/product-copy/types";
+
+export const arProductCopy: ProductCopy = {
+  ...enProductCopy,
+  navLinks: [
+    { href: "/security-scan", label: "فحص أمني" },
+    { href: "/payments", label: "المدفوعات" },
+  ],
+  paymentsMeta: {
+    title: "المدفوعات",
+    description: "ادفع عربونًا بشكل آمن عبر صفحة دفع مستضافة لمشاريع الامتثال والمواقع الآمنة وخدمات الحماية المستمرة.",
+    keywords: ["دفع امن", "عربون مشروع امني", "دفع استضافة stripe", "عربون موقع امن"],
+  },
+  scanMeta: {
+    title: "فحص أمني مصرح به",
+    description: "أطلق فحصًا دفاعيًا ومصرحًا به لموقع أو نطاق أو خدمة محددة، مع نتائج مرتبة حسب الخطورة.",
+    keywords: ["فحص امني مصرح", "فحص ثغرات موقع", "وضع امن الشركة", "تقييم دفاعي"],
+  },
+  paymentsPage: {
+    ...enProductCopy.paymentsPage,
+    heroEyebrow: "مدفوعات آمنة",
+    heroTitle: "طريقة واضحة ومهنية لدفع العربون وبدء العمل.",
+    heroDescription:
+      "يمكنك استخدام صفحة دفع مستضافة لدفع عربون ثابت، أو حجز مشروع محدد النطاق، أو البدء بطلب فحص مجاني قبل أي عمل أكبر.",
+    primaryCta: "اختر طريقة الدفع",
+    secondaryCta: "تواصل معنا أولًا",
+    successTitle: "تم استلام الدفع",
+    successDescription: "تم تسجيل الدفع بنجاح. ستستخدم Nourmed البيانات المقدمة لتأكيد الخطوة التالية.",
+    cancelTitle: "تم إلغاء الدفع",
+    cancelDescription: "لم يتم تحصيل أي مبلغ. يمكنك العودة إلى خيارات الدفع أو التواصل معنا لعرض سعر.",
+  },
+  scanPage: {
+    ...enProductCopy.scanPage,
+    heroEyebrow: "فحص أمني مصرح به",
+    heroTitle: "شغّل فحصًا للجاهزية الأمنية على أصول تملكها أو لديك إذن صريح لاختبارها.",
+    heroDescription:
+      "هذا الإصدار الأولي مخصص للمراجعة الدفاعية فقط وبوضع القراءة فقط. يراجع مؤشرات النقل وTLS والرؤوس والكوكيز وسطح الويب الظاهر.",
+    primaryCta: "ابدأ الفحص",
+    secondaryCta: "اطلب عرض سعر",
+    guardrailTitle: "اختبارات مصرح بها فقط",
+    guardrailBody:
+      "استخدم هذا المسار فقط للأصول التي تملكها مؤسستك أو التي لديك تصريح صريح لاختبارها. الفحص الحالي غير تدميري وموجه للمراجعة الدفاعية.",
+    targetTypeLabel: "نوع الهدف",
+    requesterNameLabel: "اسمك",
+    requesterEmailLabel: "بريدك الإلكتروني",
+    organizationLabel: "المنظمة",
+    targetLabel: "الهدف",
+    notesLabel: "ملاحظات اختيارية",
+    authorizationLabel: "أؤكد أن هذا الأصل يعود لي أو أن لدي تصريحًا صريحًا لاختباره.",
+    authorizationHint: "للخدمات الصريحة استخدم host:port. الأهداف الداخلية تتطلب اتصالاً شبكيًا من بيئة الفحص.",
+    submitLabel: "ابدأ الفحص المصرح به",
+    submittingLabel: "جارٍ تشغيل الفحص...",
+    reportTitle: "تقرير الفحص",
+    reportDescription: "يعكس التقرير النطاق الحالي لهذا الإصدار: فحوصات وضع أمني آمنة، وليس اختبار اختراق شامل.",
+    reportEmpty: "ابدأ فحصًا لإنشاء تقرير لهدف مصرح به.",
+    findingsTitle: "النتائج",
+    technicalSummaryTitle: "الملخص التقني",
+    statusQueued: "في الانتظار",
+    statusRunning: "قيد التنفيذ",
+    statusCompleted: "مكتمل",
+    statusFailed: "فشل",
+    messages: {
+      success: "تم إنشاء مهمة الفحص. تقوم Nourmed الآن بجمع النتائج.",
+      error: "تعذر بدء الفحص. راجع الهدف والتفويض ثم حاول مرة أخرى.",
+      loading: "جارٍ تحديث حالة الفحص...",
+    },
+    riskLabels: {
+      LOW: "مخاطر منخفضة",
+      MODERATE: "مخاطر متوسطة",
+      ELEVATED: "مخاطر مرتفعة",
+      HIGH: "مخاطر عالية",
+      CRITICAL: "مخاطر حرجة",
+    },
+  },
+  paymentsForm: {
+    customerName: "الاسم",
+    businessName: "اسم الشركة",
+    customerEmail: "البريد الإلكتروني",
+    notes: "ملاحظات اختيارية",
+    submitLabel: "المتابعة إلى الدفع الآمن",
+    submittingLabel: "جارٍ التحويل...",
+    emptyState: "اختر خيار عربون مدفوع للمتابعة.",
+    secureNote: "تتم معالجة الدفع عبر Stripe Checkout. تحتفظ Nourmed بسجل المهمة فقط، وليس ببيانات البطاقة الخام.",
+    messages: {
+      redirecting: "جارٍ تجهيز الدفع الآمن...",
+      error: "تعذر إنشاء الدفع. تحقق من البيانات أو تواصل مع Nourmed.",
+    },
+  },
+};

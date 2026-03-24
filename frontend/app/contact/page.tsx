@@ -61,7 +61,7 @@ export default async function ContactPage() {
         </div>
 
         <div className="rounded-[2.35rem] border border-[rgba(206,223,217,0.96)] bg-[rgba(255,255,255,0.92)] px-7 py-7 shadow-[0_18px_36px_rgba(16,33,42,0.08)] sm:px-9 sm:py-9">
-          <ContactForm locale={locale} />
+          <ContactForm locale={locale} source="contact_page" />
         </div>
       </section>
     </div>

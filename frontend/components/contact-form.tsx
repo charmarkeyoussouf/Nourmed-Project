@@ -9,10 +9,12 @@ type FormState = {
   name: string;
   company: string;
   email: string;
+  phone: string;
   websiteUrl: string;
   serviceInterest: string;
   message: string;
   website: string;
+  source: string;
 };
 
 type SubmissionState = {
@@ -24,10 +26,12 @@ const initialFormState: FormState = {
   name: "",
   company: "",
   email: "",
+  phone: "",
   websiteUrl: "",
   serviceInterest: "",
   message: "",
   website: "",
+  source: "",
 };
 
 const initialSubmissionState: SubmissionState = {
@@ -41,6 +45,14 @@ type ContactFormProps = {
   title?: string;
   description?: string;
   submitLabel?: string;
+  source?: string;
+};
+
+const phoneLabels: Record<Locale, string> = {
+  en: "Phone (optional)",
+  fr: "Téléphone (facultatif)",
+  es: "Teléfono (opcional)",
+  ar: "الهاتف (اختياري)",
 };
 
 export function ContactForm({
@@ -49,6 +61,7 @@ export function ContactForm({
   title,
   description,
   submitLabel,
+  source = "website_free_scan_form",
 }: ContactFormProps) {
   const copy = getMarketingCopy(locale);
   const formCopy = copy.form;
@@ -57,7 +70,10 @@ export function ContactForm({
   const resolvedDescription = description ?? formCopy.description;
   const resolvedSubmitLabel = submitLabel ?? formCopy.submitLabel;
 
-  const [formState, setFormState] = useState<FormState>(initialFormState);
+  const [formState, setFormState] = useState<FormState>({
+    ...initialFormState,
+    source,
+  });
   const [submissionState, setSubmissionState] = useState<SubmissionState>(initialSubmissionState);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -85,7 +101,10 @@ export function ContactForm({
         return;
       }
 
-      setFormState(initialFormState);
+      setFormState({
+        ...initialFormState,
+        source,
+      });
       setSubmissionState({
         status: "success",
         message: formCopy.messages.success,
@@ -174,6 +193,22 @@ export function ContactForm({
             className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
           />
         </label>
+        <label className="space-y-2">
+          <span className="text-sm font-medium text-foreground">{phoneLabels[locale]}</span>
+          <input
+            type="tel"
+            name="phone"
+            maxLength={32}
+            autoComplete="tel"
+            disabled={isSubmitting}
+            value={formState.phone}
+            onChange={(event) => updateField("phone", event.target.value)}
+            className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+          />
+        </label>
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2">
         <label className="space-y-2">
           <span className="text-sm font-medium text-foreground">{formCopy.fields.websiteUrl}</span>
           <input

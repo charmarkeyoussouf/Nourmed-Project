@@ -5,10 +5,37 @@ const envSchema = z.object({
   HOST: z.string().default("0.0.0.0"),
   PORT: z.coerce.number().int().min(1).max(65535).default(4000),
   DATABASE_URL: z.string().min(1),
+  PUBLIC_APP_URL: z.string().url().default("http://localhost:8080"),
   CORS_ALLOWED_ORIGINS: z.string().default("http://localhost:8080"),
   REQUEST_BODY_LIMIT: z.string().default("16kb"),
   CONTACT_RATE_LIMIT_WINDOW_MS: z.coerce.number().int().positive().default(900000),
   CONTACT_RATE_LIMIT_MAX: z.coerce.number().int().positive().default(5),
+  PAYMENTS_RATE_LIMIT_WINDOW_MS: z.coerce.number().int().positive().default(900000),
+  PAYMENTS_RATE_LIMIT_MAX: z.coerce.number().int().positive().default(10),
+  SCAN_RATE_LIMIT_WINDOW_MS: z.coerce.number().int().positive().default(1800000),
+  SCAN_RATE_LIMIT_MAX: z.coerce.number().int().positive().default(5),
+  ADMIN_API_TOKEN: z.string().default(""),
+  STRIPE_SECRET_KEY: z.string().default(""),
+  STRIPE_CURRENCY: z.string().trim().min(3).max(8).default("usd"),
+  STRIPE_SUCCESS_URL: z.string().url().optional(),
+  STRIPE_CANCEL_URL: z.string().url().optional(),
+  SCAN_HTTP_TIMEOUT_MS: z.coerce.number().int().positive().default(10000),
+  SCAN_MAX_RESPONSE_BYTES: z.coerce.number().int().positive().default(262144),
+  SCAN_ALLOW_PRIVATE_TARGETS: z
+    .union([z.boolean(), z.string()])
+    .transform((value) => {
+      if (typeof value === "boolean") {
+        return value;
+      }
+
+      return value.trim().toLowerCase() === "true";
+    })
+    .default(false),
+  SCAN_USER_AGENT: z
+    .string()
+    .trim()
+    .min(1)
+    .default("NourmedAuthorizedSecurityReview/1.0 (+https://www.nourmed.org)"),
   TRUST_PROXY: z.string().default("1"),
   LOG_LEVEL: z
     .enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"])
