@@ -1,5 +1,5 @@
-import { prisma } from "../lib/prisma";
 import { logger } from "../lib/logger";
+import { prisma } from "../lib/prisma";
 import type { ContactSubmissionInput } from "../validators/contact";
 
 type PersistedContactSubmission = Omit<ContactSubmissionInput, "website">;
@@ -9,8 +9,11 @@ export async function createContactSubmission(input: PersistedContactSubmission)
     data: {
       name: input.name,
       email: input.email,
-      message: input.message,
-      source: "website_contact_form",
+      company: input.company,
+      websiteUrl: input.websiteUrl,
+      serviceInterest: input.serviceInterest,
+      message: input.message ?? null,
+      source: "website_free_scan_form",
       status: "PENDING",
     },
   });

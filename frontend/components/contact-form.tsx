@@ -2,9 +2,14 @@
 
 import { type FormEvent, useState } from "react";
 
+import { serviceInterestOptions } from "@/lib/marketing";
+
 type FormState = {
   name: string;
+  company: string;
   email: string;
+  websiteUrl: string;
+  serviceInterest: string;
   message: string;
   website: string;
 };
@@ -16,7 +21,10 @@ type SubmissionState = {
 
 const initialFormState: FormState = {
   name: "",
+  company: "",
   email: "",
+  websiteUrl: "",
+  serviceInterest: "",
   message: "",
   website: "",
 };
@@ -26,7 +34,19 @@ const initialSubmissionState: SubmissionState = {
   message: "",
 };
 
-export function ContactForm() {
+type ContactFormProps = {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  submitLabel?: string;
+};
+
+export function ContactForm({
+  eyebrow = "Free vulnerability scan",
+  title = "Request a free quote or scan",
+  description = "Tell us a little about your business and the service you need. We will review the request, identify obvious gaps, and follow up with the right next step.",
+  submitLabel = "Request My Free Scan",
+}: ContactFormProps) {
   const [formState, setFormState] = useState<FormState>(initialFormState);
   const [submissionState, setSubmissionState] = useState<SubmissionState>(initialSubmissionState);
 
@@ -34,7 +54,7 @@ export function ContactForm() {
     event.preventDefault();
     setSubmissionState({
       status: "submitting",
-      message: "Sending your message...",
+      message: "Sending your request...",
     });
 
     try {
@@ -54,9 +74,7 @@ export function ContactForm() {
       if (!response.ok) {
         setSubmissionState({
           status: "error",
-          message:
-            payload?.error?.message ??
-            "The message could not be sent. Please try again shortly.",
+          message: payload?.error?.message ?? "The request could not be sent. Please try again shortly.",
         });
         return;
       }
@@ -64,12 +82,12 @@ export function ContactForm() {
       setFormState(initialFormState);
       setSubmissionState({
         status: "success",
-        message: payload?.data?.message ?? "Your message has been received.",
+        message: payload?.data?.message ?? "Your request has been received.",
       });
     } catch {
       setSubmissionState({
         status: "error",
-        message: "The message could not be sent. Please check your connection and try again.",
+        message: "The request could not be sent. Please check your connection and try again.",
       });
     }
   }
@@ -86,11 +104,9 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
-        <p className="font-mono text-xs uppercase tracking-[0.28em] text-accent">Secure intake</p>
-        <h2 className="text-3xl font-semibold tracking-tight text-foreground">Send a contact request</h2>
-        <p className="max-w-2xl text-base leading-7 text-muted">
-          This form posts to the backend API through the reverse proxy. Inputs are validated server-side before persistence.
-        </p>
+        <p className="font-mono text-xs uppercase tracking-[0.28em] text-accent">{eyebrow}</p>
+        <h2 className="text-3xl font-semibold tracking-tight text-foreground">{title}</h2>
+        <p className="max-w-2xl text-base leading-7 text-muted">{description}</p>
       </div>
 
       <div className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
@@ -122,6 +138,23 @@ export function ContactForm() {
           />
         </label>
         <label className="space-y-2">
+          <span className="text-sm font-medium text-foreground">Business name</span>
+          <input
+            type="text"
+            name="company"
+            required
+            maxLength={120}
+            autoComplete="organization"
+            disabled={isSubmitting}
+            value={formState.company}
+            onChange={(event) => updateField("company", event.target.value)}
+            className="w-full rounded-2xl border border-border bg-panel-strong px-4 py-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+          />
+        </label>
+      </div>
+
+      <div className="grid gap-6 sm:grid-cols-2">
+        <label className="space-y-2">
           <span className="text-sm font-medium text-foreground">Email</span>
           <input
             type="email"
@@ -135,16 +168,50 @@ export function ContactForm() {
             className="w-full rounded-2xl border border-border bg-panel-strong px-4 py-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
           />
         </label>
+        <label className="space-y-2">
+          <span className="text-sm font-medium text-foreground">Website URL</span>
+          <input
+            type="text"
+            name="websiteUrl"
+            required
+            maxLength={255}
+            autoComplete="url"
+            placeholder="https://yourbusiness.com"
+            disabled={isSubmitting}
+            value={formState.websiteUrl}
+            onChange={(event) => updateField("websiteUrl", event.target.value)}
+            className="w-full rounded-2xl border border-border bg-panel-strong px-4 py-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+          />
+        </label>
       </div>
 
       <label className="space-y-2">
-        <span className="text-sm font-medium text-foreground">Message</span>
+        <span className="text-sm font-medium text-foreground">Service of interest</span>
+        <select
+          name="serviceInterest"
+          required
+          disabled={isSubmitting}
+          value={formState.serviceInterest}
+          onChange={(event) => updateField("serviceInterest", event.target.value)}
+          className="w-full rounded-2xl border border-border bg-panel-strong px-4 py-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+        >
+          <option value="" disabled>
+            Select a service
+          </option>
+          {serviceInterestOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label className="space-y-2">
+        <span className="text-sm font-medium text-foreground">Optional message</span>
         <textarea
           name="message"
-          required
-          minLength={10}
           maxLength={2000}
-          rows={7}
+          rows={6}
           disabled={isSubmitting}
           value={formState.message}
           onChange={(event) => updateField("message", event.target.value)}
@@ -158,10 +225,10 @@ export function ContactForm() {
           disabled={isSubmitting}
           className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-contrast transition hover:bg-[#184a52] disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {isSubmitting ? "Submitting..." : "Submit request"}
+          {isSubmitting ? "Submitting..." : submitLabel}
         </button>
         <p className="text-sm leading-6 text-muted">
-          Rate limiting and anti-spam controls are enabled on the backend.
+          Secure intake, server-side validation, and anti-spam controls are enabled on the backend.
         </p>
       </div>
 

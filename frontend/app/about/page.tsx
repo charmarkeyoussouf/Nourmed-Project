@@ -4,43 +4,43 @@ import { SectionHeading } from "@/components/section-heading";
 
 const principles = [
   {
-    title: "Security boundaries first",
+    title: "Business-first communication",
     description:
-      "Nourmed treats the edge, API boundary, and database network as separate concerns so a public site does not imply public infrastructure.",
+      "Nourmed explains what matters in plain English so owners and operators can make security decisions without getting buried under buzzwords.",
   },
   {
-    title: "Small surface area",
+    title: "Practical protection",
     description:
-      "The MVP stays focused on pages, contact intake, and persistence so the deployment path is understandable before larger workflows are introduced.",
+      "We focus on reducing real risk for growing businesses: secure websites, stronger intake paths, better readiness, and operational follow-through.",
   },
   {
-    title: "Operational clarity",
+    title: "Readiness without overclaiming",
     description:
-      "Health checks, structured logging, migrations, and environment-driven config are baked in early to keep production behavior observable.",
+      "Nourmed supports compliance readiness and security preparation, but does not pretend to be a law firm or a certifying authority.",
   },
   {
-    title: "Room to extend",
+    title: "Long-term improvement",
     description:
-      "The schema and service boundaries leave space for future admin workflows, webhook forwarding, and role-based internal tooling.",
+      "The goal is not a one-time checklist. It is helping small businesses build stronger systems that can hold up as expectations grow.",
   },
 ];
 
 const blueprint = [
   {
-    label: "Browser",
-    detail: "Public visitors interact with the marketing site and contact form.",
+    label: "Who we serve",
+    detail: "Small businesses that need clearer security posture, stronger websites, and better preparation for customer or vendor expectations.",
   },
   {
-    label: "Nginx",
-    detail: "The edge handles routing, request headers, and production TLS termination.",
+    label: "What we focus on",
+    detail: "Compliance readiness, secure website development, and recurring security support sized for growing operations.",
   },
   {
-    label: "Frontend + Backend",
-    detail: "Next.js serves the public experience while Express handles health and contact APIs.",
+    label: "How we work",
+    detail: "We assess what is exposed, prioritize what matters most, harden what is weak, and support ongoing improvement where needed.",
   },
   {
-    label: "PostgreSQL",
-    detail: "Validated submissions are stored privately with Prisma-managed schema changes.",
+    label: "What clients get",
+    detail: "Clearer risk visibility, more trustworthy public systems, and security guidance that is practical enough to implement.",
   },
 ];
 
@@ -50,18 +50,18 @@ export default function AboutPage() {
       <section className="grid gap-8 rounded-[2.5rem] border border-border bg-panel px-6 py-8 shadow-[0_28px_80px_rgba(16,33,42,0.08)] sm:px-10 sm:py-12 lg:grid-cols-[1.05fr_0.95fr]">
         <SectionHeading
           eyebrow="About Nourmed"
-          title="Built as a secure website foundation, not a demo that ignores deployment reality"
-          description="This repo is intended to become the public face of Nourmed while preserving clear service boundaries for the backend and database."
+          title="A security and compliance readiness partner for small businesses that need practical protection"
+          description="Nourmed was built to help growing businesses strengthen public-facing systems, prepare for real-world security expectations, and make better decisions before small issues turn into bigger problems."
         />
         <div className="rounded-[1.75rem] border border-border bg-panel-strong p-6">
-          <p className="font-mono text-[0.72rem] uppercase tracking-[0.24em] text-accent">Current scope</p>
+          <p className="font-mono text-[0.72rem] uppercase tracking-[0.24em] text-accent">What this means</p>
           <p className="mt-3 text-sm leading-7 text-muted">
-            The project covers a public marketing site, secure contact intake, containerized local startup, and an HTTPS
-            production path for `nourmed.org` and `www.nourmed.org`.
+            We help businesses understand the security expectations attached to customer trust, vendor requirements,
+            public-facing websites, and everyday operational risk.
           </p>
           <p className="mt-4 text-sm leading-7 text-muted">
-            It is deliberately not trying to solve authentication, internal dashboards, or workflow automation yet. The
-            goal is to establish a credible and deployable base first.
+            The goal is a stronger security posture, not confusion. Nourmed focuses on guidance and implementation
+            support that makes sense for small teams.
           </p>
         </div>
       </section>
@@ -69,8 +69,8 @@ export default function AboutPage() {
       <section className="space-y-8">
         <SectionHeading
           eyebrow="Operating Principles"
-          title="What drives the shape of the repo"
-          description="The structure is biased toward a VPS deployment that remains understandable after the first release instead of becoming an opaque all-in-one container."
+          title="How Nourmed approaches security work"
+          description="The business is designed around clarity, trust, and steady risk reduction rather than generic technical theater."
         />
         <div className="grid gap-5 md:grid-cols-2">
           {principles.map((principle) => (
@@ -87,9 +87,9 @@ export default function AboutPage() {
 
       <section className="grid gap-8 rounded-[2.5rem] border border-border bg-[#12242b] px-6 py-8 text-[#eff2eb] shadow-[0_26px_80px_rgba(16,33,42,0.16)] sm:px-10 sm:py-12 lg:grid-cols-[0.9fr_1.1fr]">
         <SectionHeading
-          eyebrow="Platform Blueprint"
-          title="A simple chain of trust from edge to persistence"
-          description="Each layer exists for a specific reason, and each one can be evolved independently without breaking the rest of the deployment model."
+          eyebrow="What Clients Can Expect"
+          title="A simple model for practical security improvement"
+          description="Nourmed helps businesses understand where they are exposed, what matters most, and how to improve without overspending on the wrong priorities."
           tone="inverse"
         />
         <div className="grid gap-4">
@@ -110,17 +110,17 @@ export default function AboutPage() {
       <section className="rounded-[2.25rem] border border-border bg-panel px-6 py-8 shadow-[0_18px_36px_rgba(16,33,42,0.05)] sm:px-10 sm:py-10">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
           <div className="space-y-3">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">Next build stage</p>
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">Next step</p>
             <h2 className="text-3xl font-semibold tracking-tight text-foreground">
-              After the public site is stable, the next logical layers are forwarding, admin tooling, and controlled
-              internal workflows.
+              If you need a secure website, clearer compliance readiness, or ongoing protection, start with a free scan
+              or quote request.
             </h2>
           </div>
           <Link
             href="/contact"
             className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-contrast transition hover:bg-[#184a52]"
           >
-            Discuss the deployment path
+            Get a Free Quote
           </Link>
         </div>
       </section>

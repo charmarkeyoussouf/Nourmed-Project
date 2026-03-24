@@ -14,17 +14,19 @@ enum ContactSubmissionStatus {
 }
 
 model ContactSubmission {
-  id          String                  @id @default(cuid())
-  name        String                  @db.VarChar(120)
-  email       String                  @db.VarChar(254)
-  message     String
-  phone       String?                 @db.VarChar(32)
-  source      String?                 @db.VarChar(64)
-  company     String?                 @db.VarChar(120)
-  status      ContactSubmissionStatus @default(PENDING)
-  forwardedAt DateTime?
-  createdAt   DateTime                @default(now())
-  updatedAt   DateTime                @updatedAt
+  id              String                  @id @default(cuid())
+  name            String                  @db.VarChar(120)
+  email           String                  @db.VarChar(254)
+  message         String?
+  phone           String?                 @db.VarChar(32)
+  source          String?                 @db.VarChar(64)
+  company         String?                 @db.VarChar(120)
+  websiteUrl      String?                 @db.VarChar(255)
+  serviceInterest String?                 @db.VarChar(120)
+  status          ContactSubmissionStatus @default(PENDING)
+  forwardedAt     DateTime?
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @updatedAt
 
   @@index([createdAt])
   @@index([status, createdAt])

@@ -37,14 +37,14 @@ export async function createContactSubmissionHandler(
       );
 
       return sendSuccess(res, 202, {
-        message: "Contact submission received.",
+        message: "Your request has been received.",
       });
     }
 
     await createContactSubmission(submissionPayload);
 
     return sendSuccess(res, 201, {
-      message: "Contact submission received.",
+      message: "Your request has been received.",
     });
   } catch (error) {
     return next(error);

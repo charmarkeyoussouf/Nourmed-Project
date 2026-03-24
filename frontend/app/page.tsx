@@ -1,84 +1,63 @@
 import Link from "next/link";
 
 import { SectionHeading } from "@/components/section-heading";
+import { processSteps, serviceOfferings } from "@/lib/marketing";
 
-const stackTiles = [
+const valueProps = [
   {
-    label: "Edge proxy",
-    title: "Nginx is the only public entrypoint.",
+    label: "Compliance clarity",
+    title: "Understand security expectations before they become blockers.",
     description:
-      "Traffic is terminated at the edge, API requests stay behind the proxy, and health checks stay explicit.",
+      "We translate vendor questions, customer trust requirements, and security expectations into a roadmap a small business can actually act on.",
   },
   {
-    label: "Validated intake",
-    title: "Every contact request is filtered before storage.",
+    label: "Secure websites",
+    title: "Protect the public-facing systems your business depends on.",
     description:
-      "Server-side validation, rate limiting, and a honeypot field reduce low-effort spam before it touches persistence.",
+      "Our website work is built around HTTPS, hardened hosting, protected forms, and deployment discipline instead of surface-level design alone.",
   },
   {
-    label: "Private persistence",
-    title: "PostgreSQL stays off the public network.",
+    label: "Ongoing protection",
+    title: "Stay ahead of easy-to-miss gaps as your business grows.",
     description:
-      "The database lives on an internal Docker network and is only reachable by the backend service.",
+      "Recurring packages give small businesses vulnerability scanning, guidance, and practical risk reduction without enterprise overhead.",
   },
 ];
 
-const deliveryAreas = [
+const outcomes = [
   {
-    title: "Public website",
+    title: "Protect trust before it gets tested",
     description:
-      "A compact marketing surface with a consistent visual system, clear navigation, and deployment-ready metadata.",
+      "Customers and vendors expect secure handling of information long before they ask for a formal audit. Nourmed helps you prepare before weak systems cost credibility.",
   },
   {
-    title: "Secure contact flow",
+    title: "Reduce avoidable downtime and exposure",
     description:
-      "Browser submissions route through Nginx to the backend API, then into PostgreSQL with audit-friendly timestamps.",
+      "We focus on real-world issues that interrupt growth: weak intake paths, public-facing gaps, inconsistent deployments, and underprotected business websites.",
   },
   {
-    title: "Deployable stack",
+    title: "Make security understandable for owners",
     description:
-      "The repo is organized as containers first so a VPS deploy mirrors local composition instead of diverging from it.",
-  },
-];
-
-const deliverySteps = [
-  {
-    step: "01",
-    title: "Ship the public face",
-    description:
-      "The frontend handles the marketing site, messaging, and contact capture without exposing internal services directly.",
-  },
-  {
-    step: "02",
-    title: "Validate at the API boundary",
-    description:
-      "The backend enforces schema validation, request limits, and structured responses before persisting anything.",
-  },
-  {
-    step: "03",
-    title: "Operate behind the edge",
-    description:
-      "Nginx fronts the stack, certificates terminate at the edge, and the database stays private on an internal network.",
+      "The goal is not jargon. It is helping small businesses understand what matters, what needs fixing first, and what protection looks like in practical terms.",
   },
 ];
 
 export default function HomePage() {
   return (
     <div className="space-y-24 pb-10 pt-6">
-      <section className="overflow-hidden rounded-[2.5rem] border border-border bg-panel px-6 py-8 shadow-[0_28px_80px_rgba(16,33,42,0.08)] sm:px-10 sm:py-12">
+      <section className="overflow-hidden rounded-[2.5rem] border border-border bg-[#12242b] px-6 py-8 text-[#eff2eb] shadow-[0_28px_80px_rgba(16,33,42,0.16)] sm:px-10 sm:py-12">
         <div className="grid gap-10 lg:grid-cols-[1.35fr_0.95fr] lg:items-end">
           <div className="space-y-8">
             <div className="space-y-4">
-              <p className="font-mono text-xs uppercase tracking-[0.32em] text-accent">
-                Deployment-ready foundation
+              <p className="font-mono text-xs uppercase tracking-[0.32em] text-[#7dc2be]">
+                Cybersecurity for small businesses
               </p>
-              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                Secure systems for teams that need a public website without exposing the rest of their operations.
+              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+                Protect your business with secure websites, compliance readiness, and practical cybersecurity support.
               </h1>
-              <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg">
-                Nourmed combines a polished public front end, protected contact intake, and production-minded
-                container architecture so the same stack can move from local build to VPS deployment with fewer
-                surprises.
+              <p className="max-w-2xl text-base leading-8 text-[#cbd5d6] sm:text-lg">
+                Nourmed helps growing companies reduce vulnerabilities, strengthen public-facing systems, and prepare for
+                the security expectations that come with real customers, vendors, and day-to-day operations.
               </p>
             </div>
 
@@ -87,26 +66,26 @@ export default function HomePage() {
                 href="/contact"
                 className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-contrast transition hover:bg-[#184a52]"
               >
-                Start a deployment conversation
+                Get a Free Quote
               </Link>
               <Link
-                href="/about"
-                className="inline-flex items-center justify-center rounded-full border border-border bg-panel-strong px-6 py-3 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
+                href="/services"
+                className="inline-flex items-center justify-center rounded-full border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.06)] px-6 py-3 text-sm font-semibold text-[#eff2eb] transition hover:border-[#7dc2be] hover:text-[#7dc2be]"
               >
-                Review the platform approach
+                Explore Services
               </Link>
             </div>
           </div>
 
           <div className="grid gap-4">
-            {stackTiles.map((tile) => (
+            {valueProps.map((tile) => (
               <article
                 key={tile.title}
-                className="rounded-[1.75rem] border border-border bg-panel-strong p-5 shadow-[0_16px_32px_rgba(16,33,42,0.06)]"
+                className="rounded-[1.75rem] border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.06)] p-5 backdrop-blur"
               >
-                <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-accent">{tile.label}</p>
-                <h2 className="mt-3 text-xl font-semibold tracking-tight text-foreground">{tile.title}</h2>
-                <p className="mt-3 text-sm leading-7 text-muted">{tile.description}</p>
+                <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[#7dc2be]">{tile.label}</p>
+                <h2 className="mt-3 text-xl font-semibold tracking-tight">{tile.title}</h2>
+                <p className="mt-3 text-sm leading-7 text-[#cbd5d6]">{tile.description}</p>
               </article>
             ))}
           </div>
@@ -115,12 +94,12 @@ export default function HomePage() {
 
       <section className="space-y-8">
         <SectionHeading
-          eyebrow="What This Ships"
-          title="A lean website stack with security boundaries already in place"
-          description="The repo is intentionally narrow: a marketing site, a validated contact pipeline, and infrastructure choices that stay reasonable on a VPS."
+          eyebrow="What We Do"
+          title="Nourmed helps small businesses tighten security without drowning in enterprise complexity"
+          description="We focus on the practical problems that affect trust, uptime, and readiness: exposed websites, weak intake paths, unclear compliance expectations, and missing operational safeguards."
         />
         <div className="grid gap-5 lg:grid-cols-3">
-          {deliveryAreas.map((area) => (
+          {outcomes.map((area) => (
             <article
               key={area.title}
               className="rounded-[1.75rem] border border-border bg-panel p-6 shadow-[0_18px_36px_rgba(16,33,42,0.05)]"
@@ -135,13 +114,13 @@ export default function HomePage() {
       <section className="rounded-[2.5rem] border border-border bg-[#12242b] px-6 py-8 text-[#eff2eb] shadow-[0_26px_80px_rgba(16,33,42,0.16)] sm:px-10 sm:py-12">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <SectionHeading
-            eyebrow="How It Works"
-            title="From browser request to stored contact submission"
-            description="The architecture stays simple on purpose so the frontend, backend, and deployment path can evolve independently without collapsing into a single container."
+            eyebrow="How We Do It"
+            title="A straightforward process for reducing risk and improving readiness"
+            description="We keep the process business-friendly: understand the exposure, prioritize the gaps, harden the environment, and support ongoing improvement where it matters."
             tone="inverse"
           />
           <div className="grid gap-4">
-            {deliverySteps.map((item) => (
+            {processSteps.map((item) => (
               <article
                 key={item.step}
                 className="rounded-[1.5rem] border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.06)] p-5 backdrop-blur"
@@ -157,30 +136,64 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="grid gap-6 rounded-[2.25rem] border border-border bg-panel px-6 py-8 shadow-[0_18px_36px_rgba(16,33,42,0.05)] sm:px-10 sm:py-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <section className="space-y-8">
+        <SectionHeading
+          eyebrow="Featured Services"
+          title="Premium services built for trust, resilience, and small-business growth"
+          description="Nourmed leads with clear scopes, premium positioning, and practical security work instead of vague promises."
+        />
+        <div className="grid gap-5 lg:grid-cols-3">
+          {serviceOfferings.map((service) => (
+            <article
+              key={service.slug}
+              className="rounded-[1.75rem] border border-border bg-panel p-6 shadow-[0_18px_36px_rgba(16,33,42,0.05)]"
+            >
+              <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-accent">{service.price}</p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">{service.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-muted">{service.summary}</p>
+              <Link
+                href={`/services#${service.slug}`}
+                className="mt-6 inline-flex items-center justify-center rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
+              >
+                View service details
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="grid gap-6 rounded-[2.25rem] border border-border bg-panel px-6 py-8 shadow-[0_18px_36px_rgba(16,33,42,0.05)] sm:px-10 sm:py-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div className="space-y-4">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">Production Path</p>
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent">Free Vulnerability Scan</p>
           <h2 className="text-3xl font-semibold tracking-tight text-foreground">
-            Ready the domain, issue certificates, then deploy the same service boundaries you build against locally.
+            Start with a free scan or quote request and get a clearer picture of where your business stands.
           </h2>
           <p className="max-w-2xl text-base leading-8 text-muted">
-            The final production pass still depends on real DNS, open ports 80 and 443, and Let&apos;s Encrypt issuance
-            on the target VPS. Once that is in place, the repo is designed to keep the database private and the edge
-            public.
+            We use the first conversation to understand your website, visible risk surface, and the service level that
+            makes sense for your business. If you need broader work, we turn that into a scoped quote instead of
+            guesswork.
           </p>
         </div>
         <div className="rounded-[1.75rem] border border-border bg-panel-strong p-6">
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-accent">Next step</p>
           <p className="mt-3 text-sm leading-7 text-muted">
-            Finish certificate issuance on the VPS, deploy the production Compose stack, and wire any downstream
-            forwarding for contact submissions after the intake path is stable.
+            Tell us what you need, what systems are public-facing, and where you want better security. We will guide the
+            next step without bloated jargon.
           </p>
-          <Link
-            href="/contact"
-            className="mt-6 inline-flex items-center justify-center rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
-          >
-            Open the contact flow
-          </Link>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-accent-contrast transition hover:bg-[#184a52]"
+            >
+              Book a Free Scan
+            </Link>
+            <Link
+              href="/services"
+              className="inline-flex items-center justify-center rounded-full border border-border px-5 py-3 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
+            >
+              Review all services
+            </Link>
+          </div>
         </div>
       </section>
     </div>
