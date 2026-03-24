@@ -26,6 +26,21 @@ html {
   scroll-behavior: smooth;
 }
 
+html[dir="rtl"] {
+  text-align: right;
+}
+
+html[dir="rtl"] .font-mono {
+  font-family: var(--font-sans);
+  letter-spacing: normal;
+}
+
+html[dir="rtl"] input,
+html[dir="rtl"] select,
+html[dir="rtl"] textarea {
+  text-align: right;
+}
+
 body {
   background:
     radial-gradient(circle at top left, rgba(31, 90, 96, 0.12), transparent 34%),

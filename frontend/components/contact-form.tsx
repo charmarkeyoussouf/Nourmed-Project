@@ -2,7 +2,8 @@
 
 import { type FormEvent, useState } from "react";
 
-import { serviceInterestOptions } from "@/lib/marketing";
+import { getMarketingCopy } from "@/lib/marketing";
+import type { Locale } from "@/lib/locale";
 
 type FormState = {
   name: string;
@@ -35,6 +36,7 @@ const initialSubmissionState: SubmissionState = {
 };
 
 type ContactFormProps = {
+  locale: Locale;
   eyebrow?: string;
   title?: string;
   description?: string;
@@ -42,11 +44,19 @@ type ContactFormProps = {
 };
 
 export function ContactForm({
-  eyebrow = "Free security scan",
-  title = "Request a free security scan or quote",
-  description = "Tell Nourmed a little about your business, your website, and the type of support you need. We will review the request and recommend the right next step.",
-  submitLabel = "Request My Free Scan",
+  locale,
+  eyebrow,
+  title,
+  description,
+  submitLabel,
 }: ContactFormProps) {
+  const copy = getMarketingCopy(locale);
+  const formCopy = copy.form;
+  const resolvedEyebrow = eyebrow ?? formCopy.eyebrow;
+  const resolvedTitle = title ?? formCopy.title;
+  const resolvedDescription = description ?? formCopy.description;
+  const resolvedSubmitLabel = submitLabel ?? formCopy.submitLabel;
+
   const [formState, setFormState] = useState<FormState>(initialFormState);
   const [submissionState, setSubmissionState] = useState<SubmissionState>(initialSubmissionState);
 
@@ -54,7 +64,7 @@ export function ContactForm({
     event.preventDefault();
     setSubmissionState({
       status: "submitting",
-      message: "Sending your request...",
+      message: formCopy.messages.submitting,
     });
 
     try {
@@ -67,14 +77,10 @@ export function ContactForm({
         body: JSON.stringify(formState),
       });
 
-      const payload = (await response.json().catch(() => null)) as
-        | { data?: { message?: string }; error?: { message?: string } }
-        | null;
-
       if (!response.ok) {
         setSubmissionState({
           status: "error",
-          message: payload?.error?.message ?? "The request could not be sent. Please try again shortly.",
+          message: formCopy.messages.error,
         });
         return;
       }
@@ -82,12 +88,12 @@ export function ContactForm({
       setFormState(initialFormState);
       setSubmissionState({
         status: "success",
-        message: payload?.data?.message ?? "Your request has been received.",
+        message: formCopy.messages.success,
       });
     } catch {
       setSubmissionState({
         status: "error",
-        message: "The request could not be sent. Please check your connection and try again.",
+        message: formCopy.messages.error,
       });
     }
   }
@@ -104,13 +110,13 @@ export function ContactForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
-        <p className="font-mono text-xs uppercase tracking-[0.28em] text-accent">{eyebrow}</p>
-        <h2 className="text-3xl font-semibold tracking-tight text-foreground">{title}</h2>
-        <p className="max-w-2xl text-base leading-7 text-muted">{description}</p>
+        <p className="font-mono text-xs uppercase tracking-[0.28em] text-accent">{resolvedEyebrow}</p>
+        <h2 className="text-3xl font-semibold tracking-tight text-foreground">{resolvedTitle}</h2>
+        <p className="max-w-2xl text-base leading-7 text-muted">{resolvedDescription}</p>
       </div>
 
       <div className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
-        <label htmlFor="website">Website</label>
+        <label htmlFor="website">{formCopy.hiddenWebsiteLabel}</label>
         <input
           id="website"
           name="website"
@@ -124,7 +130,7 @@ export function ContactForm({
 
       <div className="grid gap-6 sm:grid-cols-2">
         <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">Name</span>
+          <span className="text-sm font-medium text-foreground">{formCopy.fields.name}</span>
           <input
             type="text"
             name="name"
@@ -138,7 +144,7 @@ export function ContactForm({
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">Business Name</span>
+          <span className="text-sm font-medium text-foreground">{formCopy.fields.businessName}</span>
           <input
             type="text"
             name="company"
@@ -155,7 +161,7 @@ export function ContactForm({
 
       <div className="grid gap-6 sm:grid-cols-2">
         <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">Email</span>
+          <span className="text-sm font-medium text-foreground">{formCopy.fields.email}</span>
           <input
             type="email"
             name="email"
@@ -169,14 +175,14 @@ export function ContactForm({
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">Website URL</span>
+          <span className="text-sm font-medium text-foreground">{formCopy.fields.websiteUrl}</span>
           <input
             type="text"
             name="websiteUrl"
             required
             maxLength={255}
             autoComplete="url"
-            placeholder="https://yourbusiness.com"
+            placeholder={formCopy.fields.websiteUrlPlaceholder}
             disabled={isSubmitting}
             value={formState.websiteUrl}
             onChange={(event) => updateField("websiteUrl", event.target.value)}
@@ -186,7 +192,7 @@ export function ContactForm({
       </div>
 
       <label className="space-y-2">
-        <span className="text-sm font-medium text-foreground">Service of Interest</span>
+        <span className="text-sm font-medium text-foreground">{formCopy.fields.serviceOfInterest}</span>
         <select
           name="serviceInterest"
           required
@@ -196,18 +202,18 @@ export function ContactForm({
           className="w-full rounded-2xl border border-border bg-panel-strong px-4 py-3 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
         >
           <option value="" disabled>
-            Select a service
+            {formCopy.fields.servicePlaceholder}
           </option>
-          {serviceInterestOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
+          {copy.shared.serviceInterestOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
             </option>
           ))}
         </select>
       </label>
 
       <label className="space-y-2">
-        <span className="text-sm font-medium text-foreground">Optional Message</span>
+        <span className="text-sm font-medium text-foreground">{formCopy.fields.optionalMessage}</span>
         <textarea
           name="message"
           maxLength={2000}
@@ -225,11 +231,9 @@ export function ContactForm({
           disabled={isSubmitting}
           className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-contrast transition hover:bg-[#184a52] disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {isSubmitting ? "Submitting..." : submitLabel}
+          {isSubmitting ? formCopy.messages.submitting : resolvedSubmitLabel}
         </button>
-        <p className="text-sm leading-6 text-muted">
-          Secure intake, server-side validation, and anti-spam controls are enabled on the backend.
-        </p>
+        <p className="text-sm leading-6 text-muted">{formCopy.secureNote}</p>
       </div>
 
       {submissionState.status !== "idle" ? (
