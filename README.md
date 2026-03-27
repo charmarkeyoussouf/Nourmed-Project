@@ -237,9 +237,22 @@ Website forms submit through the backend and can notify `charmarke.nourmed@gmail
 
 - Configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, and `SMTP_FROM`.
 - For Gmail, use `smtp.gmail.com`, port `465`, `SMTP_SECURE=true`, and a Gmail app password for `SMTP_PASS`.
+- Gmail requires 2-Step Verification before App Passwords are available.
 - `LEAD_NOTIFICATION_TO` defaults to `charmarke.nourmed@gmail.com`, but you can override it if needed.
-- If SMTP is not configured, form submissions are rejected with a friendly error instead of silently disappearing.
+- If SMTP is not configured, the backend logs a warning, the app keeps running, and the frontend receives a clean temporary delivery error instead of a crash.
 - Public payments are currently disabled. Visiting `/payments` redirects to `/services`, and the backend no longer exposes hosted checkout routes.
+
+Recommended production block for `/root/Nourmed-Project/.env`:
+
+```dotenv
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=charmarke.nourmed@gmail.com
+SMTP_PASS=YOUR_GMAIL_APP_PASSWORD
+SMTP_FROM=charmarke.nourmed@gmail.com
+LEAD_NOTIFICATION_TO=charmarke.nourmed@gmail.com
+```
 
 ## Verify the Platform
 

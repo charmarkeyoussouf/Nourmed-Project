@@ -5,6 +5,7 @@ import http from "node:http";
 import { app } from "./app";
 import { env } from "./config/env";
 import { logger } from "./lib/logger";
+import { getMailerConfigurationStatus } from "./lib/mailer";
 import { prisma } from "./lib/prisma";
 
 const server = http.createServer(app);
@@ -50,6 +51,8 @@ async function shutdown(signal: NodeJS.Signals) {
 }
 
 server.listen(env.PORT, env.HOST, () => {
+  const mailerStatus = getMailerConfigurationStatus();
+
   logger.info(
     {
       host: env.HOST,
@@ -58,6 +61,24 @@ server.listen(env.PORT, env.HOST, () => {
     },
     "Backend listening",
   );
+
+  if (mailerStatus.configured) {
+    logger.info(
+      {
+        recipient: env.LEAD_NOTIFICATION_TO,
+        mode: mailerStatus.mode,
+      },
+      "SMTP lead notification is configured",
+    );
+  } else {
+    logger.warn(
+      {
+        recipient: env.LEAD_NOTIFICATION_TO,
+        missingKeys: mailerStatus.missingKeys,
+      },
+      "SMTP lead notification is not fully configured; website forms will return a temporary delivery error",
+    );
+  }
 });
 
 process.on("SIGINT", () => {

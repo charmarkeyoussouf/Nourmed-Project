@@ -1,6 +1,6 @@
 import { env } from "../config/env";
 import { ApiError } from "../lib/api-error";
-import { getMailTransporter } from "../lib/mailer";
+import { getMailerConfigurationStatus, getMailTransporter } from "../lib/mailer";
 import { logger } from "../lib/logger";
 
 export type LeadNotificationField = {
@@ -76,10 +76,20 @@ export async function sendLeadNotificationEmail(input: LeadNotificationInput) {
   const transporter = getMailTransporter();
 
   if (!transporter) {
+    const status = getMailerConfigurationStatus();
+
+    logger.warn(
+      {
+        recipient: env.LEAD_NOTIFICATION_TO,
+        missingKeys: status.missingKeys,
+      },
+      "Lead notification email is disabled because SMTP is not fully configured",
+    );
+
     throw new ApiError(
       503,
       "EMAIL_NOT_CONFIGURED",
-      "Email delivery is not configured yet. Add SMTP settings to route website forms to charmarke.nourmed@gmail.com.",
+      "We could not submit your request at this time. Please try again shortly or contact Nourmed directly at charmarke.nourmed@gmail.com.",
     );
   }
 
@@ -142,7 +152,7 @@ export async function sendLeadNotificationEmail(input: LeadNotificationInput) {
     throw new ApiError(
       502,
       "EMAIL_DELIVERY_FAILED",
-      "The request could not be delivered by email right now. Please try again in a moment.",
+      "We could not submit your request at this time. Please try again shortly or contact Nourmed directly at charmarke.nourmed@gmail.com.",
     );
   }
 }

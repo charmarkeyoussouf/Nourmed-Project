@@ -45,6 +45,30 @@ case ",${CORS_ALLOWED_ORIGINS:-}," in
     ;;
 esac
 
+missing_smtp=""
+
+for smtp_key in SMTP_HOST SMTP_FROM; do
+  eval "smtp_value=\${$smtp_key:-}"
+  if [ -z "$smtp_value" ]; then
+    missing_smtp="${missing_smtp}${missing_smtp:+, }$smtp_key"
+  fi
+done
+
+if { [ -n "${SMTP_USER:-}" ] && [ -z "${SMTP_PASS:-}" ]; } || { [ -z "${SMTP_USER:-}" ] && [ -n "${SMTP_PASS:-}" ]; }; then
+  if [ -z "${SMTP_USER:-}" ]; then
+    missing_smtp="${missing_smtp}${missing_smtp:+, }SMTP_USER"
+  fi
+
+  if [ -z "${SMTP_PASS:-}" ]; then
+    missing_smtp="${missing_smtp}${missing_smtp:+, }SMTP_PASS"
+  fi
+fi
+
+if [ -n "$missing_smtp" ]; then
+  echo "Warning: SMTP is not fully configured in .env ($missing_smtp missing)."
+  echo "Website forms will store the request but return a temporary delivery error until SMTP is configured."
+fi
+
 if [ ! -f "$CERTIFICATE_DIR/fullchain.pem" ] || [ ! -f "$CERTIFICATE_DIR/privkey.pem" ]; then
   echo "Missing Let's Encrypt certificate for www.nourmed.org."
   echo "Run 'sh scripts/prod/request-certificate.sh' on the VPS before deploying HTTPS."

@@ -4,11 +4,38 @@ import { env } from "../config/env";
 
 let transporter: nodemailer.Transporter | null | undefined;
 
-function hasMailerConfiguration() {
-  const hasAuthentication =
-    (!env.SMTP_USER && !env.SMTP_PASS) || (Boolean(env.SMTP_USER) && Boolean(env.SMTP_PASS));
+type MailerConfigurationStatus = {
+  configured: boolean;
+  missingKeys: string[];
+  mode: "authenticated" | "unauthenticated";
+};
 
-  return Boolean(env.SMTP_HOST && env.SMTP_FROM && hasAuthentication);
+export function getMailerConfigurationStatus(): MailerConfigurationStatus {
+  const missingKeys: string[] = [];
+
+  if (!env.SMTP_HOST) {
+    missingKeys.push("SMTP_HOST");
+  }
+
+  if (!env.SMTP_FROM) {
+    missingKeys.push("SMTP_FROM");
+  }
+
+  if ((env.SMTP_USER && !env.SMTP_PASS) || (!env.SMTP_USER && env.SMTP_PASS)) {
+    if (!env.SMTP_USER) {
+      missingKeys.push("SMTP_USER");
+    }
+
+    if (!env.SMTP_PASS) {
+      missingKeys.push("SMTP_PASS");
+    }
+  }
+
+  return {
+    configured: missingKeys.length === 0,
+    missingKeys,
+    mode: env.SMTP_USER && env.SMTP_PASS ? "authenticated" : "unauthenticated",
+  };
 }
 
 export function getMailTransporter() {
@@ -16,7 +43,9 @@ export function getMailTransporter() {
     return transporter;
   }
 
-  if (!hasMailerConfiguration()) {
+  const status = getMailerConfigurationStatus();
+
+  if (!status.configured) {
     transporter = null;
     return transporter;
   }
