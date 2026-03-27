@@ -12,15 +12,13 @@ export const createScanJobSchema = z
     requesterName: z
       .string()
       .trim()
-      .max(120)
-      .optional()
-      .transform((value) => (value && value.length > 0 ? value : undefined)),
+      .min(2, "Name must be at least 2 characters.")
+      .max(120, "Name must be 120 characters or fewer."),
     requesterEmail: z
       .string()
       .trim()
-      .email()
-      .optional()
-      .transform((value) => (value ? value.toLowerCase() : undefined)),
+      .email("Email must be a valid email address.")
+      .transform((value) => value.toLowerCase()),
     notes: z
       .string()
       .trim()

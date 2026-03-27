@@ -48,6 +48,21 @@ type SubmissionState = {
   message: string;
 };
 
+type ScanCreateResponse =
+  | {
+      success: true;
+      data: {
+        jobId: string;
+        accessToken: string;
+      };
+    }
+  | {
+      success: false;
+      error?: {
+        message?: string;
+      };
+    };
+
 const initialFormState: FormState = {
   target: "",
   targetType: "WEB_APPLICATION",
@@ -82,6 +97,14 @@ function formatValue(value: unknown) {
   }
 
   return JSON.stringify(value, null, 2);
+}
+
+function getErrorMessage(payload: ScanCreateResponse | null, fallbackMessage: string) {
+  if (payload && "error" in payload && payload.error?.message) {
+    return payload.error.message;
+  }
+
+  return fallbackMessage;
 }
 
 export function SecurityScanForm({ locale }: { locale: Locale }) {
@@ -188,7 +211,7 @@ export function SecurityScanForm({ locale }: { locale: Locale }) {
     event.preventDefault();
     setSubmissionState({
       status: "submitting",
-      message: page.messages.loading,
+      message: page.submittingLabel,
     });
 
     try {
@@ -201,16 +224,15 @@ export function SecurityScanForm({ locale }: { locale: Locale }) {
         body: JSON.stringify(formState),
       });
 
+      const payload = ((await response.json().catch(() => null)) as ScanCreateResponse | null) ?? null;
+
       if (!response.ok) {
-        throw new Error("Scan creation failed.");
+        throw new Error(getErrorMessage(payload, page.messages.error));
       }
 
-      const payload = (await response.json()) as {
-        data: {
-          jobId: string;
-          accessToken: string;
-        };
-      };
+      if (!payload || !("data" in payload)) {
+        throw new Error(page.messages.error);
+      }
 
       window.localStorage.setItem(getStorageKey(payload.data.jobId), payload.data.accessToken);
       setSubmissionState({
@@ -220,10 +242,10 @@ export function SecurityScanForm({ locale }: { locale: Locale }) {
       setReport(null);
       setActiveJobId(payload.data.jobId);
       router.replace(`/security-scan?job=${payload.data.jobId}`, { scroll: false });
-    } catch {
+    } catch (error) {
       setSubmissionState({
         status: "error",
-        message: page.messages.error,
+        message: error instanceof Error ? error.message : page.messages.error,
       });
     }
   }
@@ -247,7 +269,9 @@ export function SecurityScanForm({ locale }: { locale: Locale }) {
             <span className="text-sm font-medium text-foreground">{page.requesterNameLabel}</span>
             <input
               type="text"
+              required
               maxLength={120}
+              autoComplete="name"
               value={formState.requesterName}
               onChange={(event) => updateField("requesterName", event.target.value)}
               disabled={isSubmitting}
@@ -258,7 +282,9 @@ export function SecurityScanForm({ locale }: { locale: Locale }) {
             <span className="text-sm font-medium text-foreground">{page.requesterEmailLabel}</span>
             <input
               type="email"
+              required
               maxLength={254}
+              autoComplete="email"
               value={formState.requesterEmail}
               onChange={(event) => updateField("requesterEmail", event.target.value)}
               disabled={isSubmitting}

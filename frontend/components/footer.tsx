@@ -13,7 +13,7 @@ type FooterProps = {
 export function Footer({ locale }: FooterProps) {
   const copy = getMarketingCopy(locale);
   const productCopy = getProductCopy(locale);
-  const navigationLinks = [...copy.nav.links, ...productCopy.navLinks];
+  const navigationLinks = [...copy.nav.links, ...productCopy.navLinks].filter((link) => link.href !== "/payments");
 
   return (
     <footer className="py-10">

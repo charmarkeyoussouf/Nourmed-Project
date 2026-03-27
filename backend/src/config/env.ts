@@ -41,6 +41,31 @@ const envSchema = z.object({
     z.coerce.number().int().positive().default(5),
   ),
   ADMIN_API_TOKEN: z.preprocess(emptyStringToUndefined, z.string().default("")),
+  SMTP_HOST: z.preprocess(emptyStringToUndefined, z.string().trim().min(1).optional()),
+  SMTP_PORT: z.preprocess(
+    emptyStringToUndefined,
+    z.coerce.number().int().positive().max(65535).default(587),
+  ),
+  SMTP_SECURE: z.preprocess(
+    emptyStringToUndefined,
+    z
+      .union([z.boolean(), z.string()])
+      .transform((value) => {
+        if (typeof value === "boolean") {
+          return value;
+        }
+
+        return value.trim().toLowerCase() === "true";
+      })
+      .default(false),
+  ),
+  SMTP_USER: z.preprocess(emptyStringToUndefined, z.string().trim().min(1).optional()),
+  SMTP_PASS: z.preprocess(emptyStringToUndefined, z.string().trim().min(1).optional()),
+  SMTP_FROM: z.preprocess(emptyStringToUndefined, z.string().trim().min(1).optional()),
+  LEAD_NOTIFICATION_TO: z.preprocess(
+    emptyStringToUndefined,
+    z.string().trim().email().default("charmarke.nourmed@gmail.com"),
+  ),
   STRIPE_SECRET_KEY: z.preprocess(emptyStringToUndefined, z.string().default("")),
   STRIPE_CURRENCY: z.preprocess(
     emptyStringToUndefined,

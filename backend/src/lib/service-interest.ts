@@ -3,7 +3,6 @@ export const serviceInterestValues = [
   "Secure Website Development",
   "Small Business Security Packages",
   "Authorized Security Scan",
-  "Payments / Deposit",
   "Not sure yet",
 ] as const;
 

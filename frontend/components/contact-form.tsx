@@ -22,6 +22,20 @@ type SubmissionState = {
   message: string;
 };
 
+type ContactResponse =
+  | {
+      success: true;
+      data?: {
+        message?: string;
+      };
+    }
+  | {
+      success: false;
+      error?: {
+        message?: string;
+      };
+    };
+
 const initialFormState: FormState = {
   name: "",
   company: "",
@@ -38,6 +52,18 @@ const initialSubmissionState: SubmissionState = {
   status: "idle",
   message: "",
 };
+
+function getResponseMessage(payload: ContactResponse | null, fallbackMessage: string) {
+  if (payload && "error" in payload && payload.error?.message) {
+    return payload.error.message;
+  }
+
+  if (payload && "data" in payload && payload.data?.message) {
+    return payload.data.message;
+  }
+
+  return fallbackMessage;
+}
 
 type ContactFormProps = {
   locale: Locale;
@@ -93,10 +119,12 @@ export function ContactForm({
         body: JSON.stringify(formState),
       });
 
+      const payload = ((await response.json().catch(() => null)) as ContactResponse | null) ?? null;
+
       if (!response.ok) {
         setSubmissionState({
           status: "error",
-          message: formCopy.messages.error,
+          message: getResponseMessage(payload, formCopy.messages.error),
         });
         return;
       }
@@ -107,7 +135,7 @@ export function ContactForm({
       });
       setSubmissionState({
         status: "success",
-        message: formCopy.messages.success,
+        message: getResponseMessage(payload, formCopy.messages.success),
       });
     } catch {
       setSubmissionState({

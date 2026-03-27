@@ -138,6 +138,12 @@ export async function createScanJob(input: CreateScanJobInput, context: ScanRequ
           serviceInterest: "Authorized Security Scan",
           ipAddress: context.ipAddress,
           userAgent: context.userAgent,
+          notificationSubject: "New Free Scan Request",
+          extraNotificationFields: [
+            { label: "Scan Target", value: normalizedTarget },
+            { label: "Target Type", value: input.targetType },
+            { label: "Authorized Confirmation", value: "Confirmed" },
+          ],
         })
       : null;
 

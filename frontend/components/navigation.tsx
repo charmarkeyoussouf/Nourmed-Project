@@ -13,7 +13,7 @@ type NavigationProps = {
 export function Navigation({ locale }: NavigationProps) {
   const copy = getMarketingCopy(locale);
   const productCopy = getProductCopy(locale);
-  const navigationLinks = [...copy.nav.links, ...productCopy.navLinks];
+  const navigationLinks = [...copy.nav.links, ...productCopy.navLinks].filter((link) => link.href !== "/payments");
 
   return (
     <header className="sticky top-0 z-20 py-6 backdrop-blur-xl">

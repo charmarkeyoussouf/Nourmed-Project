@@ -4,8 +4,8 @@ Security-first Dockerized foundation for Nourmed. This repository provides a pro
 
 The MVP is intentionally narrow:
 - Public home, about, and contact pages
-- Contact form submission through Nginx to the backend API
-- Hosted payment initiation through Stripe Checkout
+- Contact and security scan form submission through Nginx to the backend API
+- SMTP-backed lead notifications for website forms
 - Authorized-only security scan jobs with stored findings and reports
 - Strict backend validation and structured JSON responses
 - PostgreSQL persistence with Prisma migrations
@@ -120,10 +120,13 @@ Root `.env` variables used by Docker Compose:
 | `SCAN_RATE_LIMIT_WINDOW_MS` | Rate limit window for security scan job creation |
 | `SCAN_RATE_LIMIT_MAX` | Max scan job requests per window per client |
 | `ADMIN_API_TOKEN` | Bearer or `X-Admin-Token` value for protected admin API reads |
-| `STRIPE_SECRET_KEY` | Stripe secret key used to create hosted Checkout sessions |
-| `STRIPE_CURRENCY` | Currency code used for fixed deposit options |
-| `STRIPE_SUCCESS_URL` | Optional explicit success URL for Stripe Checkout |
-| `STRIPE_CANCEL_URL` | Optional explicit cancel URL for Stripe Checkout |
+| `SMTP_HOST` | SMTP server host used to send lead notifications |
+| `SMTP_PORT` | SMTP server port |
+| `SMTP_SECURE` | Set to `true` for implicit TLS, usually port `465` |
+| `SMTP_USER` | SMTP username for authenticated delivery |
+| `SMTP_PASS` | SMTP password or Gmail app password |
+| `SMTP_FROM` | From address for Nourmed lead notifications |
+| `LEAD_NOTIFICATION_TO` | Inbox that receives website submissions. Defaults to `charmarke.nourmed@gmail.com` |
 | `SCAN_HTTP_TIMEOUT_MS` | Timeout for outbound safe scan requests |
 | `SCAN_MAX_RESPONSE_BYTES` | Max response bytes stored from analyzed pages |
 | `SCAN_ALLOW_PRIVATE_TARGETS` | Allow RFC1918/local targets for scanner deployments inside trusted networks |
@@ -228,16 +231,15 @@ If you later change the Prisma schema and want to create a new migration, the cl
 
 That keeps migration files committed in the repo instead of only inside a container filesystem.
 
-## Payments and Stripe
+## Lead Notification Email
 
-Hosted checkout on `/payments` is server-created.
+Website forms submit through the backend and can notify `charmarke.nourmed@gmail.com` by email.
 
-- `STRIPE_SECRET_KEY` is required to create real Stripe Checkout sessions.
-- `STRIPE_SUCCESS_URL` is optional. If omitted, the backend uses `${NEXT_PUBLIC_SITE_URL}/payments/success?session_id={CHECKOUT_SESSION_ID}`.
-- `STRIPE_CANCEL_URL` is optional. If omitted, the backend uses `${NEXT_PUBLIC_SITE_URL}/payments/cancel`.
-- `STRIPE_CURRENCY` defaults to `usd`.
-- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` is not required for the current implementation because the browser is redirected to hosted Stripe Checkout rather than embedding Stripe Elements.
-- `STRIPE_WEBHOOK_SECRET` is not used by the current MVP yet.
+- Configure `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, and `SMTP_FROM`.
+- For Gmail, use `smtp.gmail.com`, port `465`, `SMTP_SECURE=true`, and a Gmail app password for `SMTP_PASS`.
+- `LEAD_NOTIFICATION_TO` defaults to `charmarke.nourmed@gmail.com`, but you can override it if needed.
+- If SMTP is not configured, form submissions are rejected with a friendly error instead of silently disappearing.
+- Public payments are currently disabled. Visiting `/payments` redirects to `/services`, and the backend no longer exposes hosted checkout routes.
 
 ## Verify the Platform
 
@@ -272,7 +274,7 @@ Test the contact form from the browser:
 - Confirm the success message appears
 
 Test the new flows from the browser:
-- Open `/payments` and verify the hosted checkout form loads
+- Open `/services` and confirm pricing is visible but only links to quote or scan CTAs
 - Open `/security-scan` and launch an authorized scan against a safe test target you own
 - Confirm that `/api/admin/leads`, `/api/admin/payment-sessions`, and `/api/admin/scan-jobs` are reachable only with `ADMIN_API_TOKEN`
 

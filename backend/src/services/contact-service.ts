@@ -2,6 +2,8 @@ import { logger } from "../lib/logger";
 import { prisma } from "../lib/prisma";
 import { sanitizeMultilineText, sanitizeOptionalText, sanitizeText } from "../lib/sanitize";
 import type { ContactSubmissionInput } from "../validators/contact";
+import type { LeadNotificationField } from "./lead-notification-service";
+import { sendLeadNotificationEmail } from "./lead-notification-service";
 
 type PersistedContactSubmission = Omit<ContactSubmissionInput, "website">;
 
@@ -40,6 +42,18 @@ export async function createContactSubmission({
     "Contact submission stored",
   );
 
+  await sendLeadNotificationEmail({
+    name: submission.name,
+    businessName: submission.company,
+    email: submission.email,
+    phone: submission.phone,
+    websiteUrl: submission.websiteUrl,
+    serviceInterest: submission.serviceInterest,
+    message: submission.message,
+    source: submission.source,
+    submittedAt: submission.createdAt,
+  });
+
   return submission;
 }
 
@@ -54,10 +68,12 @@ type CreateLeadRecordInput = {
   source?: string;
   ipAddress?: string;
   userAgent?: string;
+  notificationSubject?: string;
+  extraNotificationFields?: readonly LeadNotificationField[];
 };
 
 export async function createLeadRecord(input: CreateLeadRecordInput) {
-  return prisma.contactSubmission.create({
+  const submission = await prisma.contactSubmission.create({
     data: {
       name: sanitizeText(input.name),
       email: input.email.trim().toLowerCase(),
@@ -72,6 +88,22 @@ export async function createLeadRecord(input: CreateLeadRecordInput) {
       status: "PENDING",
     },
   });
+
+  await sendLeadNotificationEmail({
+    subject: input.notificationSubject,
+    name: submission.name,
+    businessName: submission.company,
+    email: submission.email,
+    phone: submission.phone,
+    websiteUrl: submission.websiteUrl,
+    serviceInterest: submission.serviceInterest,
+    message: submission.message,
+    source: submission.source,
+    submittedAt: submission.createdAt,
+    extraFields: input.extraNotificationFields,
+  });
+
+  return submission;
 }
 
 export async function listContactSubmissions(limit: number) {
