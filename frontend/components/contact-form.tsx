@@ -33,6 +33,7 @@ type ContactResponse =
       success: false;
       error?: {
         message?: string;
+        details?: Record<string, string[] | undefined>;
       };
     };
 
@@ -54,6 +55,16 @@ const initialSubmissionState: SubmissionState = {
 };
 
 function getResponseMessage(payload: ContactResponse | null, fallbackMessage: string) {
+  if (payload && "error" in payload && payload.error?.details) {
+    const firstFieldError = Object.values(payload.error.details)
+      .flat()
+      .find((value): value is string => Boolean(value));
+
+    if (firstFieldError) {
+      return firstFieldError;
+    }
+  }
+
   if (payload && "error" in payload && payload.error?.message) {
     return payload.error.message;
   }

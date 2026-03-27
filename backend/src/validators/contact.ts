@@ -2,6 +2,14 @@ import { z } from "zod";
 
 import { serviceInterestValues } from "../lib/service-interest";
 
+function emptyStringToUndefined(value: unknown) {
+  if (typeof value === "string" && value.trim().length === 0) {
+    return undefined;
+  }
+
+  return value;
+}
+
 const websiteUrlSchema = z
   .string()
   .trim()
@@ -35,13 +43,15 @@ export const contactSubmissionSchema = z
       .trim()
       .email("Email must be a valid email address.")
       .transform((value) => value.toLowerCase()),
-    phone: z
-      .string()
-      .trim()
-      .min(7, "Phone number must be at least 7 characters.")
-      .max(32, "Phone number must be 32 characters or fewer.")
-      .optional()
-      .transform((value) => (value && value.length > 0 ? value : undefined)),
+    phone: z.preprocess(
+      emptyStringToUndefined,
+      z
+        .string()
+        .trim()
+        .min(7, "Phone number must be at least 7 characters.")
+        .max(32, "Phone number must be 32 characters or fewer.")
+        .optional(),
+    ),
     websiteUrl: websiteUrlSchema,
     serviceInterest: z.enum(serviceInterestValues, {
       error: "Select a valid service of interest.",
