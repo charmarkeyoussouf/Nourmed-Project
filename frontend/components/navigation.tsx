@@ -1,10 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import { LanguageSwitcher } from "@/components/language-switcher";
 import { getMarketingCopy } from "@/lib/marketing";
 import type { Locale } from "@/lib/locale";
-import { getProductCopy } from "@/lib/product-copy";
 
 type NavigationProps = {
   locale: Locale;
@@ -12,50 +9,50 @@ type NavigationProps = {
 
 export function Navigation({ locale }: NavigationProps) {
   const copy = getMarketingCopy(locale);
-  const productCopy = getProductCopy(locale);
-  const navigationLinks = [...copy.nav.links, ...productCopy.navLinks].filter((link) => link.href !== "/payments");
+  const navigationLinks = copy.nav.links;
 
   return (
-    <header className="sticky top-0 z-20 py-6 backdrop-blur-xl">
-      <div className="rounded-[2.4rem] border border-[rgba(206,223,217,0.92)] bg-[linear-gradient(135deg,rgba(255,255,255,0.95),rgba(227,247,244,0.9),rgba(255,247,234,0.92))] px-5 py-5 shadow-[0_24px_70px_rgba(18,34,43,0.08)]">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <Link href="/" className="flex items-center gap-4">
-            <Image
-              src="/nourmed-logo.png"
-              alt="Nourmed"
-              width={190}
-              height={56}
-              priority
-              className="h-12 w-auto object-contain sm:h-[3.25rem]"
-            />
-            <div className="space-y-1">
-              <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-muted">{copy.brand.descriptor}</p>
-            </div>
+    <header className="sticky top-0 z-30 py-6">
+      <div className="rounded-[2rem] border border-[rgba(61,110,82,0.12)] bg-[rgba(253,250,245,0.92)] px-5 py-4 shadow-[0_18px_48px_rgba(15,26,20,0.08)] backdrop-blur-xl sm:px-7">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+          <Link href="/" className="inline-flex flex-col">
+            <span className="font-display text-[1.95rem] font-semibold leading-none text-accent">
+              Nour<span className="text-[color:var(--color-gold)]">med</span>
+            </span>
+            <span className="mt-2 font-mono text-[0.68rem] uppercase tracking-[0.26em] text-muted">{copy.brand.descriptor}</span>
           </Link>
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-5">
-            <nav
-              aria-label="Primary navigation"
-              className="flex flex-wrap items-center gap-1 rounded-full border border-[rgba(206,223,217,0.92)] bg-[rgba(255,255,255,0.84)] px-2 py-2 shadow-[0_10px_20px_rgba(16,33,42,0.03)]"
-            >
+
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6">
+            <nav aria-label="Primary navigation" className="hidden items-center gap-8 md:flex">
               {navigationLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="rounded-full px-4 py-2.5 text-sm font-medium text-muted transition hover:bg-accent-soft hover:text-accent"
+                  className="text-[0.82rem] font-medium uppercase tracking-[0.12em] text-foreground/70 transition hover:text-accent"
                 >
                   {link.label}
                 </Link>
               ))}
             </nav>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <LanguageSwitcher locale={locale} label={copy.nav.languageLabel} />
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#2a8f95,#3ba8a5)] px-6 py-3 text-sm font-semibold text-accent-contrast shadow-[0_14px_30px_rgba(42,143,149,0.28)] transition hover:brightness-95"
-              >
-                {copy.nav.cta}
-              </Link>
-            </div>
+
+            <nav aria-label="Mobile navigation" className="flex flex-wrap items-center gap-4 md:hidden">
+              {navigationLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-[0.8rem] font-medium uppercase tracking-[0.12em] text-foreground/70 transition hover:text-accent"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-[2px] bg-accent px-5 py-3 text-[0.8rem] font-medium uppercase tracking-[0.12em] text-accent-contrast transition hover:bg-[#2a5238]"
+            >
+              {copy.nav.cta}
+            </Link>
           </div>
         </div>
       </div>

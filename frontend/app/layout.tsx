@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
@@ -9,6 +10,20 @@ import { getRequestLocale } from "@/lib/request-locale";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:8080";
+
+const bodyFont = DM_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+  weight: ["300", "400", "500", "700"],
+});
+
+const displayFont = Cormorant_Garamond({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-heading",
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale();
@@ -40,12 +55,10 @@ export default async function RootLayout({
   const direction = isRtlLocale(locale) ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={direction}>
+    <html lang={locale} dir={direction} className={`${bodyFont.variable} ${displayFont.variable}`}>
       <body className="min-h-screen bg-background text-foreground antialiased">
         <div className="relative isolate overflow-hidden">
-          <div className="pointer-events-none absolute inset-x-0 top-[-14rem] h-[28rem] bg-[radial-gradient(circle_at_top,rgba(31,90,96,0.24),transparent_58%)]" />
-          <div className="pointer-events-none absolute right-[-8rem] top-[18rem] h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(224,171,102,0.16),transparent_65%)]" />
-          <div className="mx-auto flex min-h-screen max-w-[84rem] flex-col px-5 sm:px-7 lg:px-10">
+          <div className="mx-auto flex min-h-screen max-w-[90rem] flex-col px-5 sm:px-7 lg:px-10">
             <Navigation locale={locale} />
             <main className="flex-1 pb-24">{children}</main>
             <Footer locale={locale} />

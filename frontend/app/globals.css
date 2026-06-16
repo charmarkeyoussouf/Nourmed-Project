@@ -1,17 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #f7fbf8;
-  --color-foreground: #10212a;
-  --color-muted: #536670;
-  --color-border: #cedfd9;
-  --color-panel: #fffdf8;
-  --color-panel-strong: #ffffff;
-  --color-accent: #2a8f95;
-  --color-accent-contrast: #f7fffd;
-  --color-accent-soft: #def3f1;
-  --font-sans: "Avenir Next", "Aptos", "Segoe UI", sans-serif;
-  --font-mono: "Consolas", "Liberation Mono", monospace;
+  --color-background: #fdfaf5;
+  --color-foreground: #0f1a14;
+  --color-muted: #566157;
+  --color-border: #d6ddd3;
+  --color-panel: #f8f4ec;
+  --color-panel-strong: #fffdf9;
+  --color-accent: #1c3a28;
+  --color-accent-contrast: #fdfaf5;
+  --color-accent-soft: #edf2eb;
+  --color-gold: #b8860b;
+  --color-gold-soft: #f1dfad;
+  --font-sans: var(--font-body), "Segoe UI", sans-serif;
+  --font-display: var(--font-heading), Georgia, serif;
+  --font-mono: var(--font-body), "Segoe UI", sans-serif;
 }
 
 :root {
@@ -42,11 +45,13 @@ html[dir="rtl"] textarea {
 }
 
 body {
+  font-family: var(--font-body);
   background:
-    radial-gradient(circle at 8% 10%, rgba(114, 183, 178, 0.28), transparent 24%),
-    radial-gradient(circle at 92% 12%, rgba(215, 161, 88, 0.22), transparent 21%),
-    radial-gradient(circle at 48% 100%, rgba(42, 143, 149, 0.1), transparent 36%),
-    linear-gradient(180deg, #fbfdfc 0%, #f5f8f6 48%, #eef3f1 100%);
+    radial-gradient(circle at 100% 12%, rgba(106, 158, 122, 0.12), transparent 24%),
+    radial-gradient(circle at 0% 18%, rgba(212, 168, 32, 0.1), transparent 20%),
+    linear-gradient(180deg, #fdfaf5 0%, #fbf8f2 52%, #f6f1e7 100%);
+  color: var(--color-foreground);
+  overflow-x: hidden;
   text-rendering: optimizeLegibility;
 }
 

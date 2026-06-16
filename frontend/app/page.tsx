@@ -1,22 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 
 import { ContactForm } from "@/components/contact-form";
-import { SectionHeading } from "@/components/section-heading";
 import { getMarketingCopy } from "@/lib/marketing";
 import { getRequestLocale } from "@/lib/request-locale";
 
-const capabilityCardStyles = [
-  "bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(225,247,244,0.72))]",
-  "bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(255,245,228,0.9))]",
-  "bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,247,246,0.92))]",
+const stats = [
+  { value: "30%", label: "Average Cost Reduction" },
+  { value: "2x", label: "Faster Vendor Onboarding" },
+  { value: "100+", label: "Clients Supported" },
+  { value: "15+", label: "Industries Served" },
 ] as const;
 
-const trustCardStyles = [
-  "bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(239,247,246,0.84))]",
-  "bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(255,245,228,0.86))]",
-  "bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(225,247,244,0.74))]",
-] as const;
+const heroNodes: ReadonlyArray<{ label: string; position: CSSProperties }> = [
+  { label: "Procurement", position: { top: "6%", left: "8%" } },
+  { label: "Inventory", position: { top: "6%", right: "7%" } },
+  { label: "Vendors", position: { top: "41%", left: "1%" } },
+  { label: "Logistics", position: { top: "41%", right: "1%" } },
+  { label: "Compliance", position: { bottom: "8%", left: "8%" } },
+  { label: "Risk", position: { bottom: "8%", right: "7%" } },
+];
+
+const trustAccents = ["Operational", "Right-sized", "Clear"] as const;
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale();
@@ -41,91 +47,107 @@ export default async function HomePage() {
   const shared = copy.shared;
 
   return (
-    <div className="space-y-32 pb-12 pt-8">
-      <section className="relative overflow-hidden rounded-[3rem] border border-[rgba(206,223,217,0.96)] bg-[linear-gradient(135deg,rgba(230,247,244,0.92)_0%,rgba(255,248,238,0.95)_48%,rgba(255,255,255,0.96)_100%)] px-7 py-10 text-foreground shadow-[0_30px_90px_rgba(16,33,42,0.12)] sm:px-12 sm:py-16">
-        <div className="pointer-events-none absolute left-[-3rem] top-[-4rem] h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(42,143,149,0.22),transparent_72%)]" />
-        <div className="pointer-events-none absolute right-[-4rem] top-[-2rem] h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(215,161,88,0.24),transparent_70%)]" />
-        <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-          <div className="space-y-10">
-            <div className="space-y-5">
-              <p className="font-mono text-xs uppercase tracking-[0.32em] text-accent">{home.heroEyebrow}</p>
-              <h1 className="max-w-5xl text-5xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-[4.35rem]">
-                {home.heroTitle}
-              </h1>
-              <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg sm:leading-9">{home.heroDescription}</p>
-            </div>
+    <div className="space-y-0 pb-16 pt-6 sm:pt-8">
+      <section className="relative grid min-h-[42rem] items-center gap-14 py-12 lg:min-h-[48rem] lg:grid-cols-[1fr_0.96fr] lg:gap-20 lg:py-20">
+        <div className="pointer-events-none absolute inset-y-0 right-[-6%] hidden w-[48vw] bg-[radial-gradient(ellipse_at_center,rgba(106,158,122,0.12),rgba(214,232,220,0.24)_42%,transparent_74%)] lg:block" />
 
-            <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:flex-wrap">
-              <Link
-                href="#free-scan"
-                className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#2a8f95,#3ba8a5)] px-7 py-3.5 text-sm font-semibold text-accent-contrast shadow-[0_18px_40px_rgba(42,143,149,0.28)] transition hover:brightness-95"
-              >
-                {home.primaryCta}
-              </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center rounded-full border border-[rgba(206,223,217,0.96)] bg-[rgba(255,255,255,0.72)] px-7 py-3.5 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
-              >
-                {home.secondaryCta}
-              </Link>
+        <div className="relative max-w-2xl space-y-8">
+          <div className="space-y-5">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-[color:var(--color-gold)]" />
+              <p className="font-mono text-[0.74rem] uppercase tracking-[0.22em] text-[color:var(--color-gold)]">{home.heroEyebrow}</p>
             </div>
+            <h1
+              className="max-w-4xl font-display text-[clamp(3.35rem,8vw,5.65rem)] font-light leading-[0.96] text-accent"
+              dangerouslySetInnerHTML={{ __html: home.heroTitle }}
+            />
+            <p className="max-w-xl text-base leading-8 text-muted sm:text-[1.04rem] sm:leading-9">{home.heroDescription}</p>
           </div>
 
-          <div className="rounded-[2.35rem] border border-[rgba(22,55,70,0.08)] bg-[linear-gradient(160deg,#12303a_0%,#1c4f59_58%,#236976_100%)] p-7 text-[#edf7f4] shadow-[0_28px_70px_rgba(16,33,42,0.24)]">
-            <p className="font-mono text-[0.72rem] uppercase tracking-[0.24em] text-[#9ae0db]">{home.heroPanelEyebrow}</p>
-            <h2 className="mt-4 text-2xl font-semibold tracking-tight">{home.heroPanelTitle}</h2>
-            <div className="mt-7 grid gap-4">
-              {home.heroHighlights.map((highlight) => (
-                <div
-                  key={highlight}
-                  className="rounded-[1.35rem] border border-[rgba(255,255,255,0.14)] bg-[rgba(255,255,255,0.08)] px-5 py-4 text-sm leading-7 text-[#dbe8e6]"
-                >
-                  {highlight}
-                </div>
-              ))}
+          <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <Link
+              href="#contact"
+              className="inline-flex items-center justify-center rounded-[2px] bg-accent px-7 py-3.5 text-[0.82rem] font-medium uppercase tracking-[0.1em] text-accent-contrast transition hover:bg-[#2a5238]"
+            >
+              {home.primaryCta}
+            </Link>
+            <Link
+              href="#services"
+              className="inline-flex items-center justify-center rounded-[2px] border border-accent px-7 py-3.5 text-[0.82rem] font-medium uppercase tracking-[0.1em] text-accent transition hover:bg-accent hover:text-accent-contrast"
+            >
+              {home.secondaryCta}
+            </Link>
+          </div>
+        </div>
+
+        <div className="relative hidden lg:flex lg:items-center lg:justify-center">
+          <div className="relative aspect-square w-full max-w-[31rem]">
+            <svg
+              className="absolute inset-0 h-full w-full text-[rgba(61,110,82,0.22)]"
+              viewBox="0 0 480 480"
+              aria-hidden="true"
+            >
+              <line x1="115" y1="60" x2="240" y2="240" stroke="currentColor" strokeDasharray="4 4" />
+              <line x1="370" y1="60" x2="240" y2="240" stroke="currentColor" strokeDasharray="4 4" />
+              <line x1="40" y1="230" x2="240" y2="240" stroke="currentColor" strokeDasharray="4 4" />
+              <line x1="440" y1="230" x2="240" y2="240" stroke="currentColor" strokeDasharray="4 4" />
+              <line x1="115" y1="420" x2="240" y2="240" stroke="currentColor" strokeDasharray="4 4" />
+              <line x1="370" y1="420" x2="240" y2="240" stroke="currentColor" strokeDasharray="4 4" />
+            </svg>
+
+            <div className="absolute left-1/2 top-1/2 rounded-[6px] bg-accent px-8 py-5 font-display text-xl font-semibold tracking-[0.04em] text-accent-contrast shadow-[0_12px_36px_rgba(28,58,40,0.24)] [transform:translate(-50%,-50%)]">
+              Nourmed
             </div>
-            <div className="mt-7 rounded-[1.35rem] border border-[rgba(215,161,88,0.3)] bg-[linear-gradient(135deg,rgba(215,161,88,0.14),rgba(255,255,255,0.06))] px-5 py-5">
-              <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[#f2c882]">{home.heroScanEyebrow}</p>
-              <p className="mt-2 text-sm leading-7 text-[#dbe8e6]">{home.heroScanDescription}</p>
-            </div>
+
+            {heroNodes.map((node) => (
+              <div
+                key={node.label}
+                className="absolute rounded-[6px] border border-[rgba(61,110,82,0.28)] bg-[rgba(255,255,255,0.94)] px-5 py-4 text-[0.8rem] font-medium text-accent shadow-[0_8px_24px_rgba(28,58,40,0.08)]"
+                style={node.position}
+              >
+                <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-[color:var(--color-gold)] align-middle" />
+                {node.label}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="space-y-10">
-        <SectionHeading
-          eyebrow={home.whatWeDo.eyebrow}
-          title={home.whatWeDo.title}
-          description={home.whatWeDo.description}
-        />
-        <div className="grid gap-6 lg:grid-cols-3">
-          {home.whatWeDo.items.map((item, index) => (
-            <article
-              key={item.title}
-              className={`rounded-[2rem] border border-[rgba(206,223,217,0.96)] px-7 py-7 shadow-[0_18px_36px_rgba(16,33,42,0.05)] ${capabilityCardStyles[index]}`}
-            >
-              <h2 className="text-xl font-semibold tracking-tight text-foreground">{item.title}</h2>
-              <p className="mt-3 text-sm leading-7 text-muted">{item.description}</p>
+      <section className="bg-accent px-6 py-8 text-accent-contrast sm:px-8 lg:px-10">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((stat) => (
+            <article key={stat.label} className="text-center lg:border-r lg:border-white/12 last:lg:border-r-0">
+              <p className="font-display text-5xl font-semibold leading-none text-white">{stat.value}</p>
+              <p className="mt-3 text-[0.76rem] uppercase tracking-[0.16em] text-white/55">{stat.label}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="rounded-[3rem] border border-[rgba(206,223,217,0.96)] bg-[linear-gradient(135deg,rgba(225,247,244,0.9),rgba(255,245,228,0.92),rgba(255,255,255,0.94))] px-7 py-10 shadow-[0_28px_80px_rgba(16,33,42,0.08)] sm:px-12 sm:py-14">
-        <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
-          <SectionHeading
-            eyebrow={home.howWeDoIt.eyebrow}
-            title={home.howWeDoIt.title}
-            description={home.howWeDoIt.description}
-          />
-          <div className="grid gap-5">
-            {shared.processSteps.map((item) => (
+      <section id="about" className="bg-panel px-6 py-20 sm:px-8 lg:px-10">
+        <div className="grid gap-14 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
+          <div className="max-w-xl space-y-6">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-7 bg-[color:var(--color-gold)]" />
+              <p className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[color:var(--color-gold)]">{home.whatWeDo.eyebrow}</p>
+            </div>
+            <h2 className="font-display text-4xl font-normal leading-[1.08] text-accent sm:text-5xl">{home.whatWeDo.title}</h2>
+            <p className="text-base leading-8 text-muted">{home.whatWeDo.description}</p>
+            <Link
+              href="#contact"
+              className="inline-flex items-center justify-center rounded-[2px] bg-accent px-7 py-3.5 text-[0.82rem] font-medium uppercase tracking-[0.1em] text-accent-contrast transition hover:bg-[#2a5238]"
+            >
+              {home.primaryCta}
+            </Link>
+          </div>
+
+          <div className="space-y-5">
+            {home.whatWeDo.items.map((item) => (
               <article
-                key={item.step}
-                className="rounded-[1.85rem] border border-[rgba(206,223,217,0.96)] bg-[rgba(255,255,255,0.84)] p-6 shadow-[0_14px_30px_rgba(16,33,42,0.06)]"
+                key={item.title}
+                className="rounded-r-[4px] rounded-tl-[2px] rounded-bl-[2px] border-l-[3px] border-[#6a9e7a] bg-[rgba(255,255,255,0.9)] px-6 py-6 shadow-[0_4px_20px_rgba(28,58,40,0.06)] transition hover:border-[color:var(--color-gold)]"
               >
-                <p className="font-mono text-[0.72rem] uppercase tracking-[0.24em] text-accent">{item.step}</p>
-                <h2 className="mt-3 text-xl font-semibold tracking-tight text-foreground">{item.title}</h2>
+                <h3 className="font-display text-[1.45rem] font-semibold leading-tight text-accent">{item.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-muted">{item.description}</p>
               </article>
             ))}
@@ -133,78 +155,112 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="space-y-10">
-        <SectionHeading
-          eyebrow={home.services.eyebrow}
-          title={home.services.title}
-          description={home.services.description}
-        />
-        <div className="grid gap-6 lg:grid-cols-3">
+      <section id="process" className="px-6 py-20 sm:px-8 lg:px-10">
+        <div className="max-w-4xl space-y-5">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-7 bg-[color:var(--color-gold)]" />
+            <p className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[color:var(--color-gold)]">{home.howWeDoIt.eyebrow}</p>
+          </div>
+          <h2 className="font-display text-4xl font-normal leading-[1.08] text-accent sm:text-5xl">{home.howWeDoIt.title}</h2>
+          <p className="max-w-3xl text-base leading-8 text-muted">{home.howWeDoIt.description}</p>
+        </div>
+
+        <div className="relative mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="absolute left-12 right-12 top-6 hidden h-px bg-[linear-gradient(to_right,#6a9e7a,transparent)] lg:block" />
+          {shared.processSteps.map((item) => (
+            <article key={item.step} className="relative">
+              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-accent font-display text-lg font-semibold text-accent-contrast">
+                {item.step}
+              </div>
+              <h3 className="mt-5 font-display text-[1.45rem] font-semibold text-accent">{item.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-muted">{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="services" className="bg-[#d6e8dc] px-6 py-20 sm:px-8 lg:px-10">
+        <div className="max-w-4xl space-y-5">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-7 bg-[color:var(--color-gold)]" />
+            <p className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[color:var(--color-gold)]">{home.services.eyebrow}</p>
+          </div>
+          <h2 className="font-display text-4xl font-normal leading-[1.08] text-accent sm:text-5xl">{home.services.title}</h2>
+          <p className="max-w-3xl text-base leading-8 text-muted">{home.services.description}</p>
+        </div>
+
+        <div className="mt-14 grid gap-8 lg:grid-cols-3">
           {shared.serviceOfferings.map((service) => (
             <article
               key={service.slug}
-              className="flex h-full flex-col rounded-[2rem] border border-[rgba(206,223,217,0.96)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(238,248,247,0.9))] px-7 py-7 shadow-[0_18px_36px_rgba(16,33,42,0.05)]"
+              className="group flex h-full flex-col rounded-[4px] bg-[rgba(255,255,255,0.96)] px-8 py-8 shadow-[0_6px_24px_rgba(28,58,40,0.08)] transition hover:-translate-y-1.5 hover:shadow-[0_14px_36px_rgba(28,58,40,0.12)]"
             >
-              <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-accent">{service.price}</p>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">{service.title}</h2>
-              <p className="mt-3 text-sm leading-7 text-muted">{service.summary}</p>
-              <p className="mt-4 text-xs leading-6 text-muted">{shared.pricingDisclaimer}</p>
+              <p className="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-[color:var(--color-gold)]">{service.price}</p>
+              <h3 className="mt-4 font-display text-[1.95rem] font-semibold leading-tight text-accent">{service.title}</h3>
+              <p className="mt-4 flex-1 text-sm leading-7 text-muted">{service.summary}</p>
               <Link
                 href={`/services#${service.slug}`}
-                className="mt-6 inline-flex items-center justify-center rounded-full border border-[rgba(206,223,217,0.96)] bg-[rgba(255,255,255,0.72)] px-5 py-3 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
+                className="mt-8 inline-flex items-center gap-2 text-[0.82rem] font-medium uppercase tracking-[0.12em] text-accent transition group-hover:text-[color:var(--color-gold)]"
               >
                 {home.services.cardCta}
+                <span aria-hidden="true" className="transition group-hover:translate-x-1">
+                  -&gt;
+                </span>
               </Link>
             </article>
           ))}
         </div>
       </section>
 
-      <section
-        id="free-scan"
-        className="grid gap-8 rounded-[3rem] border border-[rgba(206,223,217,0.96)] bg-[linear-gradient(140deg,rgba(255,255,255,0.96),rgba(228,247,244,0.84),rgba(255,248,236,0.9))] px-7 py-10 shadow-[0_18px_36px_rgba(16,33,42,0.05)] sm:px-12 sm:py-14 lg:grid-cols-[0.82fr_1.18fr]"
-      >
-        <div className="space-y-6">
-          <SectionHeading
-            eyebrow={home.freeScan.eyebrow}
-            title={home.freeScan.title}
-            description={home.freeScan.description}
-          />
-          <div className="grid gap-5">
-            {home.freeScan.benefits.map((benefit) => (
-              <article
-                key={benefit}
-                className="rounded-[1.7rem] border border-[rgba(206,223,217,0.96)] bg-[rgba(255,255,255,0.82)] px-5 py-5 text-sm leading-7 text-muted"
-              >
-                {benefit}
-              </article>
-            ))}
+      <section className="bg-[#e8e0d0] px-6 py-20 sm:px-8 lg:px-10">
+        <div className="max-w-4xl space-y-5">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-7 bg-[color:var(--color-gold)]" />
+            <p className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[color:var(--color-gold)]">{home.trust.eyebrow}</p>
           </div>
+          <h2 className="font-display text-4xl font-normal leading-[1.08] text-accent sm:text-5xl">{home.trust.title}</h2>
+          <p className="max-w-3xl text-base leading-8 text-muted">{home.trust.description}</p>
         </div>
 
-        <div className="rounded-[2.35rem] border border-[rgba(206,223,217,0.96)] bg-[rgba(255,255,255,0.92)] px-7 py-7 shadow-[0_18px_36px_rgba(16,33,42,0.08)] sm:px-9 sm:py-9">
-          <ContactForm
-            locale={locale}
-            eyebrow={home.freeScan.formEyebrow}
-            title={home.freeScan.formTitle}
-            description={home.freeScan.formDescription}
-            source="homepage_free_scan"
-          />
-        </div>
-      </section>
-
-      <section className="space-y-10">
-        <SectionHeading eyebrow={home.trust.eyebrow} title={home.trust.title} description={home.trust.description} />
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="mt-14 grid gap-10 lg:grid-cols-3">
           {home.trust.items.map((item, index) => (
-            <article
-              key={item.title}
-              className={`rounded-[2rem] border border-[rgba(206,223,217,0.96)] px-7 py-7 shadow-[0_18px_36px_rgba(16,33,42,0.05)] ${trustCardStyles[index]}`}
-            >
-              <h2 className="text-xl font-semibold tracking-tight text-foreground">{item.title}</h2>
+            <article key={item.title}>
+              <p className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-[color:var(--color-gold)]">{trustAccents[index]}</p>
+              <h3 className="mt-4 font-display text-[1.5rem] font-semibold text-accent">{item.title}</h3>
               <p className="mt-3 text-sm leading-7 text-muted">{item.description}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section id="contact" className="bg-accent px-6 py-20 text-accent-contrast sm:px-8 lg:px-10">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-7 bg-[color:var(--color-gold-soft)]" />
+              <p className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[color:var(--color-gold-soft)]">{home.freeScan.eyebrow}</p>
+            </div>
+            <h2 className="font-display text-4xl font-normal leading-[1.08] text-[#f7f2e9] sm:text-5xl">{home.freeScan.title}</h2>
+            <p className="max-w-xl text-base leading-8 text-[#d7ddd5]">{home.freeScan.description}</p>
+            <ul className="space-y-4 pt-3">
+              {home.freeScan.benefits.map((benefit) => (
+                <li key={benefit} className="flex gap-3 text-sm leading-7 text-[#d7ddd5]">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[color:var(--color-gold-soft)]" />
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-[6px] bg-[rgba(255,255,255,0.98)] px-7 py-8 text-foreground shadow-[0_16px_40px_rgba(15,26,20,0.18)] sm:px-9 sm:py-10">
+            <ContactForm
+              locale={locale}
+              eyebrow={home.freeScan.formEyebrow}
+              title={home.freeScan.formTitle}
+              description={home.freeScan.formDescription}
+              source="homepage_assessment"
+            />
+          </div>
         </div>
       </section>
     </div>

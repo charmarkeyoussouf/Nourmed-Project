@@ -87,9 +87,9 @@ type ContactFormProps = {
 
 const phoneLabels: Record<Locale, string> = {
   en: "Phone (optional)",
-  fr: "Téléphone (facultatif)",
-  es: "Teléfono (opcional)",
-  ar: "الهاتف (اختياري)",
+  fr: "TÃ©lÃ©phone (facultatif)",
+  es: "TelÃ©fono (opcional)",
+  ar: "Ø§Ù„Ù‡Ø§ØªÙ (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)",
 };
 
 export function ContactForm({
@@ -164,13 +164,16 @@ export function ContactForm({
   }
 
   const isSubmitting = submissionState.status === "submitting";
+  const fieldClassName =
+    "w-full rounded-[3px] border border-[rgba(61,110,82,0.18)] bg-panel-strong px-4 py-3 text-sm text-foreground outline-none transition focus:border-[#3d6e52]";
+  const labelClassName = "text-[0.72rem] font-medium uppercase tracking-[0.08em] text-foreground/60";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
-      <div className="space-y-3">
-        <p className="font-mono text-xs uppercase tracking-[0.28em] text-accent">{resolvedEyebrow}</p>
-        <h2 className="text-3xl font-semibold tracking-tight text-foreground">{resolvedTitle}</h2>
-        <p className="max-w-2xl text-base leading-7 text-muted">{resolvedDescription}</p>
+      <div className="space-y-4">
+        <p className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-[color:var(--color-gold)]">{resolvedEyebrow}</p>
+        <h2 className="font-display text-4xl font-semibold leading-[1.05] text-accent sm:text-[2.5rem]">{resolvedTitle}</h2>
+        <p className="max-w-2xl text-sm leading-8 text-muted sm:text-[0.98rem]">{resolvedDescription}</p>
       </div>
 
       <div className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
@@ -188,7 +191,7 @@ export function ContactForm({
 
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">{formCopy.fields.name}</span>
+          <span className={labelClassName}>{formCopy.fields.name}</span>
           <input
             type="text"
             name="name"
@@ -198,11 +201,11 @@ export function ContactForm({
             disabled={isSubmitting}
             value={formState.name}
             onChange={(event) => updateField("name", event.target.value)}
-            className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+            className={fieldClassName}
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">{formCopy.fields.businessName}</span>
+          <span className={labelClassName}>{formCopy.fields.businessName}</span>
           <input
             type="text"
             name="company"
@@ -212,14 +215,14 @@ export function ContactForm({
             disabled={isSubmitting}
             value={formState.company}
             onChange={(event) => updateField("company", event.target.value)}
-            className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+            className={fieldClassName}
           />
         </label>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">{formCopy.fields.email}</span>
+          <span className={labelClassName}>{formCopy.fields.email}</span>
           <input
             type="email"
             name="email"
@@ -229,11 +232,11 @@ export function ContactForm({
             disabled={isSubmitting}
             value={formState.email}
             onChange={(event) => updateField("email", event.target.value)}
-            className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+            className={fieldClassName}
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">{phoneLabels[locale]}</span>
+          <span className={labelClassName}>{phoneLabels[locale]}</span>
           <input
             type="tel"
             name="phone"
@@ -242,14 +245,14 @@ export function ContactForm({
             disabled={isSubmitting}
             value={formState.phone}
             onChange={(event) => updateField("phone", event.target.value)}
-            className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+            className={fieldClassName}
           />
         </label>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="space-y-2">
-          <span className="text-sm font-medium text-foreground">{formCopy.fields.websiteUrl}</span>
+          <span className={labelClassName}>{formCopy.fields.websiteUrl}</span>
           <input
             type="text"
             name="websiteUrl"
@@ -260,34 +263,33 @@ export function ContactForm({
             disabled={isSubmitting}
             value={formState.websiteUrl}
             onChange={(event) => updateField("websiteUrl", event.target.value)}
-            className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+            className={fieldClassName}
           />
+        </label>
+        <label className="space-y-2">
+          <span className={labelClassName}>{formCopy.fields.serviceOfInterest}</span>
+          <select
+            name="serviceInterest"
+            required
+            disabled={isSubmitting}
+            value={formState.serviceInterest}
+            onChange={(event) => updateField("serviceInterest", event.target.value)}
+            className={fieldClassName}
+          >
+            <option value="" disabled>
+              {formCopy.fields.servicePlaceholder}
+            </option>
+            {copy.shared.serviceInterestOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </label>
       </div>
 
       <label className="space-y-2">
-        <span className="text-sm font-medium text-foreground">{formCopy.fields.serviceOfInterest}</span>
-        <select
-          name="serviceInterest"
-          required
-          disabled={isSubmitting}
-          value={formState.serviceInterest}
-          onChange={(event) => updateField("serviceInterest", event.target.value)}
-          className="w-full rounded-[1.35rem] border border-border bg-panel-strong px-4 py-3.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
-        >
-          <option value="" disabled>
-            {formCopy.fields.servicePlaceholder}
-          </option>
-          {copy.shared.serviceInterestOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label className="space-y-2">
-        <span className="text-sm font-medium text-foreground">{formCopy.fields.optionalMessage}</span>
+        <span className={labelClassName}>{formCopy.fields.optionalMessage}</span>
         <textarea
           name="message"
           maxLength={2000}
@@ -295,7 +297,7 @@ export function ContactForm({
           disabled={isSubmitting}
           value={formState.message}
           onChange={(event) => updateField("message", event.target.value)}
-          className="w-full rounded-[1.5rem] border border-border bg-panel-strong px-4 py-3.5 text-sm leading-7 text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/15"
+          className={fieldClassName}
         />
       </label>
 
@@ -303,7 +305,7 @@ export function ContactForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-accent-contrast shadow-[0_14px_30px_rgba(30,90,96,0.2)] transition hover:bg-[#184a52] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+          className="inline-flex w-full items-center justify-center rounded-[3px] bg-accent px-6 py-3.5 text-[0.8rem] font-medium uppercase tracking-[0.1em] text-accent-contrast transition hover:bg-[#2a5238] disabled:cursor-not-allowed disabled:opacity-70"
         >
           {isSubmitting ? formCopy.messages.submitting : resolvedSubmitLabel}
         </button>
@@ -312,7 +314,7 @@ export function ContactForm({
 
       {submissionState.status !== "idle" ? (
         <div
-          className={`rounded-2xl border px-4 py-3 text-sm leading-6 ${
+          className={`rounded-[3px] border px-4 py-3 text-sm leading-6 ${
             submissionState.status === "success"
               ? "border-emerald-200 bg-emerald-50 text-emerald-800"
               : submissionState.status === "error"

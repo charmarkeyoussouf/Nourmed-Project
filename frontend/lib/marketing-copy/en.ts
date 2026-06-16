@@ -2,48 +2,47 @@ import type { MarketingCopy } from "@/lib/marketing-copy/types";
 
 export const enMarketingCopy: MarketingCopy = {
   brand: {
-    descriptor: "Cybersecurity Consulting",
+    descriptor: "Supply Chain Consulting",
   },
   meta: {
-    siteTitle: "Nourmed | Cybersecurity Consulting for Small Businesses",
+    siteTitle: "Nourmed | Supply Chain Consulting for Small and Mid-Size Businesses",
     siteDescription:
-      "Nourmed helps small businesses improve website security, compliance readiness, and recurring protection with practical cybersecurity consulting.",
+      "Nourmed helps small and mid-size businesses build resilient supply chains, reduce costs, improve vendor relationships, and streamline operations with practical consulting support.",
     siteOpenGraphDescription:
-      "Cybersecurity consulting for small businesses focused on secure websites, compliance readiness, vulnerability scanning, and practical ongoing protection.",
+      "Supply chain consulting for businesses that need stronger procurement, better vendor performance, lower operating friction, and more resilience.",
     home: {
-      title: "Cybersecurity Consulting for Small Businesses",
+      title: "Supply Chain Consulting",
       description:
-        "Nourmed helps small businesses secure websites, reduce vulnerabilities, improve compliance readiness, and strengthen trust with practical cybersecurity support.",
+        "Nourmed helps small and mid-size businesses build resilient supply chains, reduce costs, improve vendor relationships, and streamline operations.",
       keywords: [
-        "small business cybersecurity",
-        "website security consulting",
-        "small business vulnerability scan",
-        "compliance consulting for small businesses",
+        "supply chain consulting",
+        "vendor management consulting",
+        "procurement consulting",
+        "logistics optimization",
       ],
     },
     services: {
-      title: "Services",
+      title: "Supply Chain Services",
       description:
-        "Explore compliance consulting, secure website development, and ongoing small business cybersecurity packages with practical pricing and clear scope.",
+        "Explore supply chain audits, procurement and vendor optimization, and ongoing support built for practical business results.",
       keywords: [
-        "compliance consulting for small businesses",
-        "secure website development",
-        "small business cybersecurity packages",
-        "vulnerability scan",
-        "website security consulting",
+        "supply chain audit",
+        "procurement optimization",
+        "vendor management consulting",
+        "ongoing supply chain support",
       ],
     },
     about: {
-      title: "About",
+      title: "About Nourmed",
       description:
-        "Learn how Nourmed helps small businesses strengthen public-facing systems, improve compliance readiness, and reduce avoidable cyber risk.",
-      keywords: ["about nourmed", "small business security partner", "cybersecurity consulting company"],
+        "Learn how Nourmed helps growing businesses improve procurement, vendor performance, resilience, and operational clarity.",
+      keywords: ["about nourmed", "supply chain consulting firm", "procurement advisor"],
     },
     contact: {
-      title: "Contact",
+      title: "Contact Nourmed",
       description:
-        "Request a free security scan or quote from Nourmed for compliance consulting, secure website development, or ongoing small business protection.",
-      keywords: ["free security scan", "small business security quote", "contact cybersecurity consultant"],
+        "Request a free supply chain assessment or quote for procurement, vendor optimization, and ongoing consulting support.",
+      keywords: ["supply chain assessment", "procurement consulting quote", "vendor optimization contact"],
     },
   },
   nav: {
@@ -54,114 +53,114 @@ export const enMarketingCopy: MarketingCopy = {
       { href: "/about", label: "About" },
       { href: "/contact", label: "Contact" },
     ],
-    cta: "Get a Free Security Scan",
+    cta: "Get a Quote",
   },
   footer: {
     description:
-      "Cybersecurity consulting for small businesses focused on secure websites, compliance readiness, and practical ongoing protection.",
-    cta: "Request a Free Scan",
-    closing: "Practical protection for growing businesses.",
-    ribbon: "Secure websites. Compliance readiness. Ongoing protection.",
+      "Supply chain consulting for small and mid-size businesses focused on cost reduction, vendor performance, and operational resilience.",
+    cta: "Request an Assessment",
+    closing: "Practical supply chain consulting for growing businesses.",
+    ribbon: "Procurement. Vendor Management. Logistics. Risk Resilience.",
   },
   shared: {
-    pricingDisclaimer: "Final pricing depends on scope, business size, and system complexity.",
+    pricingDisclaimer: "Final pricing depends on scope, business size, and supply chain complexity.",
     serviceOfferings: [
       {
-        slug: "compliance-consulting",
-        interestValue: "Compliance Consulting",
-        title: "Compliance Consulting",
+        slug: "supply-chain-audit-assessment",
+        interestValue: "Supply Chain Audit & Assessment",
+        title: "Supply Chain Audit & Assessment",
         price: "Starting at $750",
         summary:
-          "Readiness guidance for small businesses that need to meet customer, vendor, or data-handling expectations.",
+          "A focused review of your supply chain, vendor relationships, procurement process, and operational pain points with prioritized next steps.",
         description:
-          "In plain English, compliance means showing that your business protects information responsibly and operates with reasonable security controls. Nourmed helps small businesses prepare for that standard with gap reviews, practical recommendations, and implementation guidance around vendor requirements, customer trust, data protection expectations, and day-to-day operational readiness. Nourmed is not a law firm and does not issue certifications.",
+          "This assessment gives you a clear look at where cost, delay, vendor friction, and process risk are affecting performance. Nourmed reviews the current structure, identifies where the chain is under strain, and turns that into practical recommendations your team can act on without overcomplicating execution.",
         bullets: [
-          "Gap identification and readiness planning for customer, vendor, and security questionnaires",
-          "Guidance on policies, access control, documentation, and practical security expectations",
-          "Implementation support that helps your team prepare before outside scrutiny arrives",
+          "Current-state review across procurement, vendors, inventory flow, and operational handoffs",
+          "Prioritized recommendations tied to savings, resilience, and practical implementation effort",
+          "A clear baseline for deciding whether optimization or recurring support is the right next step",
         ],
       },
       {
-        slug: "secure-website-development",
-        interestValue: "Secure Website Development",
-        title: "Secure Website Development",
+        slug: "procurement-vendor-optimization",
+        interestValue: "Procurement & Vendor Optimization",
+        title: "Procurement & Vendor Optimization",
         price: "Starting at $2,500",
         summary:
-          "Secure website builds for businesses that need protection, reliability, and a stronger public-facing foundation.",
+          "Hands-on support for renegotiating contracts, improving supplier performance, reducing dependency risk, and tightening procurement workflows.",
         description:
-          "Nourmed designs and builds websites with security in mind from day one. That includes HTTPS, secure forms, hardened hosting guidance, safer deployment practices, basic abuse protection, and architecture choices that support uptime and trust. The result is not just a better-looking website, but a more dependable business system.",
+          "Nourmed helps businesses improve the part of the supply chain that often leaks the most value: sourcing, vendor accountability, and purchasing discipline. That can mean better pricing, better terms, better supplier coverage, and a cleaner internal process for approvals and performance management.",
         bullets: [
-          "HTTPS, secure forms, and hosting or deployment decisions shaped by risk reduction",
-          "Practical abuse resistance, cleaner intake paths, and safer public-facing infrastructure",
-          "Uptime-minded implementation that treats the website as business infrastructure, not just design",
+          "Supplier and contract review to uncover pricing, leverage, and accountability gaps",
+          "Vendor qualification, scorecarding, and dependency reduction support",
+          "Procurement process improvement that reduces friction while improving control",
         ],
       },
       {
-        slug: "small-business-security-packages",
-        interestValue: "Small Business Security Packages",
-        title: "Small Business Security Packages",
+        slug: "ongoing-supply-chain-support",
+        interestValue: "Ongoing Supply Chain Support",
+        title: "Ongoing Supply Chain Support",
         price: "Starting at $199/month",
         summary:
-          "Ongoing support for small businesses that need steady protection without enterprise complexity.",
+          "Recurring consulting for businesses that want ongoing oversight, periodic reviews, and a practical partner as operations grow.",
         description:
-          "Our recurring packages are built for businesses that want consistent attention on their security posture. Nourmed provides vulnerability scanning, practical hardening guidance, monitoring direction, backup and access-control review, and straightforward support that helps reduce avoidable risk over time.",
+          "For teams that want continued help instead of one-time advice, Nourmed provides regular review, planning support, and follow-through on the operational issues that keep resurfacing. The goal is steady improvement, not consultant theater or bloated reporting.",
         bullets: [
-          "Recurring vulnerability scanning and practical recommendations",
-          "Hardening guidance, access-control review, and backup planning",
-          "Ongoing support that keeps security work manageable for a growing business",
+          "Recurring supply chain reviews and practical recommendations",
+          "Ongoing support for vendor performance, procurement discipline, and operational planning",
+          "A right-sized advisory model that keeps improvements moving as the business grows",
         ],
       },
     ],
     processSteps: [
       {
         step: "01",
-        title: "Scan and assess",
+        title: "Assess",
         description:
-          "We review your website, public exposure, and the security or compliance concerns already affecting the business.",
+          "We review your current supply chain structure, vendor base, procurement process, and the pain points already affecting the business.",
       },
       {
         step: "02",
-        title: "Identify risks and gaps",
+        title: "Diagnose",
         description:
-          "We map the issues that could affect trust, uptime, and readiness, then prioritize the work that matters most.",
+          "We map the inefficiencies, risk areas, and cost drivers that matter most, then prioritize them by impact and practicality.",
       },
       {
         step: "03",
-        title: "Secure and harden",
+        title: "Optimize",
         description:
-          "We strengthen the website, hosting posture, intake paths, and related safeguards with practical implementation steps.",
+          "We help implement the practical changes that improve performance, from vendor structures to procurement workflows and operating rhythm.",
       },
       {
         step: "04",
-        title: "Support and improve",
+        title: "Sustain",
         description:
-          "When ongoing help makes sense, we stay involved through recurring reviews, guidance, and incremental improvement.",
+          "When ongoing support makes sense, we stay involved through recurring reviews and steady improvement planning.",
       },
     ],
     serviceInterestOptions: [
-      { value: "Compliance Consulting", label: "Compliance Consulting" },
-      { value: "Secure Website Development", label: "Secure Website Development" },
-      { value: "Small Business Security Packages", label: "Small Business Security Packages" },
+      { value: "Supply Chain Audit & Assessment", label: "Supply Chain Audit & Assessment" },
+      { value: "Procurement & Vendor Optimization", label: "Procurement & Vendor Optimization" },
+      { value: "Ongoing Supply Chain Support", label: "Ongoing Supply Chain Support" },
       { value: "Not sure yet", label: "Not sure yet" },
     ],
   },
   form: {
-    eyebrow: "Free security scan",
-    title: "Request a free security scan or quote",
+    eyebrow: "Free assessment",
+    title: "Request a free assessment or quote",
     description:
-      "Tell Nourmed a little about your business, your website, and the type of support you need. We will review the request and recommend the right next step.",
-    submitLabel: "Request a Free Scan",
-    secureNote: "Secure intake, server-side validation, and anti-spam controls are enabled on the backend.",
+      "Tell Nourmed about your business, your website, and where your supply chain is causing the most pain. We will review the request and recommend the right next step.",
+    submitLabel: "Request Free Assessment",
+    secureNote: "Requests are validated server-side, and the website field helps us review your current footprint before the assessment.",
     hiddenWebsiteLabel: "Website",
     fields: {
       name: "Name",
       businessName: "Business Name",
       email: "Email",
-      websiteUrl: "Website URL",
-      websiteUrlPlaceholder: "https://yourbusiness.com",
+      websiteUrl: "Business Website",
+      websiteUrlPlaceholder: "yourcompany.com",
       serviceOfInterest: "Service of Interest",
       servicePlaceholder: "Select a service",
-      optionalMessage: "Optional Message",
+      optionalMessage: "Supply Chain Challenge (optional)",
     },
     messages: {
       submitting: "Sending your request...",
@@ -170,280 +169,282 @@ export const enMarketingCopy: MarketingCopy = {
     },
   },
   home: {
-    heroEyebrow: "Cybersecurity for small businesses",
-    heroTitle: "Protect your business from cyber risk, downtime, and weak systems.",
+    heroEyebrow: "Supply Chain Consulting",
+    heroTitle: "Build supply chains that <em>perform under pressure.</em>",
     heroDescription:
-      "Nourmed helps small businesses secure their websites, reduce vulnerabilities, improve compliance readiness, and build more confidence into the systems customers and partners rely on.",
-    primaryCta: "Get a Free Security Scan",
+      "Nourmed helps small and mid-size businesses reduce costs, strengthen vendor relationships, and build resilient supply chains without enterprise-level complexity.",
+    primaryCta: "Request a Free Assessment",
     secondaryCta: "View Services",
-    heroPanelEyebrow: "What Nourmed helps with",
-    heroPanelTitle: "Clear security support for businesses that need stronger public-facing systems.",
+    heroPanelEyebrow: "Supply chain focus",
+    heroPanelTitle: "Practical support for businesses that need clearer vendor, procurement, and logistics decisions.",
     heroHighlights: [
-      "Secure public-facing websites and forms",
-      "Compliance readiness guidance for growing businesses",
-      "Ongoing security support sized for small teams",
+      "Reduce procurement costs without cutting corners",
+      "Improve vendor accountability and resilience",
+      "Build better visibility into day-to-day operations",
     ],
-    heroScanEyebrow: "Free scan",
+    heroScanEyebrow: "Assessment",
     heroScanDescription:
-      "Start with a free security scan to understand visible gaps before committing to a larger engagement.",
+      "Start with a free assessment to understand your biggest cost, vendor, and process issues before committing to a larger engagement.",
     whatWeDo: {
       eyebrow: "What We Do",
-      title:
-        "Nourmed helps small businesses secure websites, reduce vulnerabilities, and strengthen readiness",
+      title: "Practical supply chain support for businesses that need results, not theory.",
       description:
-        "We focus on the parts of the business that affect trust most: public-facing systems, security gaps that interrupt operations, and the readiness work needed to answer customer or vendor expectations with confidence.",
+        "We focus on the parts of the supply chain that affect cost, delivery, and business continuity the most, then build solutions your team can actually maintain.",
       items: [
         {
-          title: "Secure the systems people actually see",
+          title: "Reduce procurement costs",
           description:
-            "Nourmed helps small businesses improve the websites, forms, hosting decisions, and public-facing systems that shape trust from the first visit.",
+            "We identify overpaid contracts, vendor overlap, and negotiation gaps so you can improve margins without creating new operational problems.",
         },
         {
-          title: "Reduce avoidable risk before it grows",
+          title: "Strengthen vendor relationships",
           description:
-            "We look for vulnerabilities, weak processes, and security gaps that can lead to downtime, poor customer confidence, or hard questions from vendors and partners.",
+            "We help you set clearer expectations, evaluate supplier performance, and reduce dependency on single-source risk.",
         },
         {
-          title: "Make security easier to act on",
+          title: "Improve visibility and control",
           description:
-            "The focus is practical guidance. Business owners get clear priorities, sensible recommendations, and implementation support without enterprise-heavy jargon.",
+            "From inventory flow to demand planning, we help you build a clearer picture of how the chain is performing and where it breaks down.",
+        },
+        {
+          title: "Prepare for disruption",
+          description:
+            "We assess the weak points in the chain and help you build practical contingency plans before disruption becomes expensive.",
         },
       ],
     },
     howWeDoIt: {
-      eyebrow: "How We Do It",
-      title: "A simple process built around clarity, action, and steady improvement",
+      eyebrow: "How We Work",
+      title: "A clear process from first conversation to lasting improvement.",
       description:
-        "Nourmed keeps the process straightforward so business owners can see what matters, what needs to happen next, and where ongoing support makes sense.",
+        "We keep the engagement straightforward so you can see exactly where you are, what comes next, and what is improving.",
     },
     services: {
       eyebrow: "Services",
-      title: "Three ways Nourmed supports small-business security and readiness",
+      title: "Three ways Nourmed supports your supply chain.",
       description:
-        "Each service is structured to be clear, practical, and useful for real businesses rather than overloaded with unnecessary complexity.",
-      cardCta: "View Service Details",
+        "Each service is scoped to deliver clear, measurable results for real businesses instead of generic deliverables and vague strategy decks.",
+      cardCta: "Learn more",
     },
     freeScan: {
-      eyebrow: "Free Security Scan",
-      title: "Start with a clear first step instead of guessing what needs attention",
+      eyebrow: "Get Started",
+      title: "Start with a free supply chain assessment.",
       description:
-        "A free scan helps you understand visible website risk, likely weak points, and which Nourmed service is the best fit before you commit to a larger scope.",
+        "Tell us about your business and where your supply chain is causing the most pain. We will review it and recommend the right next step with no commitment required.",
       benefits: [
-        "A clear first look at website risk, intake paths, and visible exposure",
-        "Guidance on the right service path for your business",
-        "A more informed quote when deeper work is needed",
+        "A clear look at your biggest supply chain risks and opportunities",
+        "Guidance on the right service path for your business size and goals",
+        "A more accurate quote when deeper work is needed",
       ],
-      formEyebrow: "Request your scan",
-      formTitle: "Request a free security scan or quote",
+      formEyebrow: "Request your assessment",
+      formTitle: "Request a free assessment or quote",
       formDescription:
-        "Tell Nourmed about your business, your website, and the type of help you need. We will review the request and recommend the right next step.",
+        "Use this form to tell us about your business, your website, and the operational issues you want to improve first.",
     },
     trust: {
-      eyebrow: "Trust & Reassurance",
-      title: "Practical protection for growing businesses that need clear guidance",
+      eyebrow: "Why Nourmed",
+      title: "Built around practical results, not consulting theater.",
       description:
-        "Nourmed is built around business-relevant security work: secure websites, stronger readiness, and support that helps owners move forward with more confidence.",
+        "Nourmed is designed for businesses that need useful operational guidance, clear communication, and follow-through that actually improves performance.",
       items: [
         {
-          title: "Practical guidance, not noise",
+          title: "Operational, not academic",
           description:
-            "Nourmed explains risks and next steps in plain English so business owners can make decisions quickly and confidently.",
+            "We focus on changes that can actually be implemented, not slide decks that sit on a shelf after the kickoff meeting.",
         },
         {
-          title: "Security-minded execution",
+          title: "Right-sized for your business",
           description:
-            "From secure websites to recurring protection, the work is shaped around real operational risk rather than generic agency deliverables.",
+            "Whether you are a small manufacturer or a mid-size distributor, we scope the work to fit your complexity and budget.",
         },
         {
-          title: "Readiness without overclaiming",
+          title: "Clear communication, always",
           description:
-            "Nourmed supports compliance readiness and implementation guidance, but does not present itself as a law firm or certifying body.",
+            "We explain risks, trade-offs, and next steps in plain language so you can make confident decisions quickly.",
         },
       ],
     },
   },
   servicesPage: {
-    heroEyebrow: "Cybersecurity consulting services",
-    heroTitle:
-      "Services designed to help small businesses strengthen security and operate with more confidence.",
+    heroEyebrow: "Supply chain services",
+    heroTitle: "Services designed to strengthen cost control, vendor performance, and operational resilience.",
     heroDescription:
-      "Nourmed helps businesses secure public-facing systems, prepare for compliance expectations, and reduce avoidable risk through clear consulting, practical implementation, and ongoing support.",
-    primaryCta: "Get a Free Security Scan",
-    secondaryCta: "Get a Free Quote",
+      "Nourmed helps businesses improve procurement, reduce avoidable supply chain friction, and build systems that perform more reliably as the company grows.",
+    primaryCta: "Request a Free Assessment",
+    secondaryCta: "Get a Quote",
     principles: {
       eyebrow: "What We Do",
-      title: "Security services built around real business needs",
+      title: "Supply chain support built around practical business needs",
       description:
-        "Nourmed helps small businesses improve trust, reduce vulnerabilities, and make better security decisions with service lines that stay practical and easy to understand.",
+        "The goal is to improve how the business operates in the real world: better vendor performance, better process control, and better resilience.",
       items: [
         {
           title: "Clear scopes and practical outcomes",
           description:
-            "Nourmed structures each engagement around visible business needs, real risks, and work that can be understood by owners and operators.",
+            "Every engagement is framed around the operational issues that matter most, with recommendations that can actually be acted on.",
         },
         {
-          title: "Security work that supports trust",
+          title: "Results that show up in operations",
           description:
-            "The goal is to improve the systems customers, vendors, and partners rely on, not to bury your team in unnecessary complexity.",
+            "We focus on cost, reliability, supplier performance, and decision clarity instead of abstract consulting language.",
         },
         {
-          title: "Support that fits smaller organizations",
+          title: "Support sized for growing businesses",
           description:
-            "Everything is designed for growing businesses that need serious protection without enterprise-sized overhead.",
+            "The work is designed for small and mid-size teams that need serious help without enterprise-heavy overhead.",
         },
       ],
     },
     process: {
-      eyebrow: "How We Do It",
-      title: "A straightforward process from assessment to ongoing support",
+      eyebrow: "How We Work",
+      title: "A straightforward process from assessment to implementation support",
       description:
-        "The work begins with clarity, moves into practical remediation, and grows into recurring support only where it adds value.",
+        "We begin by clarifying where the chain is underperforming, then move into prioritized improvements and ongoing support where it adds value.",
     },
     pricing: {
       eyebrow: "Services",
-      title: "Three service lines with realistic starting prices for small businesses",
+      title: "Three service lines with realistic starting prices for growing businesses",
       description:
-        "These starting prices are designed to be credible for small-business engagements while leaving room to scale with scope, systems, and business complexity.",
+        "These starting prices are meant to stay credible for small and mid-size engagements while leaving room to scale with scope and complexity.",
       boxEyebrow: "Average starting price",
-      cta: "Get a Free Quote",
+      cta: "Request an Assessment",
     },
     freeScan: {
-      eyebrow: "Free Security Scan",
-      title: "Use the free scan to understand your next security move",
+      eyebrow: "Free assessment",
+      title: "Use the free assessment to understand your next supply chain move",
       description:
-        "Tell Nourmed what you are concerned about, share the website or system in question, and we will review the visible risk surface before recommending a practical next step.",
+        "Tell Nourmed where costs, vendor issues, delays, or process friction are creating problems, and we will recommend the most practical next step.",
       benefits: [
-        "A practical review of your website and visible attack surface",
+        "A practical review of your current supply chain pain points",
         "A clearer understanding of which service is the right fit",
         "A faster and more informed quote when deeper work is needed",
       ],
-      formEyebrow: "Request your scan",
-      formTitle: "Request a free security scan or quote",
+      formEyebrow: "Request your assessment",
+      formTitle: "Request a free assessment or quote",
       formDescription:
-        "Use this form for a free scan, a service quote, or a practical first conversation about your security priorities.",
+        "Use this form for an assessment request, a scoped quote, or a practical first conversation about your supply chain priorities.",
     },
     trust: {
-      eyebrow: "Trust & Reassurance",
-      title: "Security guidance that stays practical and business-relevant",
+      eyebrow: "Why Nourmed",
+      title: "Consulting that stays practical, useful, and operationally grounded",
       description:
-        "Nourmed is built for owners and operators who need serious help protecting public-facing systems, improving readiness, and reducing avoidable risk.",
+        "Nourmed is built for leaders who want better supply chain decisions and measurable operational improvement, not inflated consulting theater.",
       items: [
         {
           title: "Business-friendly guidance",
           description:
-            "We explain what matters, why it matters, and what should happen next in terms a non-technical owner can use.",
+            "We explain what matters, why it matters, and what should happen next in language your team can actually use.",
         },
         {
-          title: "Readiness support without legal overreach",
+          title: "Recommendations built for execution",
           description:
-            "Nourmed helps businesses prepare for security and compliance expectations, but does not provide legal advice or issue certifications.",
+            "The focus stays on what can realistically be implemented, maintained, and improved over time.",
         },
         {
-          title: "Security work that remains practical",
+          title: "A practical advisory model",
           description:
-            "The focus stays on websites, vulnerabilities, trust, access, backups, and recurring risk reduction that supports real operations.",
+            "We help businesses move from unclear friction points to clearer systems, stronger suppliers, and more confidence in day-to-day operations.",
         },
       ],
     },
   },
   aboutPage: {
     heroEyebrow: "About Nourmed",
-    heroTitle: "A security and compliance readiness partner for small businesses that need practical protection",
+    heroTitle: "A practical supply chain partner for businesses that need clearer operations and better vendor performance",
     heroDescription:
-      "Nourmed was built to help growing businesses strengthen public-facing systems, prepare for real-world security expectations, and make better decisions before small issues turn into bigger problems.",
+      "Nourmed was built to help growing businesses improve procurement, strengthen supplier accountability, and reduce the friction that slows operations down.",
     panelEyebrow: "What this means",
     panelBody: [
-      "We help businesses understand the security expectations attached to customer trust, vendor requirements, public-facing websites, and everyday operational risk.",
-      "The goal is a stronger security posture, not confusion. Nourmed focuses on guidance and implementation support that makes sense for small teams.",
+      "We help businesses understand where cost, delay, and vendor complexity are getting in the way of consistent performance.",
+      "The goal is a supply chain that is easier to manage, easier to improve, and better prepared for disruption as the business grows.",
     ],
     principles: {
       eyebrow: "Operating Principles",
-      title: "How Nourmed approaches security work",
+      title: "How Nourmed approaches supply chain work",
       description:
-        "The business is designed around clarity, trust, and steady risk reduction rather than generic technical theater.",
+        "The business is designed around clarity, execution, and long-term improvement rather than presentation-heavy consulting.",
       items: [
         {
-          title: "Business-first communication",
+          title: "Operational communication",
           description:
-            "Nourmed explains what matters in plain English so owners and operators can make security decisions without getting buried under buzzwords.",
+            "We explain supply chain issues in business language so owners and operators can make decisions quickly and confidently.",
         },
         {
-          title: "Practical protection",
+          title: "Practical recommendations",
           description:
-            "We focus on reducing real risk for growing businesses: secure websites, stronger intake paths, better readiness, and operational follow-through.",
+            "The focus stays on changes that improve procurement, vendor performance, resilience, and control in day-to-day operations.",
         },
         {
-          title: "Readiness without overclaiming",
+          title: "Results over theater",
           description:
-            "Nourmed supports compliance readiness and security preparation, but does not pretend to be a law firm or a certifying authority.",
+            "We care more about what gets implemented than about producing polished deliverables with no operational follow-through.",
         },
         {
-          title: "Long-term improvement",
+          title: "Steady improvement",
           description:
-            "The goal is not a one-time checklist. It is helping small businesses build stronger systems that can hold up as expectations grow.",
+            "The goal is not a one-time assessment alone. It is helping businesses build a stronger operating model over time.",
         },
       ],
     },
     expectations: {
       eyebrow: "What Clients Can Expect",
-      title: "A simple model for practical security improvement",
+      title: "A simple model for practical supply chain improvement",
       description:
-        "Nourmed helps businesses understand where they are exposed, what matters most, and how to improve without overspending on the wrong priorities.",
+        "Nourmed helps businesses understand where operations are strained, what matters most, and how to improve without overcomplicating execution.",
       items: [
         {
           label: "Who we serve",
           detail:
-            "Small businesses that need clearer security posture, stronger websites, and better preparation for customer or vendor expectations.",
+            "Small and mid-size businesses that need stronger procurement, better supplier oversight, and clearer operational systems.",
         },
         {
           label: "What we focus on",
           detail:
-            "Compliance readiness, secure website development, and recurring security support sized for growing operations.",
+            "Supply chain assessments, procurement and vendor optimization, and ongoing support for growing operations.",
         },
         {
           label: "How we work",
           detail:
-            "We assess what is exposed, prioritize what matters most, harden what is weak, and support ongoing improvement where needed.",
+            "We assess the current state, prioritize the biggest opportunities, help implement practical changes, and support continued improvement where needed.",
         },
         {
           label: "What clients get",
           detail:
-            "Clearer risk visibility, more trustworthy public systems, and security guidance that is practical enough to implement.",
+            "Better visibility, stronger vendor decisions, clearer priorities, and a more resilient operating model.",
         },
       ],
     },
     cta: {
       eyebrow: "Next step",
-      title:
-        "If you need a secure website, clearer compliance readiness, or ongoing protection, start with a free scan or quote request.",
-      label: "Get a Free Quote",
+      title: "If your supply chain is creating avoidable cost, friction, or risk, start with a free assessment or quote request.",
+      label: "Get a Quote",
     },
   },
   contactPage: {
-    heroEyebrow: "Free Security Scan",
-    heroTitle: "Request a free security scan or a scoped quote",
+    heroEyebrow: "Free assessment",
+    heroTitle: "Request a free supply chain assessment or a scoped quote",
     heroDescription:
-      "Use the secure intake form to tell Nourmed about your business, your website, and the kind of support you need. We will review the request and recommend a practical next step.",
+      "Use the intake form to tell Nourmed about your business, your website, and the type of support you need. We will review the request and recommend a practical next step.",
     expectationEyebrow: "What to expect",
     expectationBody: [
-      "Use this form for compliance consulting, secure website development, or recurring security support.",
-      "The goal is to understand your business, your visible risk surface, and whether a free scan or a deeper engagement makes the most sense.",
-      "Nourmed focuses on practical cybersecurity and readiness guidance, not legal claims, fake guarantees, or inflated jargon.",
+      "Use this form for a supply chain assessment, procurement and vendor optimization, or ongoing consulting support.",
+      "The goal is to understand the business context, the operational friction you are dealing with, and whether a lightweight assessment or deeper engagement makes the most sense.",
+      "Nourmed focuses on practical supply chain improvement, clear communication, and recommendations that are built to be implemented.",
     ],
     assurances: [
       {
         title: "Useful information first",
-        description: "The form collects the details needed to scope a free security scan or a practical service quote.",
+        description: "The form collects the details needed to scope a practical assessment or a more tailored consulting conversation.",
       },
       {
         title: "Protected intake path",
         description:
-          "Requests are validated on the backend and protected by anti-spam controls before they reach storage.",
+          "Requests are validated on the backend before they are stored, helping keep the intake path clean and reliable.",
       },
       {
         title: "A clearer next step",
         description:
-          "Nourmed uses the request to understand visible risk, business needs, and the right service path.",
+          "Nourmed uses the request to understand your priorities, your current footprint, and the right service path for the business.",
       },
     ],
   },
