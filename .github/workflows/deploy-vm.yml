@@ -35,17 +35,11 @@ jobs:
       - name: Deploy latest main to VM
         env:
           DEPLOY_REF: ${{ github.sha }}
-          VM_DEPLOY_PATH: ${{ secrets.VM_DEPLOY_PATH }}
-          VM_HOST: ${{ secrets.VM_HOST }}
-          VM_PORT: ${{ secrets.VM_PORT }}
-          VM_USER: ${{ secrets.VM_USER }}
+          VM_DEPLOY_PATH: /root/Nourmed-Project
+          VM_HOST: nourmed.org
+          VM_PORT: 22
+          VM_USER: root
         run: |
-          : "${VM_HOST:?Missing VM_HOST secret}"
-          : "${VM_USER:?Missing VM_USER secret}"
-          : "${VM_DEPLOY_PATH:?Missing VM_DEPLOY_PATH secret}"
-
-          VM_PORT="${VM_PORT:-22}"
-
           ssh \
             -i ~/.ssh/id_ed25519 \
             -o BatchMode=yes \
